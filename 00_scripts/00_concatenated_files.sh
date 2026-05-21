@@ -20,6 +20,7 @@ Home="/home/amartin3"
 echo "Concaténation des fichiers sed6"
 ## sed6 R1
 
+
 cat \
   ${RUN1}/1120_sed6_rep3_R1.fastq.gz \
   ${RUN1}/1129_sed6_rep1_R1.fastq.gz \
