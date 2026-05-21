@@ -102,3 +102,6 @@ Home="/home/amartin3"
 #  ${RUN6}/1121_sed8-rep1/1121_sed68-rep1_R2.fastq.gz \
 #  ${RUN6}/1122_sed8-rep2/1122_sed8-rep2_R2.fastq.gz \
 #  > "${Home}/sed8/sed8_concat_R2.fastq.gz"
+
+#echo "Concaténation sed8 terminée."
+#echo "Concaténation terminée pour tous les échantillons."
