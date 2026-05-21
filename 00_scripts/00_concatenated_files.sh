@@ -91,7 +91,7 @@ Home="/home/amartin3"
 #  ${RUN1}/1131_sed8_rep3_R2.fastq.gz \
 #  ${RUN2}/1121_sed8_rep1/1121_sed8_rep1_R2.fastq.gz \
 #  ${RUN2}/1122_sed8_rep2/1122_sed8_rep2_R2.fastq.gz \
-#  ${RUN2}/1131_sed8_rep3/1130_sed8_rep3_R2.fastq.gz \
+#  ${RUN2}/1131_sed8_rep3/1131_sed8_rep3_R2.fastq.gz \
 #  ${RUN3}/1121_sed8_rep1/1121_sed8_rep1_R2.fastq.gz \
 #  ${RUN3}/1122_sed8_rep2/1122_sed8_rep2_R2.fastq.gz \
 #  ${RUN3}/1131_sed8_rep3/1131_sed8_rep3_R2.fastq.gz \
