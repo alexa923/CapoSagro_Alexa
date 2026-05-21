@@ -91,7 +91,7 @@ Home="/home/amartin3"
 #  ${RUN1}/1131_sed8_rep3_R2.fastq.gz \
 #  ${RUN2}/1121_sed8_rep1/1121_sed8_rep1_R2.fastq.gz \
 #  ${RUN2}/1122_sed8_rep2/1122_sed8_rep2_R2.fastq.gz \
-#  ${RUN2}/1131_sed8_rep3/1130_sed6_rep3_R2.fastq.gz \
+#  ${RUN2}/1131_sed8_rep3/1130_sed8_rep3_R2.fastq.gz \
 #  ${RUN3}/1121_sed8_rep1/1121_sed8_rep1_R2.fastq.gz \
 #  ${RUN3}/1122_sed8_rep2/1122_sed8_rep2_R2.fastq.gz \
 #  ${RUN3}/1131_sed8_rep3/1131_sed8_rep3_R2.fastq.gz \
@@ -99,7 +99,7 @@ Home="/home/amartin3"
 #  ${RUN4}/1122_sed8_rep2/1122_sed8_rep2_R2.fastq.gz \
 #  ${RUN5}/1121_sed8_rep1/1121_sed8_rep1_R2.fastq.gz \
 #  ${RUN5}/1122_sed8_rep2/1122_sed8_rep2_R2.fastq.gz \
-#  ${RUN6}/1121_sed8-rep1/1121_sed68-rep1_R2.fastq.gz \
+#  ${RUN6}/1121_sed8-rep1/1121_sed8-rep1_R2.fastq.gz \
 #  ${RUN6}/1122_sed8-rep2/1122_sed8-rep2_R2.fastq.gz \
 #  > "${Home}/sed8/sed8_concat_R2.fastq.gz"
 
