@@ -36,7 +36,7 @@ cat \
   ${RUN5}/1130_sed6_rep2/1130_sed6_rep2_R1.fastq.gz \
   ${RUN6}/1129_sed6-rep1/1129_sed6-rep1_R1.fastq.gz \
   ${RUN6}/1130_sed6-rep2/1130_sed6-rep2_R1.fastq.gz \
-  > "${Home}/sed6/sed6_concat_R1.fastq.gz"
+  > ${Home}/sed6/sed6_concat_R1.fastq.gz
 
 ##sed6 R2
 
@@ -56,7 +56,7 @@ cat \
   ${RUN5}/1130_sed6_rep2/1130_sed6_rep2_R2.fastq.gz \
   ${RUN6}/1129_sed6-rep1/1129_sed6-rep1_R2.fastq.gz \
   ${RUN6}/1130_sed6-rep2/1130_sed6-rep2_R2.fastq.gz \
-  > "${Home}/sed6/sed6_concat_R2.fastq.gz"
+  > ${Home}/sed6/sed6_concat_R2.fastq.gz
 
 echo "Concaténation sed6 terminée."
 
@@ -79,7 +79,7 @@ cat \
   ${RUN5}/1122_sed8_rep2/1122_sed8_rep2_R1.fastq.gz \
   ${RUN6}/1121_sed8-rep1/1121_sed8-rep1_R1.fastq.gz \
   ${RUN6}/1122_sed8-rep2/1122_sed8-rep2_R1.fastq.gz \
-  > "${Home}/sed8/sed8_concat_R1.fastq.gz"
+  > ${Home}/sed8/sed8_concat_R1.fastq.gz
 
 
 
@@ -101,7 +101,7 @@ cat \
   ${RUN5}/1122_sed8_rep2/1122_sed8_rep2_R2.fastq.gz \
   ${RUN6}/1121_sed8-rep1/1121_sed8-rep1_R2.fastq.gz \
   ${RUN6}/1122_sed8-rep2/1122_sed8-rep2_R2.fastq.gz \
-  > "${Home}/sed8/sed8_concat_R2.fastq.gz"
+  > ${Home}/sed8/sed8_concat_R2.fastq.gz
 
 echo "Concaténation sed8 terminée."
 echo "Concaténation terminée pour tous les échantillons."
