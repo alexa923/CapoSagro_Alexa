@@ -41,19 +41,19 @@ Results="/home/amartin3"
 #sed6 R2
 
 #cat \
-#  ${RUN1}/1120_sed6_rep3_R1.fastq.gz \
-#  ${RUN1}/1129_sed6_rep1_R1.fastq.gz \
-#  ${RUN1}/1130_sed6_rep2_R1.fastq.gz \
-#  ${RUN2}/1120_sed6_rep3/1120_sed6_rep3_R1.fastq.gz \
-#  ${RUN2}/1129_sed6_rep1/1129_sed6_rep1_R1.fastq.gz \
-#  ${RUN2}/1130_sed6_rep2/1130_sed6_rep2_R1.fastq.gz \
-#  ${RUN3}/1129_sed6_rep1/1129_sed6_rep1_R1.fastq.gz \
-#  ${RUN3}/1130_sed6_rep2/1130_sed6_rep2_R1.fastq.gz \
-#  ${RUN3}/1120_sed6_rep3/1120_sed6_rep3_R1.fastq.gz \
-#  ${RUN4}/1129_sed6_rep1/1129_sed6_rep1_R1.fastq.gz \
-#  ${RUN4}/1130_sed6_rep2/1130_sed6_rep2_R1.fastq.gz \
-#  ${RUN5}/1129_sed6_rep1/1129_sed6_rep1_R1.fastq.gz \
-#  ${RUN5}/1130_sed6_rep2/1130_sed6_rep2_R1.fastq.gz \
-#  ${RUN6}/1129_sed6_rep1/1129_sed6_rep1_R1.fastq.gz \
-#  ${RUN6}/1130_sed6_rep2/1130_sed6_rep2_R1.fastq.gz \
-#  > "${Results}/sed6/sed6_concat_R1.fastq.gz"
+#  ${RUN1}/1120_sed6_rep3_R2.fastq.gz \
+#  ${RUN1}/1129_sed6_rep1_R2.fastq.gz \
+#  ${RUN1}/1130_sed6_rep2_R2.fastq.gz \
+#  ${RUN2}/1120_sed6_rep3/1120_sed6_rep3_R2.fastq.gz \
+#  ${RUN2}/1129_sed6_rep1/1129_sed6_rep1_R2.fastq.gz \
+#  ${RUN2}/1130_sed6_rep2/1130_sed6_rep2_R2.fastq.gz \
+#  ${RUN3}/1129_sed6_rep1/1129_sed6_rep1_R2.fastq.gz \
+#  ${RUN3}/1130_sed6_rep2/1130_sed6_rep2_R2.fastq.gz \
+#  ${RUN3}/1120_sed6_rep3/1120_sed6_rep3_R2.fastq.gz \
+#  ${RUN4}/1129_sed6_rep1/1129_sed6_rep1_R2.fastq.gz \
+#  ${RUN4}/1130_sed6_rep2/1130_sed6_rep2_R2.fastq.gz \
+#  ${RUN5}/1129_sed6_rep1/1129_sed6_rep1_R2.fastq.gz \
+#  ${RUN5}/1130_sed6_rep2/1130_sed6_rep2_R2.fastq.gz \
+#  ${RUN6}/1129_sed6_rep1/1129_sed6_rep1_R2.fastq.gz \
+#  ${RUN6}/1130_sed6_rep2/1130_sed6_rep2_R2.fastq.gz \
+#  > "${Results}/sed6/sed6_concat_R2.fastq.gz"
