@@ -34,8 +34,8 @@ Home="/home/amartin3"
 #  ${RUN4}/1130_sed6_rep2/1130_sed6_rep2_R1.fastq.gz \
 #  ${RUN5}/1129_sed6_rep1/1129_sed6_rep1_R1.fastq.gz \
 #  ${RUN5}/1130_sed6_rep2/1130_sed6_rep2_R1.fastq.gz \
-#  ${RUN6}/1129_sed6_rep1/1129_sed6_rep1_R1.fastq.gz \
-#  ${RUN6}/1130_sed6_rep2/1130_sed6_rep2_R1.fastq.gz \
+#  ${RUN6}/1129_sed6-rep1/1129_sed6-rep1_R1.fastq.gz \
+#  ${RUN6}/1130_sed6-rep2/1130_sed6-rep2_R1.fastq.gz \
 #  > "${Home}/sed6/sed6_concat_R1.fastq.gz"
 
 ##sed6 R2
@@ -54,8 +54,8 @@ Home="/home/amartin3"
 #  ${RUN4}/1130_sed6_rep2/1130_sed6_rep2_R2.fastq.gz \
 #  ${RUN5}/1129_sed6_rep1/1129_sed6_rep1_R2.fastq.gz \
 #  ${RUN5}/1130_sed6_rep2/1130_sed6_rep2_R2.fastq.gz \
-#  ${RUN6}/1129_sed6_rep1/1129_sed6_rep1_R2.fastq.gz \
-#  ${RUN6}/1130_sed6_rep2/1130_sed6_rep2_R2.fastq.gz \
+#  ${RUN6}/1129_sed6-rep1/1129_sed6-rep1_R2.fastq.gz \
+#  ${RUN6}/1130_sed6-rep2/1130_sed6-rep2_R2.fastq.gz \
 #  > "${Home}/sed6/sed6_concat_R2.fastq.gz"
 
 #echo "Concaténation sed6 terminée."
