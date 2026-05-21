@@ -77,7 +77,7 @@ Home="/home/amartin3"
 #  ${RUN4}/1122_sed8_rep2/1122_sed8_rep2_R1.fastq.gz \
 #  ${RUN5}/1121_sed8_rep1/1121_sed8_rep1_R1.fastq.gz \
 #  ${RUN5}/1122_sed8_rep2/1122_sed8_rep2_R1.fastq.gz \
-#  ${RUN6}/1121_sed8-rep1/1121_sed68-rep1_R1.fastq.gz \
+#  ${RUN6}/1121_sed8-rep1/1121_sed8-rep1_R1.fastq.gz \
 #  ${RUN6}/1122_sed8-rep2/1122_sed8-rep2_R1.fastq.gz \
 #  > "${Home}/sed8/sed8_concat_R1.fastq.gz"
 
