@@ -29,7 +29,24 @@ fastqc \
   /storage/groups/gdec/shared_paleo/E1531_final/run3_20251008_AV241601_E1531_Ps7_Ps8/*/*.fastq.gz \
   /storage/groups/gdec/shared_paleo/E1531_final/run4_20251104_AV241601_E1531_Ps7_Ps8_04112025/*/*.fastq.gz \
   /storage/groups/gdec/shared_paleo/E1672/*/*.fastq.gz \
-  --threads 8 \
   --outdir .
+#agrégation des rapports fastQC avant cat
+echo "Agrégation avec MultiQC"
+multiqc . -o .
+echo "Fin du contrôle qualité"
 
 #QC des fichiers concaténés 
+cd ${Home}/02_QC_concatenated_data
+echo "Début de l'analyse FastQC après concaténation"
+
+fastqc \
+  /home/amartin3/sed6/sed6_concat_R1.fastq.gz \
+  /home/amartin3/sed6/sed6_concat_R2.fastq.gz \
+  /home/amartin3/sed8/sed8_concat_R1.fastq.gz \
+  /home/amartin3/sed8/sed8_concat_R2.fastq.gz \
+  --outdir .
+
+# Agrégation des rapports FastQC (après cat)
+echo "Agrégation avec MultiQC après concaténation"
+multiqc . -o .
+echo "Fin des contrôles qualité"
