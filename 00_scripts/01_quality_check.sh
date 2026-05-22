@@ -40,10 +40,10 @@ cd ${Home}/02_QC_concatenated_data
 echo "Début de l'analyse FastQC après concaténation"
 
 fastqc \
-  /home/amartin3/sed6/sed6_concat_R1.fastq.gz \
-  /home/amartin3/sed6/sed6_concat_R2.fastq.gz \
-  /home/amartin3/sed8/sed8_concat_R1.fastq.gz \
-  /home/amartin3/sed8/sed8_concat_R2.fastq.gz \
+  /home/amartin3/01_concatenated_data/sed6_concat_R1.fastq.gz \
+  /home/amartin3/01_concatenated_data/sed6_concat_R2.fastq.gz \
+  /home/amartin3/01_concatenated_data/sed8_concat_R1.fastq.gz \
+  /home/amartin3/01_concatenated_data/sed8_concat_R2.fastq.gz \
   --outdir .
 
 # Agrégation des rapports FastQC (après cat)
