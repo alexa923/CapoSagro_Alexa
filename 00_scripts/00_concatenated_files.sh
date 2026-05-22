@@ -6,8 +6,8 @@
 #SBATCH --mem=1000G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL
-#SBATCH --error="/home/CapoSagro_Alexa/00_scripts/00_concatenated_files.err"
-#SBATCH --output="/home/CapoSagro_Alexa/00_scripts/00_concatenated_files.out"
+#SBATCH --error=/home/CapoSagro_Alexa/00_scripts/00_concatenated_files.err
+#SBATCH --output=/home/CapoSagro_Alexa/00_scripts/00_concatenated_files.out
 
 RUN1="/storage/groups/gdec/shared_paleo/Illumina/01_raw_data"
 RUN2="/storage/groups/gdec/shared_paleo/E1531_final/run1_20250320_AV241601_E1531_Ps5Lane1_Ps6Lane2"
