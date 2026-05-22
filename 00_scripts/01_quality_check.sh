@@ -23,12 +23,12 @@ cd ${Home}/02_QC_raw_data
 echo "Début de l'analyse FastQC"
 
 fastqc \
-  /storage/groups/gdec/shared_paleo/Illumina/01_raw_data/*.fastq.gz \
-  /storage/groups/gdec/shared_paleo/E1531_final/run1_20250320_AV241601_E1531_Ps5Lane1_Ps6Lane2/*/*.fastq.gz \
-  /storage/groups/gdec/shared_paleo/E1531_final/run2_20250414_AV241601_E1531_Ps5_Ps6_11022026_CORRECTED/*/*.fastq.gz \
-  /storage/groups/gdec/shared_paleo/E1531_final/run3_20251008_AV241601_E1531_Ps7_Ps8/*/*.fastq.gz \
-  /storage/groups/gdec/shared_paleo/E1531_final/run4_20251104_AV241601_E1531_Ps7_Ps8_04112025/*/*.fastq.gz \
-  /storage/groups/gdec/shared_paleo/E1672/*/*.fastq.gz \
+  /storage/groups/gdec/shared_paleo/Illumina/01_raw_data/*sed{6,8}*.fastq.gz \
+  /storage/groups/gdec/shared_paleo/E1531_final/run1_20250320_AV241601_E1531_Ps5Lane1_Ps6Lane2/*sed{6,8}*/*.fastq.gz \
+  /storage/groups/gdec/shared_paleo/E1531_final/run2_20250414_AV241601_E1531_Ps5_Ps6_11022026_CORRECTED/*sed{6,8}*/*.fastq.gz \
+  /storage/groups/gdec/shared_paleo/E1531_final/run3_20251008_AV241601_E1531_Ps7_Ps8/*sed{6,8}*/*.fastq.gz \
+  /storage/groups/gdec/shared_paleo/E1531_final/run4_20251104_AV241601_E1531_Ps7_Ps8_04112025/*sed{6,8}*/*.fastq.gz \
+  /storage/groups/gdec/shared_paleo/E1672/*sed{6,8}*/*.fastq.gz \
   --outdir .
 #agrégation des rapports fastQC avant cat
 echo "Agrégation avec MultiQC"
