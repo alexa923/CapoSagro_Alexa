@@ -42,8 +42,8 @@ do
         --merged_out "$MERGED" \ #nom du fichier de sortie mergé (fusion des paires de reads si chevauchants)
         --length_required 30 \ #longueur minimale des fragments
         --cut_front --cut_tail \ #déplace fenêtre glissantes en 5' et 3' et supp bases si qualité<seuil
-        --cut_window_size  ##??
-        --cut_mean_quality ##??
+        --cut_window_size 4 \ ##définit taille fenêtre glissante pour évaluer qualité des reads
+        --cut_mean_quality 20 \ ##fixe le score phred min pour un bloc de 4 bases 
         --n_base_limit 5 \ #si le nombre de reads de base N>n_base_limit ce read est écarté
         --unqualified_percent_limit 40 \#combien de bases (en%) peuvent être non qualifiées
         --low_complexity_treshold 30 \#élimine read de faible complexité (seq biologiquement non informatives)
@@ -53,6 +53,10 @@ do
         --poly_x_min_len 10 \ #longueur minimale à partir de laquelle une répététion= anomalie à supp
         --merge --correction \ #fusion des reads fwd et rev quand chevauchement (corrige erreur zone de chevauchement)
         --overlap_len_require 30 \ # longueur minimale pour détecter les zones de chevauchement 
+        --overlap_diff_limit 5 \ #nombre maximal de bases non appariées pour détecter une région chevauchante
+        --overlap_diff_percent_limit 20 \ #% maximum de mismatch pour détecter une région chevauchante
+        --html "$HTML" \ #génèrent rapports de contrôme qualité après nettoyage
+        --json "$JSON" \
 
 
    echo "Traitement de $BASENAME terminé"
