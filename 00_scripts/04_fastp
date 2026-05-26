@@ -19,7 +19,24 @@ source ~/.bashrc
 conda activate bioinformatic
 
 #pour chaque fichier R1
-for R1 in 
+for R1 in "$ENTREE"/*_R1.fastq.gz
+do
+   #trouver le fichier R2 correspondant
+   R2="${R1/_R1.fastq.gz/_R2.fastq.gz}"
 
+ 
+   # Nom de base pour les sorties
+   BASENAME=$(basename "$R1" _R1.fastq.gz)
 
-#trouver le fichier R2 correspondant 
+   #fichiers de sortie
+   OUT_R1="$SORTIE/${BASENAME}_fastp_R1.fastq.gz"
+   OUT_R2="$OSORTIE/${BASENAME}_fastp_R2.fastq.gz"
+   MERGED="$SORTIE/${BASENAME}_fastp_merged.fastq.gz"
+   HTML="$LOG_DIR/${BASENAME}_fastp.html" #= ???
+   JSON="$LOG_DIR/${BASENAME}_fastp.json" #??
+
+#fastp
+   fastp \
+        --in1 "$R1" --in2 "$R2" \
+
+  
