@@ -9,4 +9,21 @@
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/02_bbduk.out"
 
 
+
+#activer environnement conda
+module load conda/4.12.0
+source ~/.bashrc
+conda activate bioinformatic
+
+DOSSIER="/home
+PHIX=bbmap/resources/phix174_ill.ref.fa.gz 
+#enlever tous les reads qui matchent ces références, avant de passer au reste du pipeline
+
+#création des dossiers de sortie (à modifier)
+Home="/home/amartin3"
+mkdir -p "${Home}/02_QC_raw_data"
+mkdir -p "${Home}/02_QC_concatenated_data"
+
+
+
 # à la fin lancer un fastqc / multi qc pour checker la qualité à chaque étape
