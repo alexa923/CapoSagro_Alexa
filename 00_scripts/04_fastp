@@ -10,7 +10,7 @@
 
 ENTREE="/home/amartin3/03_clumpify"
 SORTIE="/home/amartin3/04_fastp"
-LOG_DIR="/home/amartin3/CapoSagro_Alexa/00_scripts/03_fastp.out
+LOG_DIR="/home/amartin3/CapoSagro_Alexa/00_scripts/03_fastp.out"
 
 #création des dossiers de sortie s'ils n'existent pas déjà
 mkdir -p "$SORTIE"
@@ -25,7 +25,8 @@ conda activate bioinformatic
 for R1 in "$ENTREE"/*_R1.fastq.gz
 do
    #trouver le fichier R2 correspondant
-   R2="${R1/_R1.fastq.gz/_R2.fastq.gz}"
+   R2="${R1/_R1.fastq.gz/_R2.fastq.gz}" #prend le nom du fichier R1 et cherche le R2 correspondant
+#permet de nettoyer les couples ensemble 
 
  
    # Nom de base pour les sorties
@@ -33,10 +34,10 @@ do
 
    #fichiers de sortie
    OUT_R1="$SORTIE/${BASENAME}_fastp_R1.fastq.gz"
-   OUT_R2="$OSORTIE/${BASENAME}_fastp_R2.fastq.gz"
+   OUT_R2="$SORTIE/${BASENAME}_fastp_R2.fastq.gz"
    MERGED="$SORTIE/${BASENAME}_fastp_merged.fastq.gz"
-   HTML="$LOG_DIR/${BASENAME}_fastp.html" #= ???
-   JSON="$LOG_DIR/${BASENAME}_fastp.json" #??
+   HTML="$LOG_DIR/${BASENAME}_fastp.html" 
+   JSON="$LOG_DIR/${BASENAME}_fastp.json" 
 
 #fastp
    fastp \
@@ -49,7 +50,7 @@ do
         --cut_mean_quality 20 \ ##fixe le score phred min pour un bloc de 4 bases 
         --n_base_limit 5 \ #si le nombre de reads de base N>n_base_limit ce read est écarté
         --unqualified_percent_limit 40 \#combien de bases (en%) peuvent être non qualifiées
-        --low_complexity_treshold 30 \#élimine read de faible complexité (seq biologiquement non informatives)
+        --low_complexity_threshold 30 \#élimine read de faible complexité (seq biologiquement non informatives)
         --qualified_quality_phred 20 \ #score de qualité min = 20?
         --low_complexity_filter \ #analyse la diversité des bases de chaque read (active fct de nettoyage)
         --trim_poly_x \ #sert à trimmer les queues polyG ou polyA en fin de read
@@ -69,6 +70,8 @@ do
    echo "Traitement de $BASENAME terminé"
 done
 echo "Tous les traitements sont terminés"
+echo "Analyse de la qualité"
+echo "Analyse de la qualité terminée"
 
 
   
