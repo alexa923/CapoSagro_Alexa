@@ -71,6 +71,8 @@ do
 done
 echo "Tous les traitements sont terminés"
 echo "Analyse de la qualité"
+fastqc "$SORTIE"*.fastq.gz --outdir .
+multiqc . -o .
 echo "Analyse de la qualité terminée"
 
 
