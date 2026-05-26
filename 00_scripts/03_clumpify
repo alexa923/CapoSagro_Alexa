@@ -1,1 +1,4 @@
 
+SORTIE="/home/amartin3/03_clumpify"
+
+mkdir -p "$SORTIE"
