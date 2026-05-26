@@ -42,5 +42,9 @@ do
         --merged_out "$MERGED" \
         --length_required # ??
 
+   echo "Traitement de $BASENAME terminé"
+done
+echo "Tous les traitements sont terminés"
+
 
   
