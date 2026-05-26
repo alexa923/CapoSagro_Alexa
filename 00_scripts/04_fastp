@@ -38,5 +38,9 @@ do
 #fastp
    fastp \
         --in1 "$R1" --in2 "$R2" \
+        --out1 "$OUT_R1" --out2 "$OUT_R2" \
+        --merged_out "$MERGED" \
+        --length_required # ??
+
 
   
