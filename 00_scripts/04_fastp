@@ -57,6 +57,10 @@ do
         --overlap_diff_percent_limit 20 \ #% maximum de mismatch pour détecter une région chevauchante
         --html "$HTML" \ #génèrent rapports de contrôme qualité après nettoyage
         --json "$JSON" \
+        --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA \ #adaptateurs TruSeq Illumina
+        --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
+        --detect_adapter_for_pe \ #cherche les seq d'adaptateurs à couper
+        --thread 4 #4 coeurs alloués 
 
 
    echo "Traitement de $BASENAME terminé"
