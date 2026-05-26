@@ -10,8 +10,11 @@
 
 ENTREE="/home/amartin3/03_clumpify"
 SORTIE="/home/amartin3/04_fastp"
+LOG_DIR="/home/amartin3/CapoSagro_Alexa/00_scripts/03_fastp.out
 
+#création des dossiers de sortie s'ils n'existent pas déjà
 mkdir -p "$SORTIE"
+mkdir -p "$LOG_DIR"
 
 #activer environnement conda
 module load conda/4.12.0
