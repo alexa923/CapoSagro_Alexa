@@ -8,10 +8,18 @@
 #SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/04_fastp.err"
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/04_fastp.out"
 
+ENTREE="/home/amartin3/03_clumpify"
+SORTIE="/home/amartin3/04_fastp"
 
+mkdir -p "$SORTIE"
 
 #activer environnement conda
 module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
 
+#pour chaque fichier R1
+for R1 in 
+
+
+#trouver le fichier R2 correspondant 
