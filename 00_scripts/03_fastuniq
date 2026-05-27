@@ -20,6 +20,7 @@ conda activate bioinformatic
 cd "$ENTREE" || exit 1 # terminate a script  (an error has occurred)
 
 TMP="/tmp/fastuniq_tmp" #?
+#créer le dossier s'il n'existe pas deja
 mkdir -p "$TMP"
 
 for R1_gz in clean_*_R1.fastq.gz; do #on met pas .fastq.gz? 
@@ -33,5 +34,10 @@ for R1_gz in clean_*_R1.fastq.gz; do #on met pas .fastq.gz?
         R1_tmp="${TMP}/${base}_R1.fastq"
         R2_tmp="${TMP}/${base}_R2.fastq"
         listfile="${TMP}/${base}.list"
+
+        zcat "$ENTREE/$R1_gz" > "$R1_tmp" #regarder le contenu des fichiers compressés ?
+        zcat "$ENTREE/$R2_gz" > "$R2_tmp"
+
+
 
 #controle qualité à la fin 
