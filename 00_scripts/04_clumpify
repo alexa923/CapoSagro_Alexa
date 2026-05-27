@@ -5,8 +5,8 @@
 #SBATCH --mem=1000G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL 
-#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/03_clumpify.err"
-#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/03_clumpify.out"
+#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/04_clumpify.err"
+#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/04_clumpify.out"
 
 
 ENTREE="/home/amartin3/03_fastuniq"
