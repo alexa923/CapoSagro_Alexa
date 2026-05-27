@@ -8,21 +8,52 @@
 #SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/02_bbduk.err"
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/02_bbduk.out"
 
-SORTIE="/home/amartin3/02_bbduk"
 
-#activer environnement conda
+
+ENTREE="/home/amartin3/02_bbduk"
+SORTIE="/home/amartin3/03_clumpify"
+
+mkdir -p "$SORTIE"
+
 module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
 
-DOSSIER="/home
-PHIX=bbmap/resources/phix174_ill.ref.fa.gz 
-#enlever tous les reads qui matchent ces références, avant de passer au reste du pipeline
+PHIX=/home/amartin3/bbmap/resources/phix174_ill.ref.fa.gz
+BBDUK=/home/amartin3/bbmap/bbduk.sh
 
-#création des dossiers de sortie (à modifier)
-Home="/home/amartin3"
-mkdir -p "${Home}/02_QC_raw_data"
-mkdir -p "${Home}/02_QC_concatenated_data"
+cd "$ENTREE"
+
+#boucle sur tous les fichiers R1 
+for r1_file in *_R1.fastq.gz; do
+
+    # Déduire le nom du fichier R2 
+    r2_file="${r1_file/_R1.fastq.gz/_R2.fastq.gz}"
+    
+    #vérifie que le R2 existe
+    [[ ! -f "$r2_file" ]] && { echo "ERREUR: Fichier R2 manquant pour $r1_file" >&2; continue; }
+    
+    # Extraire le nom de base propre du fichier
+    base_name="${r1_file%_R1.fastq.gz}"
+
+ 
+    # Lancement de BBDuk
+    $BBDUK -Xmx4g \ #4 Go 
+        in1="$r1_file" \ #fichiers d'entrée R1 et R2
+        in2="$r2_file" \ 
+        out1=$OUTPUT/"clean_${r1_file}" \
+        out2=$OUTPUT/"clean_${r2_file}" \
+        ref=$PHIX \ #contaminant du séquençage
+        ktrim=rl \ #quand un kmer match dans un read, lui et toutes les bases à droites sont supp
+        k=23 \ #taille des kmer (d'ou ils viennent)
+        mink=11 \ #chercher des kmer plus courts (entre 11 et 22)
+        hdist=1 \
+        tpe \
+        tbo \
+        minlen=25 \
+        qtrim=r \
+        trimq=20 \
+        stats="$OUTPUT/${base_name}_bbduk_stats.txt"
 
 
 
