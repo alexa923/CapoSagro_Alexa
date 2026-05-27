@@ -12,4 +12,16 @@
 ENTREE="/home/amartin3/03_fastuniq"
 SORTIE="/home/amartin3/04_clumpify"
 
+module load conda/4.12.0
+source ~/.bashrc
+conda activate bioinformatic
+
+CLUMPIFY=/home/amartin3/bbmap/clumpify.sh
+
+#crée le dossier s'il n'existe pas
 mkdir -p "$SORTIE"
+
+#pour tous les fichiers R1 
+
+
+#faire controle qualité 
