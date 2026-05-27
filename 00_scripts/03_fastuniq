@@ -38,6 +38,19 @@ for R1_gz in clean_*_R1.fastq.gz; do #on met pas .fastq.gz?
         zcat "$ENTREE/$R1_gz" > "$R1_tmp" #regarder le contenu des fichiers compressés ?
         zcat "$ENTREE/$R2_gz" > "$R2_tmp"
 
+        echo -e "$R1_tmp\n$R2_tmp" > "$listfile" #? 
 
+        fastuniq -i "$listfile" -t q \ #lancement de fastuniq?
+            -o "${SORTIE}/${base}_dedup_R1.fastq" \
+            -p "${SORTIE}/${base}_dedup_R2.fastq"
+
+        rm -f "$R1_tmp" "$R2_tmp" "$listfile" # suppression définitive? 
+
+    else
+        echo "ATTENTION: fichier R2 manquant pour $base"
+    fi
+done
+
+echo "Terminé."
 
 #controle qualité à la fin 
