@@ -5,12 +5,12 @@
 #SBATCH --mem=1000G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL 
-#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/04_fastp.err"
-#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/04_fastp.out"
+#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/05_fastp.err"
+#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/05_fastp.out"
 
-ENTREE="/home/amartin3/03_clumpify"
-SORTIE="/home/amartin3/04_fastp"
-LOG_DIR="/home/amartin3/CapoSagro_Alexa/00_scripts/03_fastp.out"
+ENTREE="/home/amartin3/04_clumpify"
+SORTIE="/home/amartin3/05_fastp"
+LOG_DIR="/home/amartin3/CapoSagro_Alexa/00_scripts/04_fastp.out" #?
 
 #création des dossiers de sortie s'ils n'existent pas déjà
 mkdir -p "$SORTIE"
