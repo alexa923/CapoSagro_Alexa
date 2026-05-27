@@ -59,7 +59,7 @@ do
         --overlap_len_require 30 \ # longueur minimale pour détecter les zones de chevauchement 
         --overlap_diff_limit 5 \ #nombre maximal de bases non appariées pour détecter une région chevauchante
         --overlap_diff_percent_limit 20 \ #% maximum de mismatch pour détecter une région chevauchante
-        --html "$HTML" \ #génèrent rapports de contrôme qualité après nettoyage
+        --html "$HTML" \ #génèrent rapports de contrôle qualité après nettoyage
         --json "$JSON" \
         --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA \ #adaptateurs TruSeq Illumina
         --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
