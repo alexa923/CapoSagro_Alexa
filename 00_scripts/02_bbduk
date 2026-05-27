@@ -47,11 +47,11 @@ for r1_file in *_R1.fastq.gz; do
         ktrim=rl \ #quand un kmer match dans un read, lui et toutes les bases à droites sont supp
         k=23 \ #taille des kmer (d'ou ils viennent)
         mink=11 \ #chercher des kmer plus courts (entre 11 et 22)
-        hdist=1 \
-        tpe \
-        tbo \
-        minlen=25 \
-        qtrim=r \
+        hdist=1 \ #distance de hamming (quantifie différentre entre 2 seq)
+        tpe \ # trim both reads to the same length (au cas ou kmer détecté dans un seul read)
+        tbo \ # trim adapters based on pair overlap detection (pourquoi?)
+        minlen=25 \ #supprime reads plus courts que 25bp
+        qtrim=r \ #trim the right side only
         trimq=20 \
         stats="$OUTPUT/${base_name}_bbduk_stats.txt"
 
