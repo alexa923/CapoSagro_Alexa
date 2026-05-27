@@ -10,8 +10,8 @@
 
 
 
-ENTREE="/home/amartin3/02_bbduk"
-SORTIE="/home/amartin3/03_clumpify"
+ENTREE="/home/amartin3/01_concatenated_data/" #4 fichiers concaténés 
+SORTIE="home/amartin3/02_bbduk" #résultats
 
 mkdir -p "$SORTIE"
 
