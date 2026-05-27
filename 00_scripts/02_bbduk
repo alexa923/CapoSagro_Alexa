@@ -51,7 +51,7 @@ for r1_file in *_R1.fastq.gz; do
         tpe \ # trim both reads to the same length (au cas ou kmer détecté dans un seul read)
         tbo \ # trim adapters based on pair overlap detection (pourquoi?)
         minlen=25 \ #supprime reads plus courts que 25bp
-        qtrim=r \ #trim the right side only
+        qtrim=r \ #Trim read ends to remove bases with quality below trimq (trim right side only)
         trimq=20 \
         stats="$OUTPUT/${base_name}_bbduk_stats.txt"
 
