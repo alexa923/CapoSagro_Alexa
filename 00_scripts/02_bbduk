@@ -8,7 +8,7 @@
 #SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/02_bbduk.err"
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/02_bbduk.out"
 
-
+SORTIE="/home/amartin3/02_bbduk"
 
 #activer environnement conda
 module load conda/4.12.0
