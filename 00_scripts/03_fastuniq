@@ -19,5 +19,9 @@ conda activate bioinformatic
 
 cd "$ENTREE" || exit 1 # terminate a script  (an error has occurred)
 
+TMP="/tmp/fastuniq_tmp" #?
+mkdir -p "$TMP"
+
+for R1_gz in clean_*_R1.fastq.gz; do#on met pas .fastq.gz? 
 
 #controle qualité à la fin 
