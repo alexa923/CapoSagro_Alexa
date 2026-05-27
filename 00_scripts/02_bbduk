@@ -58,3 +58,8 @@ for r1_file in *_R1.fastq.gz; do
 
 
 # à la fin lancer un fastqc / multi qc pour checker la qualité à chaque étape
+
+echo "Analyse de la qualité"
+fastqc "$SORTIE"/*.fastq.gz --outdir "$SORTIE"
+multiqc "$SORTIE" "$LOG_DIR" -o "$SORTIE" #on enlève le LOG_DIR ici? la c'etait le script de fastp
+echo "Analyse de la qualité terminée"
