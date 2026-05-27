@@ -8,5 +8,11 @@
 #SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/03_fastuniq.err"
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/03_fastuniq.out"
 
+ENTREE="/home/amartin3/02_bbduk"
 SORTIE="/home/amartin3/03_fastuniq"
+
 mkdir -p "$SORTIE"
+
+
+
+#controle qualité à la fin 
