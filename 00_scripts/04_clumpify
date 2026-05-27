@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=03_clumpify
+#SBATCH --job-name=04_clumpify
 #SBATCH --ntasks=1
 #SBATCH -p smp
 #SBATCH --mem=1000G
