@@ -36,6 +36,8 @@ for R1 in "$ENTREE"/*_R1.fastq; do
             out="$SORTIE/${base}_clumpify_R1.fastq.gz" \
             out2="SORTIE/${base}_clumpify_R2.fastq.gz" \
             dedupe=t #Remove duplicate reads.  For pairs, both must match pourquoi=t
-
+        echo "Clumpify terminé pour $base
+    else
+        echo "Fichier R2 manquant pour $R1, ignoré" #comment ça ignoré
 
 #faire controle qualité 
