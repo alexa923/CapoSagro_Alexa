@@ -39,5 +39,7 @@ for R1 in "$ENTREE"/*_R1.fastq; do
         echo "Clumpify terminé pour $base
     else
         echo "Fichier R2 manquant pour $R1, ignoré" #comment ça ignoré
+    fi #pourquoi
+done    
 
 #faire controle qualité 
