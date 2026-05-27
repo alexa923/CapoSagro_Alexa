@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=04_fastp 
+#SBATCH --job-name=05_fastp 
 #SBATCH --ntasks=1
 #SBATCH -p smp
 #SBATCH --mem=1000G
