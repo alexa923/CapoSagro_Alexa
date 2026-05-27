@@ -22,6 +22,16 @@ cd "$ENTREE" || exit 1 # terminate a script  (an error has occurred)
 TMP="/tmp/fastuniq_tmp" #?
 mkdir -p "$TMP"
 
-for R1_gz in clean_*_R1.fastq.gz; do#on met pas .fastq.gz? 
+for R1_gz in clean_*_R1.fastq.gz; do #on met pas .fastq.gz? 
+    base=$(echo "$R1_gz" | sed 's/_R1\.fastq\.gz//') #la aussi?
+    R2_gz="${base}_R2.fastq.gz"
+
+
+    if [[ -f "$R2_gz" ]]; then
+        echo "Traitement de la paire: $base"
+
+        R1_tmp="${TMP}/${base}_R1.fastq"
+        R2_tmp="${TMP}/${base}_R2.fastq"
+        listfile="${TMP}/${base}.list"
 
 #controle qualité à la fin 
