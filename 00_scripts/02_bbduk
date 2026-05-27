@@ -53,7 +53,7 @@ for r1_file in *_R1.fastq.gz; do
         minlen=25 \ #supprime reads plus courts que 25bp
         qtrim=r \ #Trim read ends to remove bases with quality below trimq (trim right side only)
         trimq=20 \
-        stats="$OUTPUT/${base_name}_bbduk_stats.txt" #?
+        stats="$SORTIE/${base_name}_bbduk_stats.txt" #?
 
 
 
