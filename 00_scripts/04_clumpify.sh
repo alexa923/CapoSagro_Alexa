@@ -16,7 +16,7 @@ module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
 
-CLUMPIFY=/home/amartin3/bbmap/clumpify.sh
+CLUMPIFY=clumpify.sh
 
 #crée le dossier s'il n'existe pas
 mkdir -p "$SORTIE"
