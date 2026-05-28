@@ -66,5 +66,5 @@ echo "Analyse BBduk terminée"
 
 echo "Analyse de la qualité"
 fastqc "$SORTIE"/*.fastq.gz --outdir "$QUALITE"
-multiqc "$QUALITE" -o "$SORTIE" 
+multiqc "$QUALITE" -o "$QUALITE" 
 echo "Analyse de la qualité terminée"
