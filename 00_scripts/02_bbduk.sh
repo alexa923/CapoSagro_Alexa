@@ -42,7 +42,7 @@ for r1_file in *_R1.fastq.gz; do
  
     # Lancement de BBDuk
     $BBDUK -Xmx4g \ #4 Go 
-        in1="$r1_file" \ #fichiers d'entrée R1 et R2
+        in1="$r1_file" \ #fichiers d entrée R1 et R2
         in2="$r2_file" \ 
         out1=$OUTPUT/"clean_${r1_file}" \
         out2=$OUTPUT/"clean_${r2_file}" \
