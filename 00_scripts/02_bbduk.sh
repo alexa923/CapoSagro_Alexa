@@ -44,8 +44,8 @@ for r1_file in *_R1.fastq.gz; do
     $BBDUK -Xmx4g \  
         in1="$r1_file" \ 
         in2="$r2_file" \ 
-        out1=$OUTPUT/"clean_${r1_file}" \
-        out2=$OUTPUT/"clean_${r2_file}" \
+        out1=$SORTIE/"clean_${r1_file}" \
+        out2=$SORTIE/"clean_${r2_file}" \
         ref=$PHIX \ 
         ktrim=rl \ 
         k=23 \ 
@@ -64,8 +64,8 @@ done
 #    $BBDUK -Xmx4g \ #4 Go 
 #        in1="$r1_file" \ #fichiers d entrée R1 et R2
 #        in2="$r2_file" \ 
-#        out1=$OUTPUT/"clean_${r1_file}" \
-#        out2=$OUTPUT/"clean_${r2_file}" \
+#        out1=$SORTIE/"clean_${r1_file}" \
+#        out2=$SORTIE/"clean_${r2_file}" \
 #        ref=$PHIX \ #contaminant du séquençage
 #        ktrim=rl \ #quand un kmer match dans un read, lui et toutes les bases à droites sont supp
 #        k=23 \ #taille des kmer 
