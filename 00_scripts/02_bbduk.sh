@@ -41,24 +41,44 @@ for r1_file in *_R1.fastq.gz; do
 
  
     # Lancement de BBDuk
-    $BBDUK -Xmx4g \ #4 Go 
-        in1="$r1_file" \ #fichiers d entrée R1 et R2
+    $BBDUK -Xmx4g \  
+        in1="$r1_file" \ 
         in2="$r2_file" \ 
         out1=$OUTPUT/"clean_${r1_file}" \
         out2=$OUTPUT/"clean_${r2_file}" \
-        ref=$PHIX \ #contaminant du séquençage
-        ktrim=rl \ #quand un kmer match dans un read, lui et toutes les bases à droites sont supp
-        k=23 \ #taille des kmer 
-        mink=11 \ #chercher des kmer plus courts,entre 11 et 22
-        hdist=1 \ #distance de hamming quantifie différence entre 2 seq
-        tpe \ # trim both reads to the same length au cas ou kmer détecté dans un seul read
-        tbo \ # trim adapters based on pair overlap detection 
-        minlen=25 \ #supprime reads plus courts que 25bp
-        qtrim=r \ #Trim read ends to remove bases with quality below trimq, trim right side only
+        ref=$PHIX \ 
+        ktrim=rl \ 
+        k=23 \ 
+        mink=11 \ 
+        hdist=1 \ 
+        tpe \ 
+        tbo \  
+        minlen=25 \ 
+        qtrim=r \ 
         trimq=20 \
         stats="$SORTIE/${base_name}_bbduk_stats.txt" 
 
 done
+
+#    # Lancement de BBDuk
+#    $BBDUK -Xmx4g \ #4 Go 
+#        in1="$r1_file" \ #fichiers d entrée R1 et R2
+#        in2="$r2_file" \ 
+#        out1=$OUTPUT/"clean_${r1_file}" \
+#        out2=$OUTPUT/"clean_${r2_file}" \
+#        ref=$PHIX \ #contaminant du séquençage
+#        ktrim=rl \ #quand un kmer match dans un read, lui et toutes les bases à droites sont supp
+#        k=23 \ #taille des kmer 
+#        mink=11 \ #chercher des kmer plus courts,entre 11 et 22
+#        hdist=1 \ #distance de hamming quantifie différence entre 2 seq
+#        tpe \ # trim both reads to the same length au cas ou kmer détecté dans un seul read
+#        tbo \ # trim adapters based on pair overlap detection 
+#        minlen=25 \ #supprime reads plus courts que 25bp
+#        qtrim=r \ #Trim read ends to remove bases with quality below trimq, trim right side only
+#        trimq=20 \
+#        stats="$SORTIE/${base_name}_bbduk_stats.txt" 
+
+#done
 
 echo "Analyse BBduk terminée"
 
