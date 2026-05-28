@@ -53,7 +53,7 @@ for r1_file in *_R1.fastq.gz; do
         minlen=25 \ #supprime reads plus courts que 25bp
         qtrim=r \ #Trim read ends to remove bases with quality below trimq (trim right side only)
         trimq=20 \
-        stats="$SORTIE/${base_name}_bbduk_stats.txt" #?
+        stats="$SORTIE/${base_name}_bbduk_stats.txt" 
 
 
 
@@ -61,5 +61,5 @@ for r1_file in *_R1.fastq.gz; do
 
 echo "Analyse de la qualité"
 fastqc "$SORTIE"/*.fastq.gz --outdir "$SORTIE"
-multiqc "$SORTIE" "$LOG_DIR" -o "$SORTIE" #on enlève le LOG_DIR ici? la c'etait le script de fastp
+multiqc "$SORTIE" -o "$SORTIE" 
 echo "Analyse de la qualité terminée"
