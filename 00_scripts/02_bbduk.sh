@@ -25,10 +25,9 @@ conda activate bioinformatic
 PHIX=/home/amartin3/bbmap/resources/phix174_ill.ref.fa.gz
 BBDUK=bbduk.sh
 
-cd "$ENTREE"
 
 #boucle sur tous les fichiers R1 
-for r1_file in *_R1.fastq.gz; do
+for r1_file in /home/amartin3/01_concatenated_data/*_R1.fastq.gz; do
 
     # Déduire le nom du fichier R2 
     r2_file="${r1_file/_R1.fastq.gz/_R2.fastq.gz}"
@@ -60,25 +59,7 @@ for r1_file in *_R1.fastq.gz; do
 
 done
 
-#    # Lancement de BBDuk
-#    $BBDUK -Xmx4g \ #4 Go 
-#        in1="$r1_file" \ #fichiers d entrée R1 et R2
-#        in2="$r2_file" \ 
-#        out1=$SORTIE/"clean_${r1_file}" \
-#        out2=$SORTIE/"clean_${r2_file}" \
-#        ref=$PHIX \ #contaminant du séquençage
-#        ktrim=rl \ #quand un kmer match dans un read, lui et toutes les bases à droites sont supp
-#        k=23 \ #taille des kmer 
-#        mink=11 \ #chercher des kmer plus courts,entre 11 et 22
-#        hdist=1 \ #distance de hamming quantifie différence entre 2 seq
-#        tpe \ # trim both reads to the same length au cas ou kmer détecté dans un seul read
-#        tbo \ # trim adapters based on pair overlap detection 
-#        minlen=25 \ #supprime reads plus courts que 25bp
-#        qtrim=r \ #Trim read ends to remove bases with quality below trimq, trim right side only
-#        trimq=20 \
-#        stats="$SORTIE/${base_name}_bbduk_stats.txt" 
 
-#done
 
 echo "Analyse BBduk terminée"
 
