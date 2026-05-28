@@ -10,9 +10,9 @@
 
 
 
-ENTREE="/home/amartin3/01_concatenated_data" #4 fichiers concaténés 
-SORTIE="home/amartin3/02_bbduk" #résultats
-QUALITE="home/amartin3/02_bbduk/controle_qualite" #resultats du controle qualité 
+ENTREE="/home/amartin3/01_concatenated_data" 
+SORTIE="home/amartin3/02_bbduk" 
+QUALITE="home/amartin3/02_bbduk/controle_qualite" 
 
 mkdir -p "$SORTIE"
 mkdir -p "${SORTIE}/controle_qualite"
