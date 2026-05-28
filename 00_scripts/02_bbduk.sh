@@ -15,7 +15,7 @@ SORTIE="home/amartin3/02_bbduk" #résultats
 QUALITE="home/amartin3/02_bbduk/controle_qualite" #resultats du controle qualité 
 
 mkdir -p "$SORTIE"
-mkdir -p "$QUALITE"
+mkdir -p "${SORTIE}/controle_qualite"
 
 
 module load conda/4.12.0
