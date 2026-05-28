@@ -23,7 +23,7 @@ source ~/.bashrc
 conda activate bioinformatic
 
 PHIX=/home/amartin3/bbmap/resources/phix174_ill.ref.fa.gz
-BBDUK=/home/amartin3/bbduk.sh
+BBDUK=bbduk.sh
 
 cd "$ENTREE"
 
