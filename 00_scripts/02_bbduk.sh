@@ -40,13 +40,12 @@ for r1_file in /home/amartin3/01_concatenated_data/*_R1.fastq.gz; do
 
  
     # Lancement de BBDuk
-    $BBDUK -Xmx4g \  
-        in1="$r1_file" \ 
-        in2="$r2_file" \ 
-        out1=$SORTIE/"clean_${r1_file}" \
-        out2=$SORTIE/"clean_${r2_file}" \
-        ref=$PHIX \ 
-        ktrim=rl \ 
+    $BBDUK in1="$r1_file" \ 
+    in2="$r2_file" \ 
+    out1=$SORTIE/"clean_${r1_file}" \
+     out2=$SORTIE/"clean_${r2_file}" \
+     ref=$PHIX \ 
+     ktrim=rl \ 
         k=23 \ 
         mink=11 \ 
         hdist=1 \ 
