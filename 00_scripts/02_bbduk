@@ -55,7 +55,9 @@ for r1_file in *_R1.fastq.gz; do
         trimq=20 \
         stats="$SORTIE/${base_name}_bbduk_stats.txt" 
 
+done
 
+echo "Analyse BBduk terminée"
 
 # à la fin lancer un fastqc / multi qc pour checker la qualité à chaque étape
 
