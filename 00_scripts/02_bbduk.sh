@@ -48,13 +48,13 @@ for r1_file in *_R1.fastq.gz; do
         out2=$OUTPUT/"clean_${r2_file}" \
         ref=$PHIX \ #contaminant du séquençage
         ktrim=rl \ #quand un kmer match dans un read, lui et toutes les bases à droites sont supp
-        k=23 \ #taille des kmer (d'ou ils viennent)
-        mink=11 \ #chercher des kmer plus courts (entre 11 et 22)
-        hdist=1 \ #distance de hamming (quantifie différentre entre 2 seq)
-        tpe \ # trim both reads to the same length (au cas ou kmer détecté dans un seul read)
-        tbo \ # trim adapters based on pair overlap detection (pourquoi?)
+        k=23 \ #taille des kmer 
+        mink=11 \ #chercher des kmer plus courts,entre 11 et 22
+        hdist=1 \ #distance de hamming quantifie différence entre 2 seq
+        tpe \ # trim both reads to the same length au cas ou kmer détecté dans un seul read
+        tbo \ # trim adapters based on pair overlap detection 
         minlen=25 \ #supprime reads plus courts que 25bp
-        qtrim=r \ #Trim read ends to remove bases with quality below trimq (trim right side only)
+        qtrim=r \ #Trim read ends to remove bases with quality below trimq, trim right side only
         trimq=20 \
         stats="$SORTIE/${base_name}_bbduk_stats.txt" 
 
