@@ -39,8 +39,24 @@ for r1_file in /home/amartin3/01_concatenated_data/*_R1.fastq.gz; do
     base_name="${r1_file%%_R1.fastq.gz}"
 
  
-    # Lancement de BBDuk
-    $BBDUK in1="$r1_file" in2="$r2_file" out1=$SORTIE/"clean_${r1_file}" out2=$SORTIE/"clean_${r2_file}" ref=$PHIX ktrim=rl k=23 mink=11 hdist=1 tpe tbo minlen=25 qtrim=r trimq=20 stats="$SORTIE/${base_name}_bbduk_stats.txt"; done
+    $BBDUK \
+       in1="$r1_file" \ 
+       in2="$r2_file" \ 
+       out1=$SORTIE/"clean_${r1_file}" \
+       out2=$SORTIE/"clean_${r2_file}" \
+       ref=$PHIX \ 
+       ktrim=rl \ 
+       k=23 \ 
+       mink=11 \ 
+       hdist=1 \ 
+       tpe=t \ 
+       tbo=t \  
+       minlen=25 \ 
+       qtrim=r \ 
+       trimq=20 \
+       stats="$SORTIE/${base_name}_bbduk_stats.txt" 
+
+done
 
 
 
