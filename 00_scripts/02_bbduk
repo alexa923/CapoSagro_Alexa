@@ -10,7 +10,7 @@
 
 
 
-ENTREE="/home/amartin3/01_concatenated_data/" #4 fichiers concaténés 
+ENTREE="/home/amartin3/01_concatenated_data" #4 fichiers concaténés 
 SORTIE="home/amartin3/02_bbduk" #résultats
 QUALITE="home/amartin3/02_bbduk/controle_qualite" #resultats du controle qualité 
 
