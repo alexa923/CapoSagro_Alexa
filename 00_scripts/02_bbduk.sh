@@ -19,7 +19,7 @@ module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
 
-PHIX="/home/amartin3/bbmap/resources/phix174_ill.ref.fa.gz"
+PHIX="phix"
 BBDUK="bbduk.sh"
 
 echo "=================================================="
