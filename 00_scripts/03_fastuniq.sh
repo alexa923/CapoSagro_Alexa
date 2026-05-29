@@ -39,9 +39,9 @@ for R1_gz in clean_*_R1.fastq.gz; do
         zcat "$ENTREE/$R1_gz" > "$R1_tmp" 
         zcat "$ENTREE/$R2_gz" > "$R2_tmp"
 
-        echo -e "$R1_tmp\n$R2_tmp" > "$listfile" #? 
+        echo -e "$R1_tmp\n$R2_tmp" > "$listfile"
 
-        fastuniq -i "$listfile" -t q \ 
+        fastuniq -i "$listfile" -t q \
             -o "${SORTIE}/${base}_dedup_R1.fastq" \
             -p "${SORTIE}/${base}_dedup_R2.fastq"
 
