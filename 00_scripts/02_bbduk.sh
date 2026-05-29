@@ -4,7 +4,7 @@
 #SBATCH -p smp
 #SBATCH --mem=1000G
 #SBATCH --mail-user=alexa.martin@inrae.fr
-#SBATCH --mail-type=ALL 
+#SBATCH --mail-type=ALL
 #SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/02_bbduk.err"
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/02_bbduk.out"
 
@@ -66,5 +66,5 @@ echo "Analyse BBduk terminée"
 
 echo "Analyse de la qualité"
 fastqc "$SORTIE"/*.fastq.gz --outdir "$QUALITE"
-multiqc "$QUALITE" "$SORTIE" -o "$QUALITE" 
+multiqc "$QUALITE" "$SORTIE" -o "$QUALITE"
 echo "Analyse de la qualite terminee"
