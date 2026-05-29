@@ -62,13 +62,13 @@ done
 echo "Analyse BBDuk terminee "
 
 
-echo "ANALYSE DE LA QUALITÉ (FASTQC & MULTIQC)"
+echo "ANALYSE DE LA QUALITE"
 
 
-echo "Lancement de FastQC..."
+echo "Lancement de FastQC"
 fastqc "$SORTIE"/*.fastq.gz --outdir "$QUALITE" --threads 4
 
-echo "Lancement de MultiQC..."
+echo "Lancement de MultiQC"
 multiqc "$QUALITE" "$SORTIE" -o "$QUALITE"
 
 echo "Analyse finalisee"
