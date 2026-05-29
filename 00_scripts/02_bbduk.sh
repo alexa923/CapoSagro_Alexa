@@ -5,66 +5,73 @@
 #SBATCH --mem=1000G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL
-#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/02_bbduk.err"
-#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/02_bbduk.out"
+#SBATCH --error=/home/amartin3/CapoSagro_Alexa/00_scripts/02_bbduk.err
+#SBATCH --output=/home/amartin3/CapoSagro_Alexa/00_scripts/02_bbduk.out
 
-
-
-ENTREE="/home/amartin3/01_concatenated_data" 
-SORTIE="/home/amartin3/02_bbduk" 
-QUALITE="/home/amartin3/02_bbduk/controle_qualite" 
+ENTREE="/home/amartin3/01_concatenated_data"
+SORTIE="/home/amartin3/02_bbduk"
+QUALITE="/home/amartin3/02_bbduk/controle_qualite"
 
 mkdir -p "$SORTIE"
-mkdir -p "${SORTIE}/controle_qualite"
-
+mkdir -p "$QUALITE"
 
 module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
 
-PHIX=/home/amartin3/bbmap/resources/phix174_ill.ref.fa.gz
-BBDUK=bbduk.sh
+PHIX="/home/amartin3/bbmap/resources/phix174_ill.ref.fa.gz"
+BBDUK="bbduk.sh"
 
+echo "=================================================="
+echo "DÉBUT DU TRAITEMENT BBDUK"
+echo "=================================================="
 
-#boucle sur tous les fichiers R1 
-for r1_file in /home/amartin3/01_concatenated_data/*_R1.fastq.gz; do
+for r1_file in "$ENTREE"/*_R1.fastq.gz; do
 
-    # Déduire le nom du fichier R2 
     r2_file="${r1_file/_R1.fastq.gz/_R2.fastq.gz}"
     
-    #vérifie que le R2 existe
-    [[ ! -f "$r2_file" ]] && { echo "ERREUR: Fichier R2 manquant pour $r1_file" >&2; continue; }
+    if [[ ! -f "$r2_file" ]]; then
+        echo "ERREUR: Fichier R2 manquant pour $r1_file" >&2
+        continue
+    fi
     
-    # Extraire le nom de base propre du fichier
-    base_name="${r1_file%%_R1.fastq.gz}"
+    file_name=$(basename "$r1_file" _R1.fastq.gz)
 
+    echo "Traitement de l'échantillon : $file_name"
  
     $BBDUK \
-       in1="$r1_file" \ 
-       in2="$r2_file" \ 
-       out1="$SORTIE/clean_${base_name}_R1.fastq.gz" \
-       out2="$SORTIE/clean_${base_name}_R2.fastq.gz \
-       ref=$PHIX \ 
-       ktrim=rl \ 
-       k=23 \ 
-       mink=11 \ 
-       hdist=1 \ 
-       tpe=t \ 
-       tbo=t \  
-       minlen=25 \ 
-       qtrim=r \ 
+       in1="$r1_file" \
+       in2="$r2_file" \
+       out1="$SORTIE/clean_${file_name}_R1.fastq.gz" \
+       out2="$SORTIE/clean_${file_name}_R2.fastq.gz" \
+       ref="$PHIX" \
+       ktrim=rl \
+       k=23 \
+       mink=11 \
+       hdist=1 \
+       tpe=t \
+       tbo=t \
+       minlen=25 \
+       qtrim=r \
        trimq=20 \
-       stats="$SORTIE/${base_name}_bbduk_stats.txt" 
+       stats="$SORTIE/${file_name}_bbduk_stats.txt"
 
+    echo "Echantillon $file_name traite avec succes."
+    echo "--------------------------------------------------"
 done
 
+echo "Analyse BBDuk terminee !"
 
+echo "=================================================="
+echo "ANALYSE DE LA QUALITÉ (FASTQC & MULTIQC)"
+echo "=================================================="
 
-echo "Analyse BBduk terminée"
+echo "Lancement de FastQC..."
+fastqc "$SORTIE"/*.fastq.gz --outdir "$QUALITE" --threads 4
 
-# à la fin lancer un fastqc / multi qc pour checker la qualité à chaque étape
-
-echo "Analyse de la qualité"
-fastqc "$SORTIE"/*.fastq.gz --outdir "$QUALITE"
+echo "Lancement de MultiQC..."
 multiqc "$QUALITE" "$SORTIE" -o "$QUALITE"
-echo "Analyse de la qualite terminee"
+
+echo "=================================================="
+echo "TOUT EST TERMINÉ"
+echo "=================================================="
