@@ -18,14 +18,11 @@ conda activate bioinformatic
 
 CLUMPIFY=clumpify.sh
 
-#crée le dossier s'il n'existe pas
 mkdir -p "$SORTIE"
 
-#pour tous les fichiers R1 
+
 for R1 in "$ENTREE"/*_R1.fastq; do
-    # Déduire le nom du fichier R2 correspondant
     R2="${R1/_R1.fastq/_R2.fastq}"
-    # Vérifier que le fichier R2 existe
     if [[ -f "$R2" ]]; then
         # Extraire le nom de base pour l'output 
         base=$(basename "$R1" _R1.fastq) #pourquoi ?
