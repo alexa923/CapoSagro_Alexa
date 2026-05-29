@@ -10,8 +10,10 @@
 
 ENTREE="/home/amartin3/02_bbduk"
 SORTIE="/home/amartin3/03_fastuniq"
+QUALITE="/home/amartin3/03_fastuniq/controle_qualite"
 
 mkdir -p "$SORTIE"
+mkdir -p "$QUALITE"
 
 module load conda/4.12.0
 source ~/.bashrc
@@ -50,6 +52,14 @@ for R1_gz in clean_*_R1.fastq.gz; do
     fi
 done
 
-echo "Terminé."
+echo "Fastuniq termine"
 
 #controle qualité à la fin 
+
+echo "Lancement de FastQC"
+fastqc "$SORTIE"/*.fastq --outdir "$QUALITE" --threads 4
+
+echo "Lancement de MultiQC"
+multiqc "$QUALITE" "$SORTIE" -o "$QUALITE"
+
+echo "Controle qualite finalise"
