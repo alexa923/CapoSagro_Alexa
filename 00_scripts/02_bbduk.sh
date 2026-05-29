@@ -22,9 +22,8 @@ conda activate bioinformatic
 PHIX="phix"
 BBDUK="bbduk.sh"
 
-echo "=================================================="
 echo "DÉBUT DU TRAITEMENT BBDUK"
-echo "=================================================="
+
 
 for r1_file in "$ENTREE"/*_R1.fastq.gz; do
 
@@ -56,15 +55,15 @@ for r1_file in "$ENTREE"/*_R1.fastq.gz; do
        trimq=20 \
        stats="$SORTIE/${file_name}_bbduk_stats.txt"
 
-    echo "Echantillon $file_name traite avec succes."
-    echo "--------------------------------------------------"
+    echo "Echantillon $file_name traite"
+   
 done
 
-echo "Analyse BBDuk terminee !"
+echo "Analyse BBDuk terminee "
 
-echo "=================================================="
+
 echo "ANALYSE DE LA QUALITÉ (FASTQC & MULTIQC)"
-echo "=================================================="
+
 
 echo "Lancement de FastQC..."
 fastqc "$SORTIE"/*.fastq.gz --outdir "$QUALITE" --threads 4
@@ -72,6 +71,5 @@ fastqc "$SORTIE"/*.fastq.gz --outdir "$QUALITE" --threads 4
 echo "Lancement de MultiQC..."
 multiqc "$QUALITE" "$SORTIE" -o "$QUALITE"
 
-echo "=================================================="
-echo "TOUT EST TERMINÉ"
-echo "=================================================="
+echo "Analyse finalisee"
+
