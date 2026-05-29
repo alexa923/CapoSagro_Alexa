@@ -42,8 +42,8 @@ for r1_file in /home/amartin3/01_concatenated_data/*_R1.fastq.gz; do
     $BBDUK \
        in1="$r1_file" \ 
        in2="$r2_file" \ 
-       out1="$SORTIE/clean_${r1_file}" \
-       out2="$SORTIE/clean_${r2_file}" \
+       out1="$SORTIE/clean_${base_name}_R1.fastq.gz" \
+       out2="$SORTIE/clean_${base_name}_R2.fastq.gz \
        ref=$PHIX \ 
        ktrim=rl \ 
        k=23 \ 
@@ -66,5 +66,5 @@ echo "Analyse BBduk terminée"
 
 echo "Analyse de la qualité"
 fastqc "$SORTIE"/*.fastq.gz --outdir "$QUALITE"
-multiqc "$QUALITE" -o "$QUALITE" 
+multiqc "$QUALITE" "$SORTIE" -o "$QUALITE" 
 echo "Analyse de la qualité terminée"
