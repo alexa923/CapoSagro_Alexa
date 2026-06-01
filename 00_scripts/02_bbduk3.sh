@@ -50,7 +50,7 @@ for r1_file in "$ENTREE"/*_R1.fastq.gz; do
        hdist=1 \
        tpe=t \
        tbo=t \
-       minlen=25 \
+       minlen=20 \
        qtrim=r \
        trimq=20 \
        stats="$SORTIE/${file_name}_bbduk_stats.txt"
