@@ -21,7 +21,7 @@ conda activate bioinformatic
 
 cd "$ENTREE" || exit 1 
 
-TMP="/tmp/fastuniq_tmp" 
+TMP="/home/amartin3/03_fastuniq/tmp" 
 mkdir -p "$TMP"
 
 for R1_gz in clean_*_R1.fastq.gz; do
