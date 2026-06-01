@@ -44,6 +44,7 @@ for r1_file in "$ENTREE"/*_R1.fastq.gz; do
        out1="$SORTIE/clean_${file_name}_R1.fastq.gz" \
        out2="$SORTIE/clean_${file_name}_R2.fastq.gz" \
        ref="$PHIX" \
+       ktrim=rl \
        k=23 \
        mink=11 \
        hdist=1 \
