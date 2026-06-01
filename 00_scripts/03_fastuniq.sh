@@ -52,6 +52,8 @@ for R1_gz in clean_*_R1.fastq.gz; do
     fi
 done
 
+rm -rf "$TMP"
+
 echo "Fastuniq termine"
 
 #controle qualité à la fin 
