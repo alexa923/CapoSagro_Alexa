@@ -36,8 +36,8 @@ for R1_gz in clean_*_R1.fastq.gz; do
         R2_tmp="${TMP}/${base}_R2.fastq"
         listfile="${TMP}/${base}.list"
 
-        zcat "$ENTREE/$R1_gz" > "$R1_tmp" 
-        zcat "$ENTREE/$R2_gz" > "$R2_tmp"
+        gzip -dc "$ENTREE/$R1_gz" > "$R1_tmp" 2>/dev/null
+        gzip -dc "$ENTREE/$R2_gz" > "$R2_tmp" 2>/dev/null
 
         echo -e "${R1_tmp}\n${R2_tmp}" > "$listfile"
 
