@@ -44,7 +44,7 @@ do
         --in1 "$R1" --in2 "$R2" \ #nom du fihcier d'entrée du read 1
         --out1 "$OUT_R1" --out2 "$OUT_R2" \ #nom du fichier de sortie du read 2
         --merged_out "$MERGED" \ #nom du fichier de sortie mergé (fusion des paires de reads si chevauchants)
-        --length_required 30 \ #longueur minimale des fragments
+        --length_required 20 \ #longueur minimale des fragments
         --cut_front --cut_tail \ #déplace fenêtre glissantes en 5' et 3' et supp bases si qualité<seuil
         --cut_window_size 4 \ ##définit taille fenêtre glissante pour évaluer qualité des reads
         --cut_mean_quality 20 \ ##fixe le score phred min pour un bloc de 4 bases 
