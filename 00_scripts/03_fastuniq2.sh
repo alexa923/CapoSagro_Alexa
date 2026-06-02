@@ -1,16 +1,16 @@
 #!/bin/bash
-#SBATCH --job-name=03_fastuniq
+#SBATCH --job-name=03_fastuniq2
 #SBATCH --ntasks=1
 #SBATCH -p smp
 #SBATCH --mem=1000G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL 
-#SBATCH --error=/home/amartin3/CapoSagro_Alexa/00_scripts/03_fastuniq.err
-#SBATCH --output=/home/amartin3/CapoSagro_Alexa/00_scripts/03_fastuniq.out
+#SBATCH --error=/home/amartin3/CapoSagro_Alexa/00_scripts/03_fastuniq2.err
+#SBATCH --output=/home/amartin3/CapoSagro_Alexa/00_scripts/03_fastuniq2.out
 
-ENTREE="/home/amartin3/02_bbduk"
-SORTIE="/home/amartin3/03_fastuniq"
-QUALITE="/home/amartin3/03_fastuniq/controle_qualite"
+ENTREE="/home/amartin3/02_bbduk2"
+SORTIE="/home/amartin3/03_fastuniq2"
+QUALITE="/home/amartin3/03_fastuniq2/controle_qualite"
 
 mkdir -p "$SORTIE"
 mkdir -p "$QUALITE"
