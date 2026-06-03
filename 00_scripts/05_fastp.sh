@@ -51,15 +51,22 @@ do
                 --detect_adapter_for_pe \
                 --thread 4
 
-   echo "Traitement de $BASENAME terminé"
+   echo "Traitement de $base terminé"
 done
 echo "Tous les traitements sont terminés"
+
 echo "Lancement de FastQC"
-fastqc "$SORTIE"/*.fastq.gz --outdir "$QUALITE" --threads 4
+for fq_gz in "$SORTIE"/*.fastq.gz; do
+    if [[ -f "$fq_gz" ]]; then
+        echo "--> FastQC en cours sur : $(basename "$fq_gz")"
+        fastqc "$fq_gz" --outdir "$QUALITE" --threads 4
+    fi
+done
 
-echo "Lancement de MultiQC"
-multiqc "$QUALITE" -o "$QUALITE"
+echo "Lancement de MultiQC..."
+# Déplacement dans le dossier pour empêcher MultiQC de scanner les gros fichiers de $SORTIE
+cd "$QUALITE" || exit 1
+multiqc . -o . --force
 
-echo "Controle qualite finalise"
-
+echo "Controle qualite finalise avec succes !"
   
