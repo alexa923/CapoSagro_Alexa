@@ -12,7 +12,7 @@
 SORTIE="/home/amartin3/03_fastuniq2"
 QUALITE="/home/amartin3/03_fastuniq2/controle_qualite"
 
-mkdir -p "$SORTIE"
+#mkdir -p "$SORTIE"
 mkdir -p "$QUALITE"
 
 module load conda/4.12.0
@@ -62,6 +62,7 @@ echo "Lancement de FastQC"
 fastqc "$SORTIE"/*.fastq --outdir "$QUALITE" --threads 4
 
 echo "Lancement de MultiQC"
-multiqc "$QUALITE" -o "$QUALITE"
+cd "$QUALITE" || exit 1
+multiqc . -o .
 
 echo "Controle qualite finalise"
