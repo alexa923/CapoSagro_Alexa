@@ -59,10 +59,18 @@ rm -rf "$TMP"
 
 #controle qualité à la fin 
 
-echo "Lancement de FastQC"
-fastqc "$SORTIE"/*.fastq --outdir "$QUALITE" --threads 4
+echo "Lancement de FastQC (fichier par fichier)..."
+# On traite les fichiers un par un pour éviter les bugs de mémoire
+for fq in "$SORTIE"/*.fastq; do
+    if [[ -f "$fq" ]]; then
+        echo "--> FastQC sur : $(basename "$fq")"
+        fastqc "$fq" --outdir "$QUALITE" --threads 6
+    fi
+done
 
-echo "Lancement de MultiQC"
-multiqc "$QUALITE" "$SORTIE" -o "$QUALITE"
+echo "Lancement de MultiQC..."
+# On se déplace dans $QUALITE pour empêcher MultiQC de lire les gros fichiers de $SORTIE
+cd "$QUALITE" || exit 1
+multiqc . -o . --force
 
-echo "Controle qualite finalise"
+echo "Controle qualite finalise !"
