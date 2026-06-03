@@ -10,11 +10,13 @@
 
 ENTREE="/home/amartin3/04_clumpify"
 SORTIE="/home/amartin3/05_fastp"
-LOG_DIR="/home/amartin3/CapoSagro_Alexa/00_scripts/04_fastp.out" #?
+QUALITE="/home/amartin3/05_fastp/controle_qualite"
+
 
 #création des dossiers de sortie s'ils n'existent pas déjà
 mkdir -p "$SORTIE"
-mkdir -p "$LOG_DIR"
+mkdir -p "$QUALITE"
+
 
 #activer environnement conda
 module load conda/4.12.0
@@ -32,48 +34,33 @@ do
    # Nom de base pour les sorties
    BASENAME=$(basename "$R1" _R1.fastq.gz)
 
-   #fichiers de sortie
-   OUT_R1="$SORTIE/${BASENAME}_fastp_R1.fastq.gz"
-   OUT_R2="$SORTIE/${BASENAME}_fastp_R2.fastq.gz"
-   MERGED="$SORTIE/${BASENAME}_fastp_merged.fastq.gz"
-   HTML="$LOG_DIR/${BASENAME}_fastp.html" 
-   JSON="$LOG_DIR/${BASENAME}_fastp.json" 
+
 
 #fastp
-   fastp \
-        --in1 "$R1" --in2 "$R2" \ #nom du fihcier d'entrée du read 1
-        --out1 "$OUT_R1" --out2 "$OUT_R2" \ #nom du fichier de sortie du read 2
-        --merged_out "$MERGED" \ #nom du fichier de sortie mergé (fusion des paires de reads si chevauchants)
-        --length_required 20 \ #longueur minimale des fragments
-        --cut_front --cut_tail \ #déplace fenêtre glissantes en 5' et 3' et supp bases si qualité<seuil
-        --cut_window_size 4 \ ##définit taille fenêtre glissante pour évaluer qualité des reads
-        --cut_mean_quality 20 \ ##fixe le score phred min pour un bloc de 4 bases 
-        --n_base_limit 5 \ #si le nombre de reads de base N>n_base_limit ce read est écarté
-        --unqualified_percent_limit 40 \#combien de bases (en%) peuvent être non qualifiées
-        --low_complexity_threshold 30 \#élimine read de faible complexité (seq biologiquement non informatives)
-        --qualified_quality_phred 20 \ #score de qualité min = 20?
-        --low_complexity_filter \ #analyse la diversité des bases de chaque read (active fct de nettoyage)
-        --trim_poly_x \ #sert à trimmer les queues polyG ou polyA en fin de read
-        --poly_x_min_len 10 \ #longueur minimale à partir de laquelle une répététion= anomalie à supp
-        --merge --correction \ #fusion des reads fwd et rev quand chevauchement (corrige erreur zone de chevauchement)
-        --overlap_len_require 30 \ # longueur minimale pour détecter les zones de chevauchement 
-        --overlap_diff_limit 5 \ #nombre maximal de bases non appariées pour détecter une région chevauchante
-        --overlap_diff_percent_limit 20 \ #% maximum de mismatch pour détecter une région chevauchante
-        --html "$HTML" \ #génèrent rapports de contrôle qualité après nettoyage
-        --json "$JSON" \
-        --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA \ #adaptateurs TruSeq Illumina
-        --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
-        --detect_adapter_for_pe \ #cherche les seq d'adaptateurs à couper
-        --thread 4 #4 coeurs alloués 
-
+            fastp \
+                -i "$R1" -I "$R2" \
+                --merged_out "${SORTIE}/${base}_fastp_merged.fastq.gz" \
+                --out1 "${SORTIE}/${base}_fastp_R1.fastq.gz" \
+                --out2 "${SORTIE}/${base}_fastp_R2.fastq.gz" \
+                --json "${SORTIE}/${base}_fastp.json" \
+                --html "${SORTIE}/${base}_fastp.html" \
+                --thread 4 \
+                --length_required 30 \
+                --qualified_quality_phred 20 
+                --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA \
+                --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
+                --detect_adapter_for_pe \
+                --thread 4
 
    echo "Traitement de $BASENAME terminé"
 done
 echo "Tous les traitements sont terminés"
-echo "Analyse de la qualité"
-fastqc "$SORTIE"/*.fastq.gz --outdir "$SORTIE"
-multiqc "$SORTIE" -o "$SORTIE"
-echo "Analyse de la qualité terminée"
+echo "Lancement de FastQC"
+fastqc "$SORTIE"/*.fastq.gz --outdir "$QUALITE" --threads 4
 
+echo "Lancement de MultiQC"
+multiqc "$QUALITE" -o "$QUALITE"
+
+echo "Controle qualite finalise"
 
   
