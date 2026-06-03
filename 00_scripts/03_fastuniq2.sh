@@ -8,71 +8,61 @@
 #SBATCH --error=/home/amartin3/CapoSagro_Alexa/00_scripts/03_fastuniq2.err
 #SBATCH --output=/home/amartin3/CapoSagro_Alexa/00_scripts/03_fastuniq2.out
 
-#ENTREE="/home/amartin3/02_bbduk2"
+ENTREE="/home/amartin3/02_bbduk2"
 SORTIE="/home/amartin3/03_fastuniq2"
 QUALITE="/home/amartin3/03_fastuniq2/controle_qualite"
 
-#mkdir -p "$SORTIE"
+mkdir -p "$SORTIE"
 mkdir -p "$QUALITE"
 
 module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
 
-#cd "$ENTREE" || exit 1 
+cd "$ENTREE" || exit 1 
 
-#TMP="/home/amartin3/03_fastuniq2/tmp" 
-#mkdir -p "$TMP"
-
-#for R1_gz in clean_*_R1.fastq.gz; do
-#    base=$(echo "$R1_gz" | sed 's/_R1\.fastq\.gz//')
-#    R2_gz="${base}_R2.fastq.gz"
+TMP="/home/amartin3/03_fastuniq2/tmp" 
+mkdir -p "$TMP"
 
 
- #   if [[ -f "$R2_gz" ]]; then
- #       echo "Traitement de la paire: $base"
+for R1_gz in clean_*_R1.fastq.gz; do
+    base=$(echo "$R1_gz" | sed 's/_R1\.fastq\.gz//')
+    R2_gz="${base}_R2.fastq.gz"
 
- #       R1_tmp="${TMP}/${base}_R1.fastq"
-#       R2_tmp="${TMP}/${base}_R2.fastq"
-#        listfile="${TMP}/${base}.list"
 
- #       gzip -dc "$ENTREE/$R1_gz" > "$R1_tmp" 2>/dev/null
- #       gzip -dc "$ENTREE/$R2_gz" > "$R2_tmp" 2>/dev/null
+    if [[ -f "$R2_gz" ]]; then
+        echo "Traitement de la paire: $base"
 
-  #      echo -e "${R1_tmp}\n${R2_tmp}" > "$listfile"
+        R1_tmp="${TMP}/${base}_R1.fastq"
+        R2_tmp="${TMP}/${base}_R2.fastq"
+        listfile="${TMP}/${base}.list"
+        
+        gzip -dc "$ENTREE/$R1_gz" > "$R1_tmp" 2>/dev/null
+        gzip -dc "$ENTREE/$R2_gz" > "$R2_tmp" 2>/dev/null
 
- #       fastuniq -i "$listfile" -t q \
-  #          -o "${SORTIE}/${base}_dedup_R1.fastq" \
- #           -p "${SORTIE}/${base}_dedup_R2.fastq"
+        echo -e "${R1_tmp}\n${R2_tmp}" > "$listfile"
 
-  #      rm -f "$R1_tmp" "$R2_tmp" "$listfile"
+        fastuniq -i "$listfile" -t q \
+            -o "${SORTIE}/${base}_dedup_R1.fastq" \
+            -p "${SORTIE}/${base}_dedup_R2.fastq"
 
- #   else
-#        echo "ATTENTION: fichier R2 manquant pour $base"
-#    fi
-#done
+        rm -f "$R1_tmp" "$R2_tmp" "$listfile"
 
-#rm -rf "$TMP"
+    else
+        echo "ATTENTION: fichier R2 manquant pour $base"
+    fi
+done
+
+rm -rf "$TMP"
 
 #echo "Fastuniq termine"
 
 #controle qualité à la fin 
 
-echo "Lancement de FastQC échantillon par échantillon"
+echo "Lancement de FastQC"
+fastqc "$SORTIE"/*.fastq --outdir "$QUALITE" --threads 4
 
-# On fait une boucle pour suivre l'avancement dans les fichiers 
-for fq in "$SORTIE"/*.fastq; do
-    if [[ -f "$fq" ]]; then
-        echo "--> Analyse FastQC en cours pour : $(basename "$fq")"
-        fastqc "$fq" --outdir "$QUALITE" --threads 6
-    fi
-done
+echo "Lancement de MultiQC"
+multiqc "$QUALITE" "$SORTIE" -o "$QUALITE"
 
-echo "Tous les FastQC individuels sont terminés."
-
-echo "Lancement de MultiQC..."
-# On se déplace dans le dossier QUALITE pour que MultiQC ne lise QUE les rapports html/zip de FastQC
-cd "$QUALITE" || exit 1
-multiqc . -o . --force
-
-echo "Controle qualite finalise !"
+echo "Controle qualite finalise"
