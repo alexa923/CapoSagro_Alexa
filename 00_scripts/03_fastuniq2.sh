@@ -58,11 +58,21 @@ conda activate bioinformatic
 
 #controle qualité à la fin 
 
-echo "Lancement de FastQC"
-fastqc "$SORTIE"/*.fastq --outdir "$QUALITE" --threads 4
+echo "Lancement de FastQC échantillon par échantillon"
 
-echo "Lancement de MultiQC"
+# On fait une boucle pour suivre l'avancement dans les fichiers 
+for fq in "$SORTIE"/*.fastq; do
+    if [[ -f "$fq" ]]; then
+        echo "--> Analyse FastQC en cours pour : $(basename "$fq")"
+        fastqc "$fq" --outdir "$QUALITE" --threads 6
+    fi
+done
+
+echo "Tous les FastQC individuels sont terminés."
+
+echo "Lancement de MultiQC..."
+# On se déplace dans le dossier QUALITE pour que MultiQC ne lise QUE les rapports html/zip de FastQC
 cd "$QUALITE" || exit 1
-multiqc . -o .
+multiqc . -o . --force
 
-echo "Controle qualite finalise"
+echo "Controle qualite finalise !"
