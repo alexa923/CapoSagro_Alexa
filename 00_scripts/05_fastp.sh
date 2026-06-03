@@ -32,7 +32,7 @@ do
 
  
    # Nom de base pour les sorties
-   BASENAME=$(basename "$R1" _R1.fastq.gz)
+   base=$(basename "$R1" _R1.fastq.gz)
 
 
 
@@ -42,11 +42,10 @@ do
                 --merged_out "${SORTIE}/${base}_fastp_merged.fastq.gz" \
                 --out1 "${SORTIE}/${base}_fastp_R1.fastq.gz" \
                 --out2 "${SORTIE}/${base}_fastp_R2.fastq.gz" \
-                --json "${SORTIE}/${base}_fastp.json" \
-                --html "${SORTIE}/${base}_fastp.html" \
-                --thread 4 \
-                --length_required 30 \
-                --qualified_quality_phred 20 
+                --json "${QUALITE}/${base}_fastp.json" \
+                --html "${QUALITE}/${base}_fastp.html" \
+                --length_required 20 \
+                --qualified_quality_phred 20 \
                 --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA \
                 --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
                 --detect_adapter_for_pe \
