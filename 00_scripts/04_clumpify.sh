@@ -9,7 +9,7 @@
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/04_clumpify.out"
 
 
-ENTREE="/home/amartin3/03_fastuniq"
+ENTREE="/home/amartin3/03_fastuniq2"
 SORTIE="/home/amartin3/04_clumpify"
 QUALITE="/home/amartin3/04_clumpify/controle_qualite"
 
@@ -49,6 +49,6 @@ echo "Lancement de FastQC"
 fastqc "$SORTIE"/*.fastq.gz --outdir "$QUALITE" --threads 4
 
 echo "Lancement de MultiQC"
-multiqc "$QUALITE" "$SORTIE" -o "$QUALITE"
+multiqc "$QUALITE" -o "$QUALITE"
 
 echo "Analyse finalisee"
