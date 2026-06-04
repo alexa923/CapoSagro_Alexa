@@ -32,7 +32,7 @@ for R1 in "$ENTREE"/*_R1.fastq; do
             out="$SORTIE/${base}_clumpify_R1.fastq.gz" \
             out2="$SORTIE/${base}_clumpify_R2.fastq.gz" \
             dedupe=t
-        echo "Clumpify terminé pour $base
+        echo "Clumpify terminé pour $base"
     else
         echo "Fichier R2 manquant pour $R1, ignore"
     fi
