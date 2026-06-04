@@ -25,7 +25,7 @@ mkdir -p "$QUALITE"
 
 for R1 in "$ENTREE"/*_R1.fastq; do
     R2="${R1/_R1.fastq/_R2.fastq}"
-    if [[ -f "$R2" ]]; then 
+    if [[ -f "$R2" ]]; then
         base=$(basename "$R1" _R1.fastq)
         $CLUMPIFY \
             in="$R1" in2="$R2" \
@@ -36,11 +36,11 @@ for R1 in "$ENTREE"/*_R1.fastq; do
     else
         echo "Fichier R2 manquant pour $R1, ignore"
     fi
-done    
+done
 
 echo "Analyse Clumpify terminee "
 
-#faire controle qualité 
+#faire controle qualite
 
 echo "ANALYSE DE LA QUALITE"
 
