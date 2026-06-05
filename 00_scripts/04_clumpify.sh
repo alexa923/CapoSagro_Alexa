@@ -23,10 +23,10 @@ mkdir -p "$SORTIE"
 mkdir -p "$QUALITE"
 
 
-for R1 in "$ENTREE"/*_R1.fastq; do
-    R2="${R1/_R1.fastq/_R2.fastq}"
+for R1 in "$ENTREE"/*_R1_fixed.fastq; do
+    R2="${R1/_R1_fixed.fastq/_R2_fixed.fastq}"
     if [[ -f "$R2" ]]; then
-        base=$(basename "$R1" _R1.fastq)
+        base=$(basename "$R1" _R1_fixed.fastq)
         $CLUMPIFY \
             in="$R1" in2="$R2" \
             out="$SORTIE/${base}_clumpify_R1.fastq.gz" \
