@@ -15,6 +15,7 @@ RUN3="/storage/groups/gdec/shared_paleo/E1531_final/run2_20250414_AV241601_E1531
 RUN4="/storage/groups/gdec/shared_paleo/E1531_final/run3_20251008_AV241601_E1531_Ps7_Ps8"
 RUN5="/storage/groups/gdec/shared_paleo/E1531_final/run4_20251104_AV241601_E1531_Ps7_Ps8_04112025"
 RUN6="/storage/groups/gdec/shared_paleo/E1672"
+RUN7="/storage/groups/gdec/shared_paleo/E1672/Ps10_Ps11/"
 Home="/home/amartin3"
 
 
@@ -41,6 +42,8 @@ cat \
   ${RUN5}/1130_sed6_rep2/1130_sed6_rep2_R1.fastq.gz \
   ${RUN6}/1129_sed6-rep1/1129_sed6-rep1_R1.fastq.gz \
   ${RUN6}/1130_sed6-rep2/1130_sed6-rep2_R1.fastq.gz \
+  ${RUN7}/1129_sed6-rep1/1129_sed6-rep1_R1.fastq.gz \
+  ${RUN7}/1130_sed6-rep2/1130_sed6-rep2_R1.fastq.gz \
   > ${Home}/01_concatenated_data/sed6_concat_R1.fastq.gz
 
 ##sed6 R2
@@ -61,6 +64,8 @@ cat \
   ${RUN5}/1130_sed6_rep2/1130_sed6_rep2_R2.fastq.gz \
   ${RUN6}/1129_sed6-rep1/1129_sed6-rep1_R2.fastq.gz \
   ${RUN6}/1130_sed6-rep2/1130_sed6-rep2_R2.fastq.gz \
+  ${RUN7}/1129_sed6-rep1/1129_sed6-rep1_R2.fastq.gz \
+  ${RUN7}/1130_sed6-rep2/1130_sed6-rep2_R2.fastq.gz \
   > ${Home}/01_concatenated_data/sed6_concat_R2.fastq.gz
 
 echo "Concaténation sed6 terminée."
@@ -84,6 +89,8 @@ cat \
   ${RUN5}/1122_sed8_rep2/1122_sed8_rep2_R1.fastq.gz \
   ${RUN6}/1121_sed8-rep1/1121_sed8-rep1_R1.fastq.gz \
   ${RUN6}/1122_sed8-rep2/1122_sed8-rep2_R1.fastq.gz \
+  ${RUN7}/1121_sed8-rep1/1121_sed8-rep1_R1.fastq.gz \
+  ${RUN7}/1122_sed8-rep2/1122_sed8-rep2_R1.fastq.gz \
   > ${Home}/01_concatenated_data/sed8_concat_R1.fastq.gz
 
 
@@ -106,6 +113,8 @@ cat \
   ${RUN5}/1122_sed8_rep2/1122_sed8_rep2_R2.fastq.gz \
   ${RUN6}/1121_sed8-rep1/1121_sed8-rep1_R2.fastq.gz \
   ${RUN6}/1122_sed8-rep2/1122_sed8-rep2_R2.fastq.gz \
+  ${RUN7}/1121_sed8-rep1/1121_sed8-rep1_R2.fastq.gz \
+  ${RUN7}/1122_sed8-rep2/1122_sed8-rep2_R2.fastq.gz \
   > ${Home}/01_concatenated_data/sed8_concat_R2.fastq.gz
 
 echo "Concaténation sed8 terminée."
