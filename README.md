@@ -53,3 +53,6 @@ repair.sh \
     out1=/home/amartin3/03_fastuniq2/clean_sed8_concat_dedup_R1_fixed.fastq \
     out2=/home/amartin3/03_fastuniq2/clean_sed8_concat_dedup_R2_fixed.fastq \
     outs=/home/amartin3/03_fastuniq2/clean_sed8_singles.fastq
+
+### Step 6
+We used Clumpify to deduplicate the reads a second time which is more efficient to find reads that share k-mers and detect sequencing errors using 04_clumpify.sh script.
