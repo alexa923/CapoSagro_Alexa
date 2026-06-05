@@ -12,34 +12,34 @@ ENTREE="/home/amartin3/04_clumpify"
 SORTIE="/home/amartin3/05_fastp"
 QUALITE="/home/amartin3/05_fastp/controle_qualite"
 
-# Création des dossiers de sortie s'ils n'existent pas déjà
+
 mkdir -p "$SORTIE"
 mkdir -p "$QUALITE"
 
-# Activer l'environnement conda
+
 module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
 
-# Pour chaque fichier R1 issu de Clumpify
+
 for R1 in "$ENTREE"/*_clumpify_R1.fastq.gz
 do
-    # Trouver le fichier R2 correspondant
+    
     R2="${R1%_R1.fastq.gz}_R2.fastq.gz"
  
     if [[ -f "$R2" ]]; then
-        # Nom de base propre pour cet échantillon
+        
         base=$(basename "$R1" _clumpify_R1.fastq.gz)
         echo " Traitement fastp pour : $base"
 
-        # DÉFINITION DES VARIABLES DE SORTIE (Indispensable pour que fastp fonctionne !)
+        
         OUT_R1="$SORTIE/${base}_fastp_unmerged_R1.fastq.gz"
         OUT_R2="$SORTIE/${base}_fastp_unmerged_R2.fastq.gz"
         MERGED="$SORTIE/${base}_fastp_merged.fastq.gz"
         HTML="$SORTIE/${base}_fastp_report.html"
         JSON="$SORTIE/${base}_fastp_report.json"
 
-        # Exécution de fastp
+        
         fastp \
             --in1 "$R1" --in2 "$R2" \
             --out1 "$OUT_R1" --out2 "$OUT_R2" \
@@ -66,14 +66,14 @@ do
             --detect_adapter_for_pe \
             --thread 4
 
-        echo "Traitement de $base terminé"
+        echo "Traitement de $base termine"
        
     else
-        echo "Fichier R2 manquant pour $R1, échantillon ignoré."
+        echo "Fichier R2 manquant pour $R1, échantillon ignore."
     fi
 done
 
-echo "Tous les traitements fastp sont terminés."
+echo "Tous les traitements fastp sont termines."
 
 
 # controle qualite
