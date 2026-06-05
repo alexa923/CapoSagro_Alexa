@@ -53,7 +53,7 @@ do
         --trim_poly_x \
         --poly_x_min_len 10 \
         --merge --correction \
-        --overlap_len_require 30 \
+        --overlap_len_require 10 \
         --overlap_diff_limit 5 \
         --overlap_diff_percent_limit 20 \
         --html "$HTML" \
