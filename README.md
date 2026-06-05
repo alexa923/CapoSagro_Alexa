@@ -12,3 +12,6 @@ First, open your terminal. Then, run these two command lines :
 ### Update the pipeline in local by :
 
     git pull
+
+### Step 1
+Concatenated data (00_concatenated_files)
