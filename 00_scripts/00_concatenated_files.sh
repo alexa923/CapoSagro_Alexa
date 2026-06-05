@@ -15,7 +15,7 @@ RUN3="/storage/groups/gdec/shared_paleo/E1531_final/run2_20250414_AV241601_E1531
 RUN4="/storage/groups/gdec/shared_paleo/E1531_final/run3_20251008_AV241601_E1531_Ps7_Ps8"
 RUN5="/storage/groups/gdec/shared_paleo/E1531_final/run4_20251104_AV241601_E1531_Ps7_Ps8_04112025"
 RUN6="/storage/groups/gdec/shared_paleo/E1672"
-RUN7="/storage/groups/gdec/shared_paleo/E1672/Ps10_Ps11/"
+RUN7="/storage/groups/gdec/shared_paleo/E1672/Ps10_Ps11"
 Home="/home/amartin3"
 
 
