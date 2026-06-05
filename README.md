@@ -13,5 +13,12 @@ First, open your terminal. Then, run these two command lines :
 
     git pull
 
+
 ### Step 1
-Concatenated data (00_concatenated_files)
+Concatenated data: sed6 and sed8 samples for each run and replicat with the script 00_concatenated_files.sh
+
+### Step 2
+Quality check (fastqc and multiqc) on raw data and then concatenated data to check the sequences quality and look after similar patterns before and after the concatenation with the script 01_quality_check.sh
+
+### Step 3
+
