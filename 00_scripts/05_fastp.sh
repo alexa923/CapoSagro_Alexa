@@ -44,7 +44,7 @@ do
         --length_required 20 \
         --cut_front --cut_tail \
         --cut_window_size 4 \
-        --cut_mean_quality 20 \
+        --cut_mean_quality 10 \
         --n_base_limit 5 \
         --unqualified_percent_limit 40 \
         --low_complexity_threshold 30 \
