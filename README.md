@@ -21,7 +21,7 @@ Concatenated data: sed6 and sed8 samples for each run and replicat with the scri
 Quality check (fastqc and multiqc) on raw data and then concatenated data to check the sequences quality and look after similar patterns before and after the concatenation with the script 01_quality_check.sh
 
 ### Step 3
-BBduk remove Phix sequences used for diversity while sequencing using the 02_bbduk2.sh script
+At first, we used bbdduk to start cleaning the data which remove Phix sequences used for diversity in sequencing using the 02_bbduk2.sh script
 
 * 02_bbduk.sh was a test with trimming parameters but removed too much reads
 * 02_bbduk3.sh was a test with trimming parameters including a minimum length of 20bp for the reads but also removed too much reads
@@ -56,3 +56,10 @@ repair.sh \
 
 ### Step 6
 We used Clumpify to deduplicate the reads a second time which is more efficient to find reads that share k-mers and detect sequencing errors using 04_clumpify.sh script.
+
+### Step 7
+To end data cleaning, we used fastp tool to merge R1 (forward) and R2 (reverse), observe the quality, bases correction and trimming parameters including adaptater removal.
+
+### References 
+https://github.com/ZimmermannHH/BeringSea_shotgun_sequencing/
+
