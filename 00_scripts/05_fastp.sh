@@ -68,17 +68,10 @@ done
 echo "Tous les traitements sont terminés"
 
 echo "Lancement de FastQC"
-for fq_gz in "$SORTIE"/*.fastq.gz; do
-    if [[ -f "$fq_gz" ]]; then
-        echo "-> FastQC en cours sur : $(basename "$fq_gz")"
-        fastqc "$fq_gz" --outdir "$QUALITE" --threads 4
-    fi
-done
+fastqc "$SORTIE"/*.fastq.gz --outdir "$QUALITE" --threads 4
 
-echo "Lancement de MultiQC..."
+echo "Lancement de MultiQC"
+multiqc "$QUALITE" -o "$QUALITE"
 
-cd "$QUALITE" || exit 1
-multiqc . -o . --force
-
-echo "Controle qualite finalise avec succes !"
+echo "Analyse finalisee"
   
