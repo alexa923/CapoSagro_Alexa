@@ -33,4 +33,23 @@ Fastuniq allowed us to deduplicate the reads (due to PCR) to only keep real biol
 * 03_fastuniq.sh was a test using bbduk.sh output files
 
 ### Step 5
+Repair.sh script was used before the next step to correct the different number of read in the paired input files.
 
+--> This script was used in local:
+
+conda activate your_environnement
+
+repair.sh \
+    in1=/home/amartin3/03_fastuniq2/clean_sed6_concat_dedup_R1.fastq \
+    in2=/home/amartin3/03_fastuniq2/clean_sed6_concat_dedup_R2.fastq \
+    out1=/home/amartin3/03_fastuniq2/clean_sed6_concat_dedup_R1_fixed.fastq \
+    out2=/home/amartin3/03_fastuniq2/clean_sed6_concat_dedup_R2_fixed.fastq \
+    outs=/home/amartin3/03_fastuniq2/clean_sed6_singles.fastq
+
+
+repair.sh \
+    in1=/home/amartin3/03_fastuniq2/clean_sed8_concat_dedup_R1.fastq \
+    in2=/home/amartin3/03_fastuniq2/clean_sed8_concat_dedup_R2.fastq \
+    out1=/home/amartin3/03_fastuniq2/clean_sed8_concat_dedup_R1_fixed.fastq \
+    out2=/home/amartin3/03_fastuniq2/clean_sed8_concat_dedup_R2_fixed.fastq \
+    outs=/home/amartin3/03_fastuniq2/clean_sed8_singles.fastq
