@@ -25,12 +25,12 @@ conda activate bioinformatic
 for R1 in "$ENTREE"/*_clumpify_R1.fastq.gz
 do
     # Trouver le fichier R2 correspondant
-    R2="${R1/_R1.fastq.gz/_R2.fastq.gz}"
+    R2="${R1%_R1.fastq.gz}_R2.fastq.gz"
  
     if [[ -f "$R2" ]]; then
         # Nom de base propre pour cet échantillon
         base=$(basename "$R1" _clumpify_R1.fastq.gz)
-        echo "--> Traitement fastp pour : $base"
+        echo " Traitement fastp pour : $base"
 
         # DÉFINITION DES VARIABLES DE SORTIE (Indispensable pour que fastp fonctionne !)
         OUT_R1="$SORTIE/${base}_fastp_unmerged_R1.fastq.gz"
@@ -67,7 +67,7 @@ do
             --thread 4
 
         echo "Traitement de $base terminé"
-        echo "--------------------------------------"
+       
     else
         echo "Fichier R2 manquant pour $R1, échantillon ignoré."
     fi
@@ -75,21 +75,13 @@ done
 
 echo "Tous les traitements fastp sont terminés."
 
-# ==================================================
-# CONTRÔLE QUALITÉ SÉCURISÉ (Fichier par fichier)
-# ==================================================
-echo "ANALYSE DE LA QUALITE"
 
-echo "Lancement de FastQC..."
-for fq_gz in "$SORTIE"/*.fastq.gz; do
-    if [[ -f "$fq_gz" ]]; then
-        echo "--> FastQC sur : $(basename "$fq_gz")"
-        fastqc "$fq_gz" --outdir "$QUALITE" --threads 4
-    fi
-done
+# controle qualite
 
-echo "Lancement de MultiQC..."
-cd "$QUALITE" || exit 1
-multiqc . -o . --force
+echo "Lancement de FastQC"
+fastqc "$SORTIE"/*_merged.fastq.gz --outdir "$QUALITE" --threads 4
 
-echo "Analyse finalisee avec succes !"
+echo "Lancement de MultiQC"
+multiqc "$QUALITE" -o "$QUALITE"
+
+echo "Analyse finalisee"
