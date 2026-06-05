@@ -29,6 +29,7 @@ fastqc \
   /storage/groups/gdec/shared_paleo/E1531_final/run3_20251008_AV241601_E1531_Ps7_Ps8/*sed{6,8}*/*.fastq.gz \
   /storage/groups/gdec/shared_paleo/E1531_final/run4_20251104_AV241601_E1531_Ps7_Ps8_04112025/*sed{6,8}*/*.fastq.gz \
   /storage/groups/gdec/shared_paleo/E1672/*sed{6,8}*/*.fastq.gz \
+  /storage/groups/gdec/shared_paleo/E1672/Ps10_Ps11/*sed{6,8}*/*.fastq.gz \
   --outdir .
 #agrégation des rapports fastQC avant cat
 echo "Agrégation avec MultiQC"
