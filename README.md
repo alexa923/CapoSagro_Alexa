@@ -47,7 +47,7 @@ repair.sh \
     outs=/home/amartin3/03_fastuniq2/clean_sed6_singles.fastq
 
 
-repair.sh \
+repair.sh \ 
     in1=/home/amartin3/03_fastuniq2/clean_sed8_concat_dedup_R1.fastq \
     in2=/home/amartin3/03_fastuniq2/clean_sed8_concat_dedup_R2.fastq \
     out1=/home/amartin3/03_fastuniq2/clean_sed8_concat_dedup_R1_fixed.fastq \
