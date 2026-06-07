@@ -39,7 +39,7 @@ Repair.sh script was used before the next step to correct the different number o
 
 conda activate your_environnement
 
-repair.sh \
+repair.sh \ 
     in1=/home/amartin3/03_fastuniq2/clean_sed6_concat_dedup_R1.fastq \
     in2=/home/amartin3/03_fastuniq2/clean_sed6_concat_dedup_R2.fastq \
     out1=/home/amartin3/03_fastuniq2/clean_sed6_concat_dedup_R1_fixed.fastq \
