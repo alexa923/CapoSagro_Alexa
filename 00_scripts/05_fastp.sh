@@ -50,7 +50,7 @@ do
             --cut_mean_quality 10 \
             --n_base_limit 5 \
             --unqualified_percent_limit 40 \
-            --low_complexity_threshold 30 \
+            --complexity_threshold 30 \
             --qualified_quality_phred 20 \
             --low_complexity_filter \
             --trim_poly_x \
