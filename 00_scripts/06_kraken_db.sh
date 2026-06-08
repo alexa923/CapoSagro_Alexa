@@ -13,3 +13,14 @@
 module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
+
+
+# Aller sur https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/
+# et télécharger:
+# nucl_gb.accession2taxid.gz
+# nucl_wgs.accession2taxid.gz
+# pdb.accession2taxid.gz
+# dead_nucl.accession2taxid.gz
+# ex: wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/dead_nucl.accession2taxid.gz
+
+wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/dead_nucl.accession2taxid.gz
