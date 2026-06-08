@@ -51,3 +51,9 @@ for f in /home/amartin3/nt_kraken2_db_parts/*.fasta; do
   kraken2-build --add-to-library "$f" --db /home/amartin3/nt_kraken2_db_big
 done
 
+#Telecharger taxonomie 
+kraken2-build --download-taxonomy --db /home/amartin3/nt_kraken2_db_big
+
+# Construire la base
+kraken2-build --build --db /home/amartin3/nt_kraken2_db_big --threads 36
+
