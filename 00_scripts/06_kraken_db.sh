@@ -27,3 +27,13 @@ wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession
 wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_wgs.accession2taxid.gz
 wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/pdb.accession2taxid.gz 
 wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/dead_nucl.accession2taxid.gz 
+
+gunzip nucl_gb.accession2taxid.gz
+gunzip nucl_wgs.accession2taxid.gz
+gunzip pdb.accession2taxid.gz
+gunzip dead_nucl.accession2taxid.gz
+
+mv nucl_gb.accession2taxid /home/amartin3/nt_kraken2_db/taxonomy/
+mv nucl_wgs.accession2taxid /home/amartin3/nt_kraken2_db/taxonomy/
+mv pdb.accession2taxid /home/amartin3/nt_kraken2_db/taxonomy/
+mv dead_nucl.accession2taxid /home/amartin3plstenge/nt_kraken2_db/taxonomy/
