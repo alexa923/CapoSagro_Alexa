@@ -14,7 +14,7 @@ source ~/.bashrc
 conda activate bioinformatic
 
 ENTREE="/home/amartin3/05_fastp"
-KRAKEN_DB="/storage/groups/gdec/shared/Kraken_database/k2_core_nt_20250609"
+KRAKEN2_DB="/storage/groups/gdec/shared/Kraken_database/k2_core_nt_20250609"
 SORTIE="/home/amartin3/07_kraken2"
 THREADS=36
 
@@ -25,3 +25,9 @@ echo "analyse des merged"
 
 for merged in "$ENTREE"/*_fastp_merged.fastq.gz
 do
+    SAMPLE=$(basename "$merged" _fastp_merged.fastq.gz)
+    SORTIE_KRAKEN="$SORTIE/${SAMPLE}_merged.kraken"
+    SORTIE_REPORT="$SORTIE/${SAMPLE}_merged.report"
+
+    krake 2 --conf 0.2 --db "$KRAKEN2_DB" --threads $THREADS 
+    
