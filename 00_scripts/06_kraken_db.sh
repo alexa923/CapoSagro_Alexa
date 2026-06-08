@@ -33,7 +33,14 @@ gunzip nucl_wgs.accession2taxid.gz
 gunzip pdb.accession2taxid.gz
 gunzip dead_nucl.accession2taxid.gz
 
+mkdir -p /home/amartin3/nt_kraken2_db/taxonomy/
+
 mv nucl_gb.accession2taxid /home/amartin3/nt_kraken2_db/taxonomy/
 mv nucl_wgs.accession2taxid /home/amartin3/nt_kraken2_db/taxonomy/
 mv pdb.accession2taxid /home/amartin3/nt_kraken2_db/taxonomy/
 mv dead_nucl.accession2taxid /home/amartin3plstenge/nt_kraken2_db/taxonomy/
+
+mkdir -p /home/amartin3/nt_kraken2_db_big
+mkdir -p /home/amartin3/nt_kraken2_db_parts
+
+#Diviser le fasta en 10 fichier; pourquoi ?
