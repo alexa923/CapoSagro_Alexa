@@ -5,5 +5,5 @@
 #SBATCH --mem=1000G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL 
-#SBATCH --error="/home/plstenge/coprolites/00_scripts/06_kraken2.err"
-#SBATCH --output="/home/plstenge/coprolites/00_scripts/06_kraken2.out"
+#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/06_kraken2.err"
+#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/06_kraken2.out"
