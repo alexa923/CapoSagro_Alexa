@@ -10,5 +10,6 @@
 
 
 KRAKEN2_DB="/storage/groups/gdec/shared/Kraken_database/k2_core_nt_20250609"
+ENTREE="/home/amartin3/ 07_kraken2"
 
-bracken -d $KRAKEN2_DB
+bracken -d "$KRAKEN2_DB" -i
