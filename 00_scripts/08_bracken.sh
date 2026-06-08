@@ -8,6 +8,9 @@
 #SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/08_bracken.err"
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/08_bracken.out"
 
+module load conda/4.12.0
+source ~/.bashrc
+conda activate bioinformatic
 
 KRAKEN2_DB="/storage/groups/gdec/shared/Kraken_database/k2_core_nt_20250609"
 ENTREE="/home/amartin3/07_kraken2"
