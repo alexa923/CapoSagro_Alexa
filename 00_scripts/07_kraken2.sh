@@ -56,7 +56,7 @@ done
 
 echo "Analyse Kraken2 terminee pour tous les echantillons."
 
-SORTIE_KRONA="/home/amartin3/08_krona"
+SORTIE_KRONA="/home/amartin3/07_kraken2/krona"
 
 mkdir -p "$SORTIE_KRONA"
 
