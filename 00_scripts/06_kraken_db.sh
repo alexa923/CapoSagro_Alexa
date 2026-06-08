@@ -57,3 +57,14 @@ kraken2-build --download-taxonomy --db /home/amartin3/nt_kraken2_db_big
 # Construire la base
 kraken2-build --build --db /home/amartin3/nt_kraken2_db_big --threads 36
 
+kraken2-build --add-to-library /storage/biodatabanks/ncbi/NT/ncbi_blast_nt_2024-8-24/fasta/All/all.fasta --db /home/amartin3/nt_kraken2_db
+echo "add to library ok"
+
+kraken2-build --download-taxonomy --db /home/amartin3/nt_kraken2_db
+echo "download taxonomy ok"
+
+kraken2-build --build --db /home/amartin3/nt_kraken2_db --threads 36
+kraken2-build --build --db /home/amartin3/nt_kraken2_db --threads 36 > build.log 2> build.err
+
+#echo "base de donnees terminee"
+
