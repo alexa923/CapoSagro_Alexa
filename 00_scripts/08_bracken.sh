@@ -21,6 +21,33 @@ SORTIE_KRONA="/home/amartin3/08_bracken/krona"
 mkdir -p "$SORTIE"
 mkdir -p "$SORTIE_KRONA"
 
-bracken -d "$KRAKEN2_DB" -i $ENTREE/*.report -o "$SORTIE/bracken.txt" -w "$SORTIE/bracken.report"" -r 50
+for fichier_report in "$ENTREE"/*.report; do
+    
+    # On récupère le nom de l'échantillon
+    base=$(basename "$fichier_report" .report)
+    echo "Traitement Bracken pour : $base"
+    
+    # Lancement de Bracken 
+    bracken \
+        -d "$KRAKEN2_DB" \
+        -i "$fichier_report" \
+        -o "$SORTIE/${base}_bracken.txt" \
+        -w "$SORTIE/${base}_bracken.report" \
+        -r 50
 
-ktImportTaxonomy -t 5 -m 3 -o $SORTIE_KRONA/multi-krona.html $SORTIE/*.report 
+    echo "Bracken terminé pour $base"
+   
+done
+
+echo "=== TOUS LES FICHIERS BRACKEN SONT GENERES ==="
+
+#krona
+echo "Lancement de Krona"
+
+ktImportTaxonomy \
+    -t 5 \
+    -m 3 \
+    -o "$SORTIE_KRONA/multi-krona.html" \
+    "$SORTIE"/*_bracken.report
+
+echo "Graphique Krona termine"
