@@ -29,8 +29,8 @@ do
     SORTIE_KRAKEN="$SORTIE/${SAMPLE}_merged.kraken"
     SORTIE_REPORT="$SORTIE/${SAMPLE}_merged.report"
 
-    krake 2 --conf 0.2 --db "$KRAKEN2_DB" --threads $THREADS \
-        --output "$SORTIE_KRAKEN" --report "$OUT_REPORT" "$MERGED"    
+    kraken 2 --conf 0.2 --db "$KRAKEN2_DB" --threads $THREADS \
+        --output "$SORTIE_KRAKEN" --report "$SORTIE_REPORT" "$MERGED"    
     echo "Termine: $SAMPLE (merged)"
 done 
     
