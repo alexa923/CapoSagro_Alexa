@@ -23,11 +23,14 @@ mkdir -p "$SORTIE"
 #Analyse des merged (single end) 
 echo "analyse des merged"
 
-for merged in "$ENTREE"/*_fastp_merged.fastq.gz
+for MERGED in "$ENTREE"/*_fastp_merged.fastq.gz
 do
-    SAMPLE=$(basename "$merged" _fastp_merged.fastq.gz)
+    SAMPLE=$(basename "$MERGED" _fastp_merged.fastq.gz)
     SORTIE_KRAKEN="$SORTIE/${SAMPLE}_merged.kraken"
     SORTIE_REPORT="$SORTIE/${SAMPLE}_merged.report"
 
-    krake 2 --conf 0.2 --db "$KRAKEN2_DB" --threads $THREADS 
+    krake 2 --conf 0.2 --db "$KRAKEN2_DB" --threads $THREADS \
+        --output "$SORTIE_KRAKEN" --report "$OUT_REPORT" "$MERGED"    
+    echo "Termine: $SAMPLE (merged)"
+done 
     
