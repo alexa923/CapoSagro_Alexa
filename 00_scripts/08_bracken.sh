@@ -20,4 +20,4 @@ mkdir -p "$SORTIE_KRONA"
 
 bracken -d "$KRAKEN2_DB" -i $ENTREE/*.report -o "$SORTIE/bracken.txt" -w "$SORTIE/bracken.report"" -r 50
 
-ktImportTaxonomy -t 5 -m 3 -o
+ktImportTaxonomy -t 5 -m 3 -o $SORTIE_KRONA/multi-krona.html $SORTIE/*.report 
