@@ -44,3 +44,10 @@ mkdir -p /home/amartin3/nt_kraken2_db_big
 mkdir -p /home/amartin3/nt_kraken2_db_parts
 
 #Diviser le fasta en 10 fichier; pourquoi ?
+seqkit split -p 10 /storage/biodatabanks/ncbi/NT/ncbi_blast_nt_2024-8-24/fasta/All/all.fasta -O /home/amartin3/nt_kraken2_db_parts/
+
+#Ajouter chaque morceau à la base 
+for f in /home/amartin3/nt_kraken2_db_parts/*.fasta; do
+  kraken2-build --add-to-library "$f" --db /home/amartin3/nt_kraken2_db_big
+done
+
