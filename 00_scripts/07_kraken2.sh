@@ -61,6 +61,6 @@ SORTIE_KRONA="/home/amartin3/08_krona"
 mkdir -p "$SORTIE_KRONA"
 
 echo "Lancement de krona"
-ktImportTaxonomy -t 5 -m 3 -o $SORTIE_KRONA/multi-krona.html $OUT_DIR/*.report 
-
+ktImportTaxonomy -t 5 -m 3 -o $SORTIE_KRONA/multi-krona.html $SORTIE/*.report 
+echo "Krona termines"
 
