@@ -12,3 +12,16 @@
 module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
+
+ENTREE="/home/amartin3/05_fastp"
+KRAKEN_DB="/storage/groups/gdec/shared/Kraken_database/k2_core_nt_20250609"
+SORTIE="/home/amartin3/07_kraken2"
+THREADS=36
+
+mkdir -p "$SORTIE"
+
+#Analyse des merged (single end) 
+echo "analyse des merged"
+
+for merged in "$ENTREE"/*_fastp_merged.fastq.gz
+do
