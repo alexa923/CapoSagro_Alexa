@@ -53,3 +53,14 @@ do
         echo "Termine : $SAMPLE (unmerged)"
     fi
 done
+
+echo "Analyse Kraken2 terminee pour tous les echantillons."
+
+SORTIE_KRONA="/home/amartin3/08_krona"
+
+mkdir -p "$SORTIE_KRONA"
+
+echo "Lancement de krona"
+ktImportTaxonomy -t 5 -m 3 -o $SORTIE_KRONA/multi-krona.html $OUT_DIR/*.report 
+
+
