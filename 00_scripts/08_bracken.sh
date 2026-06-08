@@ -12,8 +12,12 @@
 KRAKEN2_DB="/storage/groups/gdec/shared/Kraken_database/k2_core_nt_20250609"
 ENTREE="/home/amartin3/07_kraken2"
 SORTIE="/home/amartin3/08_bracken"
+SORTIE_KRONA="/home/amartin3/08_bracken/krona"
 
 
 mkdir -p "$SORTIE"
+mkdir -p "$SORTIE_KRONA"
 
 bracken -d "$KRAKEN2_DB" -i $ENTREE/*.report -o "$SORTIE/bracken.txt" -w "$SORTIE/bracken.report"" -r 50
+
+ktImportTaxonomy -t 5 -m 3 -o
