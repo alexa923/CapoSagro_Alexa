@@ -7,3 +7,8 @@
 #SBATCH --mail-type=ALL 
 #SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/06_kraken2.err"
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/06_kraken2.out"
+
+
+module load conda/4.12.0
+source ~/.bashrc
+conda activate bioinformatic
