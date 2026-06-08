@@ -8,3 +8,7 @@
 #SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/08_bracken.err"
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/08_bracken.out"
 
+
+KRAKEN2_DB="/storage/groups/gdec/shared/Kraken_database/k2_core_nt_20250609"
+
+bracken -d $KRAKEN2_DB
