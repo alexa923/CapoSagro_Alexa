@@ -61,7 +61,15 @@ We used Clumpify to deduplicate the reads a second time which is more efficient 
 To end data cleaning, we used fastp tool to merge R1 (forward) and R2 (reverse), observe the quality, do bases correction and trimming parameters including adaptater removal.
 
 ### Step 8
-Then, we used kraken2 to do the taxonomic assignment using k-mer matches with the 07_kraken.sh scirpt 
+Then, we used kraken2 to do the taxonomic assignment using k-mer matches with the 07_kraken2.sh scirpt 
+
+*the script 06_kraken_db.sh was a test for the creation of the kraken database but here it was already created so not necessary 
+We made a korna graph to visualize the results before the next step
+
+### Step 9 
+
+We used bracken to correct kraken2 results with the 08_bracken.sh script. 
+We also did a krona visualization after this correction. 
 
 ### References 
 https://github.com/ZimmermannHH/BeringSea_shotgun_sequencing/
