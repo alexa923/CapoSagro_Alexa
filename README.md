@@ -15,7 +15,7 @@ First, open your terminal. Then, run these two command lines :
 
 
 ### Step 1
-Concatenated data: sed6 and sed8 samples for each run and replicat with the script 00_concatenated_files.sh
+Data concatenation of sed6 and sed8 samples for each run and replicat with the script 00_concatenated_files.sh
 
 ### Step 2
 Quality check (fastqc and multiqc) on raw data and then concatenated data to check the sequences quality and look after similar patterns before and after the concatenation with the script 01_quality_check.sh
@@ -24,7 +24,7 @@ Quality check (fastqc and multiqc) on raw data and then concatenated data to che
 At first, we used bbdduk to start cleaning the data which remove Phix sequences used for diversity in sequencing using the 02_bbduk2.sh script
 
 * 02_bbduk.sh was a test with trimming parameters but removed too much reads
-* 02_bbduk3.sh was a test with trimming parameters including a minimum length of 20bp for the reads but also removed too much reads
+* 02_bbduk3.sh was a test with trimming parameters including a smaller minimum length of 20bp for the reads but also removed too much reads
 * 02_bbduk2.sh was the best option knowing that trimming parameters will be included in the seventh step (fastp).
 
 ### Step 4
@@ -59,6 +59,9 @@ We used Clumpify to deduplicate the reads a second time which is more efficient 
 
 ### Step 7
 To end data cleaning, we used fastp tool to merge R1 (forward) and R2 (reverse), observe the quality, do bases correction and trimming parameters including adaptater removal.
+
+### Step 8
+Then, we used kraken2 to do the taxonomic assignment using k-mer matches with the 07_kraken.sh scirpt 
 
 ### References 
 https://github.com/ZimmermannHH/BeringSea_shotgun_sequencing/
