@@ -25,12 +25,11 @@ conda activate bioinformatic
 for R1 in "$ENTREE"/*_clumpify_R1.fastq.gz
 do
     
-    R2="${R1%_R1.fastq.gz}_R2.fastq.gz"
+    base=$(basename "$R1" _clumpify_R1.fastq.gz)
+    R2="$ENTREE/${base}_clumpify_R2.fastq.gz"
  
     if [[ -f "$R2" ]]; then
-        
-        base=$(basename "$R1" _clumpify_R1.fastq.gz)
-        echo " Traitement fastp pour : $base"
+         echo " Traitement fastp pour : $base"       
 
         
         OUT_R1="$SORTIE/${base}_fastp_unmerged_R1.fastq.gz"
