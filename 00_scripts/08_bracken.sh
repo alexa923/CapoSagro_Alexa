@@ -28,6 +28,7 @@ for fichier_report in "$ENTREE"/*.report; do
     echo "Traitement Bracken pour : $base"
     
     # Lancement de Bracken 
+    echo "lancement de bracken"
     bracken \
         -d "$KRAKEN2_DB" \
         -i "$fichier_report" \
@@ -39,7 +40,7 @@ for fichier_report in "$ENTREE"/*.report; do
    
 done
 
-echo "=== TOUS LES FICHIERS BRACKEN SONT GENERES ==="
+echo "Bracken termine"
 
 #krona
 echo "Lancement de Krona"
