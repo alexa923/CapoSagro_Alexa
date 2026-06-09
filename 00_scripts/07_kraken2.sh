@@ -57,10 +57,24 @@ done
 echo "Analyse Kraken2 terminee pour tous les echantillons."
 
 SORTIE_KRONA="/home/amartin3/07_kraken2/krona"
-
 mkdir -p "$SORTIE_KRONA"
 
 echo "Lancement de krona"
-ktImportTaxonomy -t 5 -m 3 -o $SORTIE_KRONA/multi-krona.html $SORTIE/*.report 
-echo "Krona termines"
 
+# Graphique 1 : fichiers merged
+echo "Generation du Krona pour les reads merged"
+ktImportTaxonomy \
+    -t 5 \
+    -m 3 \
+    -o "$SORTIE_KRONA/krona_merged.html" \
+    "$SORTIE"/*_merged.report
+
+# Graphique 2 : Uniquement pour les fichiers unmerged
+echo "Génération du Krona pour les reads unmerged"
+ktImportTaxonomy \
+    -t 5 \
+    -m 3 \
+    -o "$SORTIE_KRONA/krona_unmerged.html" \
+    "$SORTIE"/*_unmerged.report
+
+echo "Analyse krona terminee"
