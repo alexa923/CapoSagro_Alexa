@@ -13,4 +13,13 @@ cd /home/amartin3/08_bracken
 
 #git clone https://github.com/jenniferlu717/KrakenTools.git
 
-python 3  /home/amartin3/08_bracken/KrakenTools/kreport2mpa.py -r
+#Creation de la table d assignation
+echo "creation de la table"
+python 3  /home/amartin3/08_bracken/KrakenTools/kreport2mpa.py -r clean_sed6_concat_dedup_merged_bracken.report -o clean_sed6_concat_dedup_merged_bracken.mpa
+python 3  /home/amartin3/08_bracken/KrakenTools/kreport2mpa.py -r clean_sed6_concat_dedup_unmerged_bracken.report -o clean_sed6_concat_dedup_unmerged_bracken.mpa
+python 3  /home/amartin3/08_bracken/KrakenTools/kreport2mpa.py -r clean_sed8_concat_dedup_merged_bracken.report -o clean_sed8_concat_dedup_merged_bracken.mpa
+python 3  /home/amartin3/08_bracken/KrakenTools/kreport2mpa.py -r clean_sed8_concat_dedup_unmerged_bracken.report -o clean_sed8_concat_dedup_unmerged_bracken.mpa
+echo "table creee"
+
+echo "Combinaison en un seul fichier"
+python 3  /home/amartin3/08_bracken/KrakenTools/combine_mpa.py -i
