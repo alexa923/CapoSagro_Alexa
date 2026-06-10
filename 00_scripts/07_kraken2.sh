@@ -37,10 +37,10 @@ done
 #Analyse des unmerged (paired end)
 echo "analyse des unmerged"
 
-for R1 in "$ENTREE"/*_fastp_R1.fastq.gz
+for R1 in "$ENTREE"/*_fastp_unmerged_R1.fastq.gz
 do
-    SAMPLE=$(basename "$R1" _fastp_R1.fastq.gz)
-    R2="$ENTREE/${SAMPLE}_fastp_R2.fastq.gz"
+    SAMPLE=$(basename "$R1" _fastp_unmerged_R1.fastq.gz)
+    R2="$ENTREE/${SAMPLE}_fastp_unmerged_R2.fastq.gz"
    
     # Ne lance que si R2 existe
     if [[ -f "$R2" ]]; then
