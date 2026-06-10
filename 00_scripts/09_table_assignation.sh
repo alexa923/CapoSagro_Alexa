@@ -9,9 +9,12 @@
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/09_table_assignation.out"
 
 
+SORTIE="/home/amartin3/CapoSagro_Alexa/00_scripts/09_table_assignation"
 cd /home/amartin3/08_bracken
 
 #git clone https://github.com/jenniferlu717/KrakenTools.git
+
+mkdir -p $SORTIE
 
 #Creation de la table d assignation
 echo "creation de la table"
@@ -22,4 +25,4 @@ python 3  /home/amartin3/08_bracken/KrakenTools/kreport2mpa.py -r clean_sed8_con
 echo "table creee"
 
 echo "Combinaison en un seul fichier"
-python 3  /home/amartin3/08_bracken/KrakenTools/combine_mpa.py -i
+python 3  /home/amartin3/08_bracken/KrakenTools/combine_mpa.py -i clean_sed6_concat_dedup_merged_bracken.mpa clean_sed6_concat_dedup_unmerged_bracken.mpa clean_sed8_concat_dedup_merged_bracken.mpa clean_sed8_concat_dedup_unmerged_bracken.mpa
