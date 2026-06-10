@@ -28,9 +28,12 @@ python3 /home/amartin3/08_bracken/KrakenTools/kreport2mpa.py -r clean_sed8_conca
 echo "table creee"
 
 echo "Combinaison en un seul fichier"
-cd /home/amartin3/09_table_assignation
+
 python3 /home/amartin3/08_bracken/KrakenTools/combine_mpa.py \
-    -i clean_sed6_concat_dedup_merged_bracken.mpa clean_sed6_concat_dedup_unmerged_bracken.mpa clean_sed8_concat_dedup_merged_bracken.mpa clean_sed8_concat_dedup_unmerged_bracken.mpa \
+    -i "$SORTIE/clean_sed6_concat_dedup_merged_bracken.mpa" \
+    -i "$SORTIE/clean_sed6_concat_dedup_unmerged_bracken.mpa" \
+    -i "$SORTIE/clean_sed8_concat_dedup_merged_bracken.mpa" \
+    -i "$SORTIE/clean_sed8_concat_dedup_unmerged_bracken.mpa" \
     -o "$SORTIE/combined_mpa.tsv"
 
 echo "analyse terminee"
