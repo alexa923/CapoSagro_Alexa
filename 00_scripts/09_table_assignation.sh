@@ -28,6 +28,12 @@ echo "table creee"
 
 echo "Combinaison en un seul fichier"
 
-python3 /home/amartin3/08_bracken/KrakenTools/combine_mpa.py -i clean_sed6_concat_dedup_merged_bracken.mpa clean_sed6_concat_dedup_unmerged_bracken.mpa clean_sed8_concat_dedup_merged_bracken.mpa clean_sed8_concat_dedup_unmerged_bracken.mpa -o combined_mpa.tsv
+echo "Fusion des fractions par echantillon..."
+python3 /home/amartin3/08_bracken/KrakenTools/combine_mpa.py -i clean_sed6_merged.mpa clean_sed6_unmerged.mpa -c sed6 sed6 -o sed6_combined.mpa
+python3 /home/amartin3/08_bracken/KrakenTools/combine_mpa.py -i clean_sed8_merged.mpa clean_sed8_unmerged.mpa -c sed8 sed8 -o sed8_combined.mpa
 
-echo "analyse terminee"
+
+echo "Creation du fichier final combined_mpa.tsv"
+python3 /home/amartin3/08_bracken/KrakenTools/combine_mpa.py -i sed6_combined.mpa sed8_combined.mpa -c sed6 sed8 -o combined_mpa.tsv
+
+echo "Analyse terminee avec succes !"
