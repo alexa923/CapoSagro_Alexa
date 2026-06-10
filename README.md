@@ -61,6 +61,7 @@ We used Clumpify to deduplicate the reads a second time which is more efficient 
 To end data cleaning, we used fastp tool to merge R1 (forward) and R2 (reverse), observe the quality, do bases correction and trimming parameters including adaptater removal.
 
 ### Step 8
+/home/amartin3/.conda/envs/bioinformatic/opt/krona/updateTaxonomy.sh  was used in local to launch the taxonomy update
 Then, we used kraken2 to do the taxonomic assignment using k-mer matches with the 07_kraken2.sh scirpt 
 
 *the script 06_kraken_db.sh was a test for the creation of the kraken database but here it was already created so not necessary 
