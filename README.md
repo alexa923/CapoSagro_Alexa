@@ -78,7 +78,7 @@ We used the 09_table_assignation.sh script to make an occurrence table with the 
 
 ### Step 11 
 
-Then, we used the 10_top50euka.R script to make barplots representing the top 50 most assigned eukaryotic species for each sample.
+Then, we used the 10_top50euka.R script to make barplots representing the top 50 most assigned eukaryotic species for each sample. Besides, we also used it to make barplots with the top 30 mammals, fish, and plants for each sample.
 
 ### References 
 https://github.com/ZimmermannHH/BeringSea_shotgun_sequencing/
