@@ -2,7 +2,7 @@
 library(tidyverse)
 
 #importation de la table d'assignation
-df <- read_csv2("results_table_assignation.csv")         
+df <- read.csv2("results_table_assignation.csv")         
 
 #conservation des colonnes remplies uniquement 
 df <- df[, 1:7]
