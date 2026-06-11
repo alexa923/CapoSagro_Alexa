@@ -58,7 +58,7 @@ repair.sh \
 We used Clumpify to deduplicate the reads a second time which is more efficient to find reads that share k-mers and detect sequencing errors using 04_clumpify.sh script.
 
 ### Step 7
-To end data cleaning, we used fastp tool to merge R1 (forward) and R2 (reverse), observe the quality, do bases correction and trimming parameters including adaptater removal.
+To end data cleaning, we used fastp tool to merge R1 (forward) and R2 (reverse), observe the quality, do bases correction and trimming parameters including adaptater removal with the 05_fastp.sh script
 
 ### Step 8
 /home/amartin3/.conda/envs/bioinformatic/opt/krona/updateTaxonomy.sh  was used in local to launch the taxonomy update
