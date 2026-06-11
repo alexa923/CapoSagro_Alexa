@@ -72,6 +72,14 @@ We made a korna graph to visualize the results before the next step
 We used bracken to correct kraken2 results with the 08_bracken.sh script. 
 We also did a krona visualization after this correction. 
 
+### Step 10
+
+We used the 09_table_assignation.sh script to make an occurrence table with the species in rows and the number of reads in columns according to the sed6 and sed8 samples
+
+### Step 11 
+
+Then, we used the 10_top50euka.R script to make barplots representing the top 50 most assigned eukaryotic species for each sample.
+
 ### References 
 https://github.com/ZimmermannHH/BeringSea_shotgun_sequencing/
 
