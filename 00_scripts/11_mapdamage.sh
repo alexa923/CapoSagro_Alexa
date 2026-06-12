@@ -15,4 +15,7 @@ conda activate bioinformatic
 ##installer mapdamage_py39
 
 BRACKEN_DIR="home/amartin3/08_bracken"
-FASTQ_DIR="home/amartin3
+FASTQ_DIR="home/amartin3 #à quoi sert ce chemin 
+DAMAGE_BASE= #??
+KRACKENTOOL_DIR="/home/amartin3/08_bracken/KrakenTools"
+
