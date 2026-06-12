@@ -72,40 +72,59 @@ df_plantes <- df %>%
 #mammifères
 top_mamm_sed6 <- top_n(df_mammiferes, 30, wt = sed6total)
 plot_mamm_sed6 <- ggplot(top_mamm_sed6, aes(x = sed6total, y = reorder(Taxon, sed6total))) +
-  geom_col(fill = "blue") + labs(title = "SED6 - Top 30 Mammifères", x = "Reads", y = "Espèces") + theme_minimal()
+  geom_col(fill = "steelblue") + 
+  scale_x_continuous(limits = c(0, 25000), breaks = seq(0, 20000, by = 1000)) +
+  labs(title = "SED6 - Top 30 Mammifères (Échelle fixe)", x = "Reads", y = "Espèces") + 
+  theme_minimal() + theme(axis.text.y = element_text(size = 7))
 print(plot_mamm_sed6)
 
 #poisson
 top_pois_sed6 <- top_n(df_poissons, 30, wt = sed6total)
 plot_pois_sed6 <- ggplot(top_pois_sed6, aes(x = sed6total, y = reorder(Taxon, sed6total))) +
-  geom_col(fill = "blue") + labs(title = "SED6 - Top 30 Poissons", x = "Reads", y = "Espèces") + theme_minimal()
+  geom_col(fill = "steelblue") + 
+  scale_x_continuous(limits = c(0, 25000), breaks = seq(0, 20000, by = 1000)) +
+  labs(title = "SED6 - Top 30 Poissons (Échelle fixe)", x = "Reads", y = "Espèces") + 
+  theme_minimal() + theme(axis.text.y = element_text(size = 7))
 print(plot_pois_sed6)
+
 
 #plantes
 top_plan_sed6 <- top_n(df_plantes, 30, wt = sed6total)
 plot_plan_sed6 <- ggplot(top_plan_sed6, aes(x = sed6total, y = reorder(Taxon, sed6total))) +
-  geom_col(fill = "blue") + labs(title = "SED6 - Top 30 Plantes", x = "Reads", y = "Espèces") + theme_minimal()
+  geom_col(fill = "steelblue") + 
+  scale_x_continuous(limits = c(0, 25000), breaks = seq(0, 20000, by = 1000)) +
+  labs(title = "SED6 - Top 30 Plantes (Échelle fixe)", x = "Reads", y = "Espèces") + 
+  theme_minimal() + theme(axis.text.y = element_text(size = 7))
 print(plot_plan_sed6)
+
 
 
 # Graphiques sed8
 #mammifères
 top_mamm_sed8 <- top_n(df_mammiferes, 30, wt = sed8total)
 plot_mamm_sed8 <- ggplot(top_mamm_sed8, aes(x = sed8total, y = reorder(Taxon, sed8total))) +
-  geom_col(fill = "orange") + labs(title = "SED8 - Top 30 Mammifères", x = "Reads", y = "Espèces") + theme_minimal()
+  geom_col(fill = "coral") + 
+  scale_x_continuous(limits = c(0, 25000), breaks = seq(0, 20000, by = 1000)) +
+  labs(title = "SED8 - Top 30 Mammifères (Échelle fixe)", x = "Reads", y = "Espèces") + 
+  theme_minimal() + theme(axis.text.y = element_text(size = 7))
 print(plot_mamm_sed8)
 
 # poissons
 top_pois_sed8 <- top_n(df_poissons, 30, wt = sed8total)
 plot_pois_sed8 <- ggplot(top_pois_sed8, aes(x = sed8total, y = reorder(Taxon, sed8total))) +
-  geom_col(fill = "orange") + labs(title = "SED8 - Top 30 Poissons", x = "Reads", y = "Espèces") + theme_minimal()
+  geom_col(fill = "coral") + 
+  scale_x_continuous(limits = c(0, 25000), breaks = seq(0, 20000, by = 1000)) +
+  labs(title = "SED8 - Top 30 Poissons (Échelle fixe)", x = "Reads", y = "Espèces") + 
+  theme_minimal() + theme(axis.text.y = element_text(size = 7))
 print(plot_pois_sed8)
 
 # plantes
 top_plan_sed8 <- top_n(df_plantes, 30, wt = sed8total)
 plot_plan_sed8 <- ggplot(top_plan_sed8, aes(x = sed8total, y = reorder(Taxon, sed8total))) +
-  geom_col(fill = "orange") + labs(title = "SED8 - Top 30 Plantes", x = "Reads", y = "Espèces") + theme_minimal()
+  geom_col(fill = "coral") + 
+  scale_x_continuous(limits = c(0, 25000), breaks = seq(0, 20000, by = 1000)) +
+  labs(title = "SED8 - Top 30 Plantes (Échelle fixe)", x = "Reads", y = "Espèces") + 
+  theme_minimal() + theme(axis.text.y = element_text(size = 7))
 print(plot_plan_sed8)
-
 
 
