@@ -263,7 +263,7 @@ for sample in "${SAMPLES[@]}"; do
             "$OUTMERGED" \
             > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sam" 2>>"${LOGFILE}"
 
-          # Conversion SAM rn BAM 
+          # Conversion SAM en BAM
           samtools view -bS "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sam" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.bam" 2>>"${LOGFILE}"
           # Tri et indexation
           samtools sort -o "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sorted.bam" "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.bam" 2>>"${LOGFILE}"
@@ -280,16 +280,16 @@ for sample in "${SAMPLES[@]}"; do
           # Calcul du taux de mapping
           calculate_mapping_rate "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sorted.bam" "$sample" "$GROUP" "merged"
 
-          # Nettoyage des fichiers intermédiaires
+          # Nettoyage des fichiers intermediaires
           rm -f "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sai" \
                 "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sam" \
                 "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.bam" 2>>"${LOGFILE}"
         fi
       fi
 
-    done  # Fin boucle sur les espèces
+    done  # Fin boucle sur les especes
   done  # Fin boucle sur les fichiers Bracken
-done  # Fin boucle sur les échantillons
+done  # Fin boucle sur les echantillons
 
 # FIN MAPDAMAGE
 echo ""
