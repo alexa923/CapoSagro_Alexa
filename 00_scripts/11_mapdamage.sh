@@ -111,3 +111,23 @@ bwa index /home/amartin3/genomes/Oryza_sativa.fna
 bwa index /home/amartin3/genomes/Quercus_variabilis.fna
 bwa index /home/amartin3/genomes/Hordeum_vulgare.fna
 bwa index /home/amartin3/genomes/Cannabis_sativa.fna
+
+
+#calcul du taux de mapping 
+calculate_mapping_rate() {
+    local bam_file="$1"
+    local sample_name="$2"
+    local species="$3"
+    local type="$4"
+    
+    if [[ -f "$bam_file" ]]; then
+        local total_reads=$(samtools view -c "$bam_file")
+        local mapped_reads=$(samtools view -c -F 4 "$bam_file")
+        local mapping_rate=0
+        if [[ $total_reads -gt 0 ]]; then
+            mapping_rate=$(echo "scale=2; $mapped_reads * 100 / $total_reads" | bc)
+        fi
+        echo -e "${sample_name}\t${species}\t${type}\t${total_reads}\t${mapped_reads}\t${mapping_rate}" >> "$MAPPING_INFO"
+        echo "✓ Stats for ${sample_name}_${species}_${type}: ${mapped_reads}/${total_reads} (${mapping_rate}%)" | tee -a "$LOGFILE"
+    fi
+}
