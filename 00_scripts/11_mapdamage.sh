@@ -91,9 +91,9 @@ declare -A TAXONS=(
 
 
 
-# INDEXATION BWA DES GÉNOMES DE RÉFÉRENCE
+#indexation des genomes de reference
 
-echo "Indexation BWA..." # A ne faire qu'une fois !
+echo "Indexation BWA..." # A ne faire qu'une fois 
 
 bwa index /home/amartin3/genomes/Homo_sapiens.fna
 bwa index /home/amartin3/genomes/Canis_lupus.fna
