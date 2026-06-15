@@ -85,3 +85,28 @@ declare -A TAXONS=(
     ["Hordeum_vulgare"]="4513:/home/amartin3/genomes/Hordeum_vulgare.fna"
     ["Cannabis_sativa"]="3483:/home/amartin3/genomes/Cannabis_sativa.fna"
 )
+
+
+
+# INDEXATION BWA DES GÉNOMES DE RÉFÉRENCE
+
+echo "Indexation BWA..." # A ne faire qu'une fois !
+
+bwa index /home/amartin3/genomes/Homo_sapiens.fa
+bwa index /home/amartin3/genomes/Canis_lupus.fa
+bwa index /home/amartin3/genomes/Mus_musculus.fa
+bwa index /home/amartin3/genomes/Ovis_aries.fa
+bwa index /home/amartin3/genomes/Bos_taurus.fa
+
+bwa index /home/amartin3/genomes/Conger_conger.fa
+bwa index /home/amartin3/genomes/Diplodus_sargus.fa
+bwa index /home/amartin3/genomes/Engraulis_encrasicolus.fa
+bwa index /home/amartin3/genomes/Merluccius_merluccius.fa
+
+bwa index /home/amartin3/genomes/Vitis_vinifera.fa
+bwa index /home/amartin3/genomes/Triticum_monococcum.fa
+bwa index /home/amartin3/genomes/Triticum_aestivum.fa
+bwa index /home/amartin3/genomes/Oryza_sativa.fa
+bwa index /home/amartin3/genomes/Quercus_variabilis.fa
+bwa index /home/amartin3/genomes/Hordeum_vulgare.fa
+bwa index /home/amartin3/genomes/Cannabis_sativa.fa
