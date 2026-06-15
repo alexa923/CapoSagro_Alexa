@@ -29,7 +29,7 @@ conda activate bioinformatic
 echo "Script MapDamage started at $(date)" | tee -a "$LOGFILE"
 
 # Initialiser le fichier de mapping info
-echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPINGINFO}"
+echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPING_INFO}"
 
 #telechargement des genomes
 
@@ -62,7 +62,7 @@ gunzip *.fna.gz
 
 
 declare -A TAXONS=(
-    --
+    
     ["Homo_sapiens"]="9606:/home/amartin3/genomes/Homo_sapiens.fna"
     ["Canis_lupus"]="9612:/home/amartin3/genomes/Canis_lupus.fna"
     ["Mus_musculus"]="10090:/home/amartin3/genomes/Mus_musculus.fna"
