@@ -189,7 +189,7 @@ FASTQDIR="${FASTQBASE}/${sample}"
       OUTMERGED="${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.fastq"
 
       #Traitement des reads unmerged (paired-end) 
-      if [[ "$KRAKENBASENAME" == *"unmerged"* ]] && [ -f "$R1FILE" ] && [ -f "$R2FILE" ]; then
+      if [[ "$BRACKENBASENAME" == *"unmerged"* ]] && [ -f "$R1FILE" ] && [ -f "$R2FILE" ]; then
         echo "Extraction des reads unmerged pour $GROUP..." | tee -a "${LOGFILE}"
 
         python3 ${KRAKENTOOLS_DIR}/extract_kraken_reads.py \
@@ -218,7 +218,7 @@ FASTQDIR="${FASTQBASE}/${sample}"
           samtools view -bS "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sam" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
 
           #tri et indexation
-          samtools sort -o "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
+          samtools sort -o "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
           samtools index "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" 2>>"${LOGFILE}
 
           #MapDamage
