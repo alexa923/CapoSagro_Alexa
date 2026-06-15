@@ -53,7 +53,7 @@ wget -O Gobiusculus_flavescens.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/ve
 #Triticum_monococcum deja telecharge
 #Triticum_aestivum deja telecharge
 wget -O Oryza_sativa.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Oryza_sativa/latest_assembly_versions/GCF_034140825.1_ASM3414082v1/GCF_034140825.1_ASM3414082v1_genomic.fna.gz
-wget -O Quercus_variabilis.fa https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/027/915/715/GCA_027915715.1_ASM2791571v1/GCA_027915715.1_ASM2791571v1_genomic.fna.gz
+#Quercus_variabilis sur genome ref ncbi
 wget -O Hordeum_vulgare.fa https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/902/500/625/GCA_902500625.2_Morex_V3/GCA_902500625.2_Morex_V3_genomic.fna.gz
 wget -O Cannabis_sativa.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Cannabis_sativa/latest_assembly_versions/GCF_029168945.1_cs10_v3/GCF_029168945.1_cs10_v3_genomic.fna.gz
 
