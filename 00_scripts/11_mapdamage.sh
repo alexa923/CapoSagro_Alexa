@@ -9,14 +9,13 @@
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage.out"
 
 
-# ==============================================================================
-# CONFIGURATION DES CHEMINS (CORRIGÉS ET UNIFIÉS)
-# ==============================================================================
+
+#configuration des chemins
+
 BRACKEN_BASE_DIR="/home/amartin3/08_bracken"
 FASTQ_BASE_DIR="/home/amartin3/05_fastp"
 DAMAGEBASE="/home/amartin3/12_mapdamage"
 
-# Correction de la typo (MAJUSCULES partout) pour éviter les variables vides
 KRAKENTOOLS_DIR="/home/amartin3/08_bracken/KrakenTools"
 KRAKEN_DIR_SOURCE="/home/amartin3/07_kraken2"
 
@@ -25,9 +24,7 @@ MAPPING_INFO="${DAMAGEBASE}/mapping_bwa_info.tsv"
 
 mkdir -p "$DAMAGEBASE"
 
-# ==============================================================================
-# ENVIRONNEMENT
-# ==============================================================================
+
 module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
@@ -39,31 +36,31 @@ echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPI
 
 #telechargement des genomes
 
-cd /home/amartin3/genomes
+#cd /home/amartin3/genomes
 
-wget -O Homo_sapiens.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/latest_assembly_versions/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz
-wget -O Canis_lupus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Canis_lupus_familiaris/latest_assembly_versions/GCF_014441545.1_ROS_Cfam_1.0/GCF_014441545.1_ROS_Cfam_1.0_genomic.fna.gz
-wget -O Mus_musculus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Mus_musculus/latest_assembly_versions/GCF_000001635.27_GRCm39/GCF_000001635.27_GRCm39_genomic.fna.gz
-wget -O Ovis_aries.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Ovis_aries/latest_assembly_versions/GCF_016772045.2_ARS-UI_Ramb_v3.0/GCF_016772045.2_ARS-UI_Ramb_v3.0_genomic.fna.gz
-wget -O Bos_taurus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Bos_taurus/latest_assembly_versions/GCF_002263795.3_ARS-UCD2.0/GCF_002263795.3_ARS-UCD2.0_genomic.fna.gz
+#wget -O Homo_sapiens.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/latest_assembly_versions/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz
+#wget -O Canis_lupus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Canis_lupus_familiaris/latest_assembly_versions/GCF_014441545.1_ROS_Cfam_1.0/GCF_014441545.1_ROS_Cfam_1.0_genomic.fna.gz
+#wget -O Mus_musculus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Mus_musculus/latest_assembly_versions/GCF_000001635.27_GRCm39/GCF_000001635.27_GRCm39_genomic.fna.gz
+#wget -O Ovis_aries.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Ovis_aries/latest_assembly_versions/GCF_016772045.2_ARS-UI_Ramb_v3.0/GCF_016772045.2_ARS-UI_Ramb_v3.0_genomic.fna.gz
+#wget -O Bos_taurus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Bos_taurus/latest_assembly_versions/GCF_002263795.3_ARS-UCD2.0/GCF_002263795.3_ARS-UCD2.0_genomic.fna.gz
 
 
 
-wget -O Conger_conger.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Conger_conger/latest_assembly_versions/GCF_963514075.1_fConCon1.1/GCF_963514075.1_fConCon1.1_genomic.fna.gz
+#wget -O Conger_conger.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Conger_conger/latest_assembly_versions/GCF_963514075.1_fConCon1.1/GCF_963514075.1_fConCon1.1_genomic.fna.gz
 #Diplodus_sargus.fna.gz sur genome ref ncbi
-wget -O Engraulis_encrasicolus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Engraulis_encrasicolus/latest_assembly_versions/GCF_034702125.1_IST_EnEncr_1.0/GCF_034702125.1_IST_EnEncr_1.0_genomic.fna.gz
+#wget -O Engraulis_encrasicolus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Engraulis_encrasicolus/latest_assembly_versions/GCF_034702125.1_IST_EnEncr_1.0/GCF_034702125.1_IST_EnEncr_1.0_genomic.fna.gz
 #Merluccius_merluccius sur genome ref ncbi
 #Gobiusculus_flavescens sur European Nucleotide Archive
 
 #vigne deja telecharge
 #Triticum_monococcum deja telecharge
 #Triticum_aestivum deja telecharge
-wget -O Oryza_sativa.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Oryza_sativa/latest_assembly_versions/GCF_034140825.1_ASM3414082v1/GCF_034140825.1_ASM3414082v1_genomic.fna.gz
+#wget -O Oryza_sativa.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Oryza_sativa/latest_assembly_versions/GCF_034140825.1_ASM3414082v1/GCF_034140825.1_ASM3414082v1_genomic.fna.gz
 #Quercus_variabilis sur genome ref ncbi
-wget -O Hordeum_vulgare.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plants/Hordeum_vulgare/latest_assembly_versions/GCF_904849725.1_MorexV3_pseudomolecules_assembly/GCF_904849725.1_MorexV3_pseudomolecules_assembly_genomic.fna.gz
-wget -O Cannabis_sativa.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Cannabis_sativa/latest_assembly_versions/GCF_029168945.1_ASM2916894v1/GCF_029168945.1_ASM2916894v1_genomic.fna.gz
+#wget -O Hordeum_vulgare.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plants/Hordeum_vulgare/latest_assembly_versions/GCF_904849725.1_MorexV3_pseudomolecules_assembly/GCF_904849725.1_MorexV3_pseudomolecules_assembly_genomic.fna.gz
+#wget -O Cannabis_sativa.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Cannabis_sativa/latest_assembly_versions/GCF_029168945.1_ASM2916894v1/GCF_029168945.1_ASM2916894v1_genomic.fna.gz
 
-gunzip *.fna.gz
+#gunzip *.fna.gz
 
 
 
