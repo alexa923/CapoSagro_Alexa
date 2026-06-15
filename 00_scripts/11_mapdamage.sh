@@ -161,3 +161,12 @@ FASTQDIR="${FASTQBASE}/${sample}"
     BRACKENBASENAME=$(basename "$BRACKENFILE" .bracken)
     echo ""
     echo ">>> Processing $BRACKENBASENAME ($sample)" | tee -a "${LOGFILE}"
+    
+    # Extraire le préfixe de base
+    PREFIX=$(echo "$BRACKENBASENAME" | sed -E 's/(un)?merged$//')
+    echo "Prefix: $PREFIX" | tee -a "${LOGFILE}"
+
+    # Chercher les fichiers FASTQ correspondants (Ajustés avec TES vrais noms de fichiers)
+    R1FILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_unmerged_R1.fastq.gz"
+    R2FILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_unmerged_R2.fastq.gz"
+    MERGEDFILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_merged.fastq.gz"
