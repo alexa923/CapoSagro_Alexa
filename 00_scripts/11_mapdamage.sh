@@ -47,7 +47,7 @@ wget -O Conger_conger.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebr
 #Diplodus_sargus.fna.gz sur genome ref ncbi
 wget -O Engraulis_encrasicolus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Engraulis_encrasicolus/latest_assembly_versions/GCF_034702125.1_IST_EnEncr_1.0/GCF_034702125.1_IST_EnEncr_1.0_genomic.fna.gz
 #Merluccius_merluccius sur genome ref ncbi
-#Gobiusculus_flavescens sur genome ref ncbi
+#Gobiusculus_flavescens sur European Nucleotide Archive
 
 #vigne deja telecharge
 #Triticum_monococcum deja telecharge
@@ -74,7 +74,7 @@ declare -A TAXONS=(
     ["Diplodus_sargus"]="38941:/home/amartin3/genomes/Diplodus_sargus.fna"
     ["Engraulis_encrasicolus"]="184585:/home/amartin3/genomes/Engraulis_encrasicolus.fna"
     ["Merluccius_merluccius"]="8063:/home/amartin3/genomes/Merluccius_merluccius.fna"
-    
+    ["Gobiusculus_flavescens"]="257540
 
     
     ["Vitis_vinifera"]="29760:/storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa"
