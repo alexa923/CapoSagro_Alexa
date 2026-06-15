@@ -162,10 +162,13 @@ FASTQDIR="${FASTQBASE}/${sample}"
     BRACKENBASENAME=$(basename "$BRACKENFILE" .bracken)
     echo ""
     echo ">>> Processing $BRACKENBASENAME ($sample)" | tee -a "${LOGFILE}"
-    
+
+
     # Extraire le préfixe de base
     PREFIX=$(echo "$BRACKENBASENAME" | sed -E 's/(un)?merged$//')
     echo "Prefix: $PREFIX" | tee -a "${LOGFILE}"
+
+    KRAKEN="/home/amartin3/07_kraken2"
 
     # Chercher les fichiers FASTQ correspondants (Ajustés avec TES vrais noms de fichiers)
     R1FILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_unmerged_R1.fastq.gz"
@@ -186,5 +189,16 @@ FASTQDIR="${FASTQBASE}/${sample}"
       OUTMERGED="${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.fastq"
 
       #Traitement des reads unmerged (paired-end) 
+      if [[ "$KRAKENBASENAME" == *"unmerged"* ]] && [ -f "$R1FILE" ] && [ -f "$R2FILE" ]; then
+        echo "Extraction des reads unmerged pour $GROUP..." | tee -a "${LOGFILE}"
 
-      
+        python3 ${KRAKENTOOLS_DIR}/extract_kraken_reads.py \
+          -k "$KRAKENFILE" \  #attention fichiers kraken ne sont pas dans le même dossier
+          -r "$BRACKENFILE" \
+          -s "$R1FILE" -s2 "$R2FILE" \
+          -t "$TAXID" \
+          -o "$OUTR1" -o2 "$OUTR2" \
+          --fastq-output 2>>"${LOGFILE}"
+
+        if [ -f "$OUTR1" ] && [ -f "$OUTR2" ]; then
+          echo "Mapping BWA paired-end pour $GROUP..." | tee -a "${LOGFILE}"
