@@ -202,3 +202,7 @@ FASTQDIR="${FASTQBASE}/${sample}"
 
         if [ -f "$OUTR1" ] && [ -f "$OUTR2" ]; then
           echo "Mapping BWA paired-end pour $GROUP..." | tee -a "${LOGFILE}"
+
+          #BWA aln
+          bwa aln -n 0.08 -l 24 -k 2 -q 20 -t 4 "$REFFASTA" "$OUTR1" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R1.sai" 2>>"${LOGFILE}"
+          bwa aln -n 0.08 -l 24 -k 2 -q 20 -t 4 "$REFFASTA" "$OUTR2" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R2.sai" 2>>"${LOGFILE}"
