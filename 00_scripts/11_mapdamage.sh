@@ -219,7 +219,7 @@ FASTQDIR="${FASTQBASE}/${sample}"
 
           #tri et indexation
           samtools sort -o "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
-          samtools index "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" 2>>"${LOGFILE}
+          samtools index "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" 2>>"${LOGFILE}"
 
           #MapDamage
           echo "MapDamage unmerged pour $GROUP..." | tee -a "${LOGFILE}"
