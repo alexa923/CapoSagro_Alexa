@@ -74,7 +74,7 @@ declare -A TAXONS=(
     ["Diplodus_sargus"]="38941:/home/amartin3/genomes/Diplodus_sargus.fna"
     ["Engraulis_encrasicolus"]="184585:/home/amartin3/genomes/Engraulis_encrasicolus.fna"
     ["Merluccius_merluccius"]="8063:/home/amartin3/genomes/Merluccius_merluccius.fna"
-    ["Gobiusculus_flavescens"]="257540:/home/amartin3/genomes/Gobiusculus_flavescens.fna"
+    ["Gobiusculus_flavescens"]="257540:/home/amartin3/genomes/Gobiusculus_flavescens.fasta"
 
     
     ["Vitis_vinifera"]="29760:/storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa"
@@ -102,7 +102,7 @@ bwa index /home/amartin3/genomes/Conger_conger.fna
 bwa index /home/amartin3/genomes/Diplodus_sargus.fna
 bwa index /home/amartin3/genomes/Engraulis_encrasicolus.fna
 bwa index /home/amartin3/genomes/Merluccius_merluccius.fna
-bwa index /home/amartin3/genomes/Gobiusculus_flavescens.fna
+bwa index /home/amartin3/genomes/Gobiusculus_flavescens.fasta
 
 bwa index /storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa
 bwa index /storage/groups/gdec/shared/Logan/New_accessions/GCA_034509565.1_PI306540_Tmono_genomic.fna
