@@ -53,7 +53,7 @@ wget -O Hordeum_vulgare.fa https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/902/500/
 wget -O Cannabis_sativa.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Cannabis_sativa/latest_assembly_versions/GCF_029168945.1_cs10_v3/GCF_029168945.1_cs10_v3_genomic.fna.gz
 
 gunzip *.fa.gz
-g)
+
 
 
 declare -A TAXONS=(
@@ -65,18 +65,18 @@ declare -A TAXONS=(
     ["Bos_taurus"]="9913:/home/amartin3/genomes/Bos_taurus.fa"
 
     
-    ["Conger_conger"]="30778:/home/amartin3/genomes/Conger_conger.fa"
-    ["Diplodus_sargus"]="38146:/home/amartin3/genomes/Diplodus_sargus.fa"
-    ["Engraulis_encrasicolus"]="43183:/home/amartin3/genomes/Engraulis_encrasicolus.fa"
-    ["Merluccius_merluccius"]="8045:/home/amartin3/genomes/Merluccius_merluccius.fa"
-    ["Gobiusculus_flavescens"]="154817:/home/amartin3/genomes/Gobiusculus_flavescens.fa"
+    ["Conger_conger"]="82655:/home/amartin3/genomes/Conger_conger.fa"
+    ["Diplodus_sargus"]="38941:/home/amartin3/genomes/Diplodus_sargus.fa"
+    ["Engraulis_encrasicolus"]="184585:/home/amartin3/genomes/Engraulis_encrasicolus.fa"
+    ["Merluccius_merluccius"]="8063:/home/amartin3/genomes/Merluccius_merluccius.fa"
+    ["Gobiusculus_flavescens"]="257540:/home/amartin3/genomes/Gobiusculus_flavescens.fa"
 
     
     ["Vitis_vinifera"]="29760:/storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa"
-    ["Triticum_monococcum"]="310319:/storage/groups/gdec/shared/Logan/New_accessions/GCA_034509565.1_PI306540_Tmono_genomic.fna"
-    ["Triticum_aestivum"]="4565: /storage/groups/gdec/shared/Logan/Accessions/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_genomic.fna"
+    ["Triticum_monococcum"]="4568:/storage/groups/gdec/shared/Logan/New_accessions/GCA_034509565.1_PI306540_Tmono_genomic.fna"
+    ["Triticum_aestivum"]="4565:/storage/groups/gdec/shared/Logan/Accessions/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_genomic.fna"
     ["Oryza_sativa"]="4530:/home/amartin3/genomes/Oryza_sativa.fa"
-    ["Quercus_variabilis"]="104183:/home/amartin3/genomes/Quercus_variabilis.fa"
+    ["Quercus_variabilis"]="103481:/home/amartin3/genomes/Quercus_variabilis.fa"
     ["Hordeum_vulgare"]="4513:/home/amartin3/genomes/Hordeum_vulgare.fa"
     ["Cannabis_sativa"]="3483:/home/amartin3/genomes/Cannabis_sativa.fa"
 )
