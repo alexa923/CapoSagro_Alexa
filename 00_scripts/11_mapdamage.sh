@@ -137,6 +137,7 @@ calculate_mapping_rate() {
 SAMPLES=("sed6" "sed8")
 shopt -s nullglob
 
+
 for sample in "${SAMPLES[@]}"; do
   echo ""
   echo "======================================================================"
@@ -170,3 +171,12 @@ FASTQDIR="${FASTQBASE}/${sample}"
     R1FILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_unmerged_R1.fastq.gz"
     R2FILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_unmerged_R2.fastq.gz"
     MERGEDFILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_merged.fastq.gz"
+
+    #Boucle sur les espèces (17 taxons) 
+    for GROUP in "${!TAXONS[@]}"; do
+      IFS=':' read -r TAXID REFFASTA <<< "${TAXONS[$GROUP]}"
+      DAMAGEDIR="${DAMAGEBASE}/${sample}/${GROUP}"
+      mkdir -p "${DAMAGEDIR}"
+
+      echo ""
+      echo "--- Espèce: $GROUP (TaxID: $TAXID) ---"
