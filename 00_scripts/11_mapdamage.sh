@@ -206,3 +206,11 @@ FASTQDIR="${FASTQBASE}/${sample}"
           #BWA aln
           bwa aln -n 0.08 -l 24 -k 2 -q 20 -t 4 "$REFFASTA" "$OUTR1" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R1.sai" 2>>"${LOGFILE}"
           bwa aln -n 0.08 -l 24 -k 2 -q 20 -t 4 "$REFFASTA" "$OUTR2" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R2.sai" 2>>"${LOGFILE}"
+
+          #BWA sampe
+          bwa sampe "$REFFASTA" \
+            "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R1.sai" \
+            "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R2.sai" \
+            "$OUTR1" "$OUTR2" \
+            > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sam" 2>>"${LOGFILE}
+          
