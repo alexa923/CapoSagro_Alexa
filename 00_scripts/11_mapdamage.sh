@@ -9,22 +9,28 @@
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage.out"
 
 
-BRACKEN_DIR="home/amartin3/08_bracken"
-FASTQ_DIR="/home/amartin3/05_fastp"
+# ==============================================================================
+# CONFIGURATION DES CHEMINS (CORRIGÉS ET UNIFIÉS)
+# ==============================================================================
+BRACKEN_BASE_DIR="/home/amartin3/08_bracken"
+FASTQ_BASE_DIR="/home/amartin3/05_fastp"
 DAMAGE_BASE="/home/amartin3/12_mapdamage"
-KRAKENTOOLS_DIR="/home/amartin3/08_bracken/KrakenTools"
 
+# Correction de la typo (MAJUSCULES partout) pour éviter les variables vides
+KRAKENTOOLS_DIR="/home/amartin3/08_bracken/KrakenTools" 
+KRAKEN_DIR_SOURCE="/home/amartin3/07_kraken2"
 
 LOGFILE="${DAMAGE_BASE}/mapdamage_$(date +%Y%m%d_%H%M%S).txt"
 MAPPING_INFO="${DAMAGE_BASE}/mapping_bwa_info.tsv"
 
 mkdir -p "$DAMAGE_BASE"
 
+# ==============================================================================
+# ENVIRONNEMENT
+# ==============================================================================
 module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
-
-##installer mapdamage_py39
 
 echo "Script MapDamage started at $(date)" | tee -a "$LOGFILE"
 
@@ -153,7 +159,7 @@ FASTQDIR="${FASTQBASE}/${sample}"
   fi
 
    # Boucle sur les fichiers Bracken (merged et unmerged)
-  for BRACKENFILE in ${BRACKEN_DIR}/*.bracken; do
+  for BRACKENFILE in ${BRACKEN_DIR}/${sample}_*.bracken; do
     if [ ! -f "$BRACKENFILE" ]; then
       continue
     fi
