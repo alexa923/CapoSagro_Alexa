@@ -199,7 +199,7 @@ for sample in "${SAMPLES[@]}"; do
         echo "Extraction des reads unmerged pour $GROUP..." | tee -a "${LOGFILE}"
 
         python3 ${KRAKENTOOLS_DIR}/extract_kraken_reads.py \
-          -k "$KRAKENFILE" \ 
+          -k "$KRAKENFILE" \
           -r "$BRACKENFILE" \
           -s "$R1FILE" -s2 "$R2FILE" \
           -t "$TAXID" \
