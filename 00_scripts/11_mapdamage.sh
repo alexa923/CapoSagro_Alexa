@@ -137,3 +137,12 @@ calculate_mapping_rate() {
 SAMPLES=("sed6" "sed8")
 shopt -s nullglob
 
+for sample in "${SAMPLES[@]}"; do
+  echo ""
+  echo "======================================================================"
+  echo "Traitement de l'échantillon: $sample"
+  echo "======================================================================"
+
+KRAKENDIR="${KRAKENBASE}/${sample}"
+FASTQDIR="${FASTQBASE}/${sample}"
+
