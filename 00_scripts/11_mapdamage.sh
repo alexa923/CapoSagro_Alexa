@@ -268,5 +268,15 @@ FASTQDIR="${FASTQBASE}/${sample}"
           samtools index "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sorted.bam" 2>>"${LOGFILE}"
     
 
+          # MapDamage
+          echo "MapDamage merged pour $GROUP..." | tee -a "${LOGFILE}"
+          mapDamage -i "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sorted.bam" \
+            -r "$REFFASTA" \
+            --folder "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_mapDamage_merged" \
+            --no-stats 2>>"${LOGFILE}"
+       
+          # Calcul du taux de mapping
+          calculate_mapping_rate "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sorted.bam" "$sample" "$GROUP" "merged"
 
-
+          # Nettoyage des fichiers intermédiaires
+    
