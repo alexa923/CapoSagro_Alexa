@@ -45,7 +45,7 @@ wget -O Bos_taurus.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mam
 
 wget -O Conger_conger.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Conger_conger/latest_assembly_versions/GCF_963514075.1_fConCon1.1/GCF_963514075.1_fConCon1.1_genomic.fna.gz
 wget -O Diplodus_sargus.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Diplodus_sargus/latest_assembly_versions/GCF_949127535.1_fDipSar1.1/GCF_949127535.1_fDipSar1.1_genomic.fna.gz
-wget -O Engraulis_encrasicolus.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Engraulis_encrasicolus/latest_assembly_versions/GCF_947565395.1_fEngEnc1.1/GCF_947565395.1_fEngEnc1.1_genomic.fna.gz
+wget -O Engraulis_encrasicolus.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Engraulis_encrasicolus/latest_assembly_versions/GCF_034702125.1_IST_EnEncr_1.0/GCF_034702125.1_IST_EnEncr_1.0_genomic.fna.gz
 wget -O Merluccius_merluccius.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Merluccius_merluccius/latest_assembly_versions/GCF_944039175.1_fMerMer1.2/GCF_944039175.1_fMerMer1.2_genomic.fna.gz
 wget -O Gobiusculus_flavescens.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Gobiusculus_flavescens/latest_assembly_versions/GCF_963870625.1_fGobFla1.1/GCF_963870625.1_fGobFla1.1_genomic.fna.gz
 
