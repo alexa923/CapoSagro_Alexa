@@ -279,4 +279,23 @@ FASTQDIR="${FASTQBASE}/${sample}"
           calculate_mapping_rate "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sorted.bam" "$sample" "$GROUP" "merged"
 
           # Nettoyage des fichiers intermédiaires
-    
+          rm -f "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sai" \
+                "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sam" \
+                "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.bam" 2>>"${LOGFILE}"
+        fi
+      fi
+
+    done  # Fin boucle sur les espèces
+  done  # Fin boucle sur les fichiers Bracken
+done  # Fin boucle sur les échantillons
+
+# FIN MAPDAMAGE
+echo ""
+echo "======================================================================"
+echo "MapDamage terminé!"
+echo "Date de fin: $(date)"
+echo ""
+echo "Résultats MapDamage: ${DAMAGEBASE}"
+echo "Statistiques de mapping: ${MAPPINGINFO}"
+echo "======================================================================"
+echo ""    
