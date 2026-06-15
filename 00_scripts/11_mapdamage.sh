@@ -252,3 +252,13 @@ FASTQDIR="${FASTQBASE}/${sample}"
         if [ -f "$OUTMERGED" ]; then
           echo "Mapping BWA single-end pour $GROUP..." | tee -a "${LOGFILE}"
 
+          # BWA aln
+          bwa aln -n 0.08 -l 24 -k 2 -q 20 -t 4 "$REFFASTA" "$OUTMERGED" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sai" 2>>"${LOGFILE}"
+
+          #BWA samse
+          bwa samse "$REFFASTA" \
+            "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sai" \
+            "$OUTMERGED" \
+            > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sam" 2>>"${LOGFILE}"
+
+
