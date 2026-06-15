@@ -131,3 +131,21 @@ calculate_mapping_rate() {
         echo "✓ Stats for ${sample_name}_${species}_${type}: ${mapped_reads}/${total_reads} (${mapping_rate}%)" | tee -a "$LOGFILE"
     fi
 }
+
+
+#boucle de traitement des echantillons
+shopt -s nullglob
+kraken_files=("${BRACKEN_DIR}"/*.kraken)
+
+if [[ ${#kraken_files[@]} -eq 0 ]]; then
+    echo "⚠ Aucun fichier .kraken trouvé dans $BRACKEN_DIR !" | tee -a "$LOGFILE"
+    exit 1
+fi
+
+for KRAKEN_FILE in "${kraken_files[@]}"; do
+    SAMPLE_NAME=$(basename "$KRAKEN_FILE" .kraken)
+    
+    echo ""
+    echo "========================================"
+    echo "TRAITEMENT DE L'ÉCHANTILLON : ${SAMPLE_NAME}"
+    echo "========================================"
