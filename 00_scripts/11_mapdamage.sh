@@ -45,8 +45,8 @@ wget -O Merluccius_merluccius.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/ver
 wget -O Gobiusculus_flavescens.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Gobiusculus_flavescens/latest_assembly_versions/GCF_963870625.1_fGobFla1.1/GCF_963870625.1_fGobFla1.1_genomic.fna.gz
 
 #vigne deja telecharge
-wget -O Triticum_monococcum.fa https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/947/556/615/GCA_947556615.1_TAES_TA2067/GCA_947556615.1_TAES_TA2067_genomic.fna.gz
-wget -O Triticum_aestivum.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Triticum_aestivum/latest_assembly_versions/GCF_003473745.1_IWGSC_RefSeq_v1.0/GCF_003473745.1_IWGSC_RefSeq_v1.0_genomic.fna.gz
+#Triticum_monococcum deja telecharge
+#Triticum_aestivum deja telecharge
 wget -O Oryza_sativa.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Oryza_sativa/latest_assembly_versions/GCF_000005425.2_IRGSP-1.0/GCF_000005425.2_IRGSP-1.0_genomic.fna.gz
 wget -O Quercus_variabilis.fa https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/027/915/715/GCA_027915715.1_ASM2791571v1/GCA_027915715.1_ASM2791571v1_genomic.fna.gz
 wget -O Hordeum_vulgare.fa https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/902/500/625/GCA_902500625.2_Morex_V3/GCA_902500625.2_Morex_V3_genomic.fna.gz
