@@ -27,3 +27,10 @@ conda activate bioinformatic
 ##installer mapdamage_py39
 
 echo "Script MapDamage started at $(date)" | tee -a "$LOGFILE"
+
+# Initialiser le fichier de mapping info
+echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPINGINFO}"
+
+#telechargement des genomes 
+ wget https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/latest_assembly_versions/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz
+--2026-06-15 09:43:41--  https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/latest_assembly_versions/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz
