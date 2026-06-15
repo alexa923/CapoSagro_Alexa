@@ -150,8 +150,8 @@ for sample in "${SAMPLES[@]}"; do
   echo "Traitement de l'échantillon: $sample"
   echo "======================================================================"
 
-BRACKEN_DIR="${BRACKENBASE}/${sample}"
-FASTQDIR="${FASTQBASE}/${sample}"
+  BRACKEN_DIR="${BRACKEN_BASE_DIR}"
+  FASTQDIR="${FASTQ_BASE_DIR}"
 
   if [ ! -d "$BRACKEN_DIR" ]; then
     echo "ATTENTION: Répertoire Bracken absent pour $sample" | tee -a "${LOGFILE}"
