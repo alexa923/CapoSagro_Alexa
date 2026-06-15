@@ -261,4 +261,12 @@ FASTQDIR="${FASTQBASE}/${sample}"
             "$OUTMERGED" \
             > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sam" 2>>"${LOGFILE}"
 
+          # Conversion SAM rn BAM 
+          samtools view -bS "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sam" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.bam" 2>>"${LOGFILE}"
+          # Tri et indexation
+          samtools sort -o "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sorted.bam" "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.bam" 2>>"${LOGFILE}"
+          samtools index "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sorted.bam" 2>>"${LOGFILE}"
+    
+
+
 
