@@ -222,3 +222,18 @@ FASTQDIR="${FASTQBASE}/${sample}"
           samtools index "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" 2>>"${LOGFILE}
 
           #MapDamage
+          echo "MapDamage unmerged pour $GROUP..." | tee -a "${LOGFILE}"
+          mapDamage -i "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" \
+            -r "$REFFASTA" \
+            --folder "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_mapDamage_unmerged" \
+            --no-stats 2>>"${LOGFILE}"
+    
+          calculate_mapping_rate "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" "$sample" "$GROUP" "unmerged"
+    
+          rm -f "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R1.sai" \
+                "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R2.sai" \
+                "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sam" \
+                "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
+        fi
+      fi
+
