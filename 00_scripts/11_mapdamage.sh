@@ -174,7 +174,7 @@ for sample in "${SAMPLES[@]}"; do
     PREFIX=$(echo "$BRACKENBASENAME" | sed -E 's/(un)?merged$//')
     echo "Prefix: $PREFIX" | tee -a "${LOGFILE}"
 
-    KRAKEN="/home/amartin3/07_kraken2"
+    KRAKENFILE="${KRAKEN_DIR_SOURCE}/${BRACKENBASENAME}.kraken"
 
     # Chercher les fichiers FASTQ correspondants (Ajustés avec TES vrais noms de fichiers)
     R1FILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_unmerged_R1.fastq.gz"
