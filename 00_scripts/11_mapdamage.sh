@@ -291,13 +291,10 @@ for sample in "${SAMPLES[@]}"; do
   done  # Fin boucle sur les fichiers Bracken
 done  # Fin boucle sur les echantillons
 
-# FIN MAPDAMAGE
-echo ""
-echo "======================================================================"
-echo "MapDamage terminé!"
+#FIN MAPDAMAGE
+
+echo "MapDamage termine"
 echo "Date de fin: $(date)"
 echo ""
 echo "Résultats MapDamage: ${DAMAGEBASE}"
 echo "Statistiques de mapping: ${MAPPING_INFO}"
-echo "======================================================================"
-echo ""    
