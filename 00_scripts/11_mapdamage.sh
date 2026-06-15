@@ -213,4 +213,8 @@ FASTQDIR="${FASTQBASE}/${sample}"
             "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R2.sai" \
             "$OUTR1" "$OUTR2" \
             > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sam" 2>>"${LOGFILE}
-          
+
+          #conversion de SAM à BAM
+          samtools view -bS "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sam" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
+
+          #tri et indexation 
