@@ -32,8 +32,7 @@ echo "Script MapDamage started at $(date)" | tee -a "$LOGFILE"
 echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPINGINFO}"
 
 #telechargement des genomes 
- wget https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/latest_assembly_versions/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz
---2026-06-15 09:43:41--  https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/latest_assembly_versions/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz
+wget -O Homo_sapiens.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/latest_assembly_versions/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz
 wget -O Canis_lupus.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Canis_lupus_familiaris/latest_assembly_versions/GCF_014441545.1_ROS_Cfam_1.0/GCF_014441545.1_ROS_Cfam_1.0_genomic.fna.gz
 wget -O Mus_musculus.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Mus_musculus/latest_assembly_versions/GCF_000001635.27_GRCm39/GCF_000001635.27_GRCm39_genomic.fna.gz
 wget -O Ovis_aries.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Ovis_aries/latest_assembly_versions/GCF_016772045.1_ARS-UI_Ramb_v3.0/GCF_016772045.1_ARS-UI_Ramb_v3.0_genomic.fna.gz
@@ -45,7 +44,7 @@ wget -O Engraulis_encrasicolus.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/ve
 wget -O Merluccius_merluccius.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Merluccius_merluccius/latest_assembly_versions/GCF_944039175.1_fMerMer1.2/GCF_944039175.1_fMerMer1.2_genomic.fna.gz
 wget -O Gobiusculus_flavescens.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Gobiusculus_flavescens/latest_assembly_versions/GCF_963870625.1_fGobFla1.1/GCF_963870625.1_fGobFla1.1_genomic.fna.gz
 
-wget -O Vitis_vinifera.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Vitis_vinifera/latest_assembly_versions/GCF_000003745.3_12X/GCF_000003745.3_12X_genomic.fna.gz
+#vigne deja telecharge
 wget -O Triticum_monococcum.fa https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/947/556/615/GCA_947556615.1_TAES_TA2067/GCA_947556615.1_TAES_TA2067_genomic.fna.gz
 wget -O Triticum_aestivum.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Triticum_aestivum/latest_assembly_versions/GCF_003473745.1_IWGSC_RefSeq_v1.0/GCF_003473745.1_IWGSC_RefSeq_v1.0_genomic.fna.gz
 wget -O Oryza_sativa.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Oryza_sativa/latest_assembly_versions/GCF_000005425.2_IRGSP-1.0/GCF_000005425.2_IRGSP-1.0_genomic.fna.gz
@@ -53,3 +52,7 @@ wget -O Quercus_variabilis.fa https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/027/9
 wget -O Hordeum_vulgare.fa https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/902/500/625/GCA_902500625.2_Morex_V3/GCA_902500625.2_Morex_V3_genomic.fna.gz
 wget -O Cannabis_sativa.fa https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Cannabis_sativa/latest_assembly_versions/GCF_029168945.1_cs10_v3/GCF_029168945.1_cs10_v3_genomic.fna.gz
 
+gunzip *.fa.gz
+
+declare -A TAXONS=(
+ # ["Vitis_vinifera"]="29760:/storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa"
