@@ -93,7 +93,7 @@ declare -A TAXONS=(
 
 #indexation des genomes de reference
 
-echo "Indexation BWA..." # A ne faire qu'une fois 
+echo "Indexation BWA..." # A ne faire qu'une fois
 
 bwa index /home/amartin3/genomes/Homo_sapiens.fna
 bwa index /home/amartin3/genomes/Canis_lupus.fna
@@ -142,10 +142,9 @@ shopt -s nullglob
 
 
 for sample in "${SAMPLES[@]}"; do
-  echo ""
-  echo "======================================================================"
+
   echo "Traitement de l'échantillon: $sample"
-  echo "======================================================================"
+  
 
   BRACKEN_DIR="${BRACKEN_BASE_DIR}"
   FASTQDIR="${FASTQ_BASE_DIR}"
