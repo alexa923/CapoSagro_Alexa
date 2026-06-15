@@ -218,7 +218,7 @@ for sample in "${SAMPLES[@]}"; do
             "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R1.sai" \
             "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R2.sai" \
             "$OUTR1" "$OUTR2" \
-            > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sam" 2>>"${LOGFILE}
+            > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sam" 2>>"${LOGFILE}"
 
           #conversion de SAM à BAM
           samtools view -bS "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sam" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
