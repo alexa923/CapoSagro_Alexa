@@ -143,6 +143,16 @@ for sample in "${SAMPLES[@]}"; do
   echo "Traitement de l'échantillon: $sample"
   echo "======================================================================"
 
-KRAKENDIR="${KRAKENBASE}/${sample}"
+BRACKEN_DIR="${BRACKENBASE}/${sample}"
 FASTQDIR="${FASTQBASE}/${sample}"
 
+  if [ ! -d "$BRACKEN_DIR" ]; then
+    echo "ATTENTION: Répertoire Kraken2 absent pour $sample" | tee -a "${LOGFILE}"
+    continue
+  fi
+
+   # Boucle sur les fichiers Kraken2 (merged et unmerged)
+  for KRAKENFILE in ${BRACKEN_DIR}/*.kraken; do
+    if [ ! -f "$BRACKENFILE" ]; then
+      continue
+    fi
