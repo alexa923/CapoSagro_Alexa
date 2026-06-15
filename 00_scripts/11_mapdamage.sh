@@ -184,3 +184,7 @@ FASTQDIR="${FASTQBASE}/${sample}"
       OUTR1="${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R1.fastq"
       OUTR2="${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R2.fastq"
       OUTMERGED="${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.fastq"
+
+      #Traitement des reads unmerged (paired-end) 
+
+      
