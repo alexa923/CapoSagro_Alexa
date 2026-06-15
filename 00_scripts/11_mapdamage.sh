@@ -217,4 +217,8 @@ FASTQDIR="${FASTQBASE}/${sample}"
           #conversion de SAM à BAM
           samtools view -bS "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sam" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
 
-          #tri et indexation 
+          #tri et indexation
+          samtools sort -o "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
+          samtools index "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" 2>>"${LOGFILE}
+
+          #MapDamage
