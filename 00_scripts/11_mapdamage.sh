@@ -55,7 +55,7 @@ wget -O Gobiusculus_flavescens.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refse
 wget -O Oryza_sativa.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Oryza_sativa/latest_assembly_versions/GCF_034140825.1_ASM3414082v1/GCF_034140825.1_ASM3414082v1_genomic.fna.gz
 #Quercus_variabilis sur genome ref ncbi
 wget -O Hordeum_vulgare.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plants/Hordeum_vulgare/latest_assembly_versions/GCF_904849725.1_MorexV3_pseudomolecules_assembly/GCF_904849725.1_MorexV3_pseudomolecules_assembly_genomic.fna.gz
-wget -O Cannabis_sativa.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Cannabis_sativa/latest_assembly_versions/GCF_029168945.1_cs10_v3/GCF_029168945.1_cs10_v3_genomic.fna.gz
+wget -O Cannabis_sativa.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Cannabis_sativa/latest_assembly_versions/GCF_029168945.1_ASM2916894v1/GCF_029168945.1_ASM2916894v1_genomic.fna.gz
 
 gunzip *.fa.gz
 
