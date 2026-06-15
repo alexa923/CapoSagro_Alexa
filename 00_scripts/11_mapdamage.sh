@@ -20,10 +20,10 @@ DAMAGEBASE="/home/amartin3/12_mapdamage"
 KRAKENTOOLS_DIR="/home/amartin3/08_bracken/KrakenTools" 
 KRAKEN_DIR_SOURCE="/home/amartin3/07_kraken2"
 
-LOGFILE="${DAMAGE_BASE}/mapdamage_$(date +%Y%m%d_%H%M%S).txt"
-MAPPING_INFO="${DAMAGE_BASE}/mapping_bwa_info.tsv"
+LOGFILE="${DAMAGEBASE}/mapdamage_$(date +%Y%m%d_%H%M%S).txt"
+MAPPING_INFO="${DAMAGEBASE}/mapping_bwa_info.tsv"
 
-mkdir -p "$DAMAGE_BASE"
+mkdir -p "$DAMAGEBASE"
 
 # ==============================================================================
 # ENVIRONNEMENT
