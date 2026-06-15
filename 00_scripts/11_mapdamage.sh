@@ -92,21 +92,22 @@ declare -A TAXONS=(
 
 echo "Indexation BWA..." # A ne faire qu'une fois !
 
-bwa index /home/amartin3/genomes/Homo_sapiens.fa
-bwa index /home/amartin3/genomes/Canis_lupus.fa
-bwa index /home/amartin3/genomes/Mus_musculus.fa
-bwa index /home/amartin3/genomes/Ovis_aries.fa
-bwa index /home/amartin3/genomes/Bos_taurus.fa
+bwa index /home/amartin3/genomes/Homo_sapiens.fna
+bwa index /home/amartin3/genomes/Canis_lupus.fna
+bwa index /home/amartin3/genomes/Mus_musculus.fna
+bwa index /home/amartin3/genomes/Ovis_aries.fna
+bwa index /home/amartin3/genomes/Bos_taurus.fna
 
-bwa index /home/amartin3/genomes/Conger_conger.fa
-bwa index /home/amartin3/genomes/Diplodus_sargus.fa
-bwa index /home/amartin3/genomes/Engraulis_encrasicolus.fa
-bwa index /home/amartin3/genomes/Merluccius_merluccius.fa
+bwa index /home/amartin3/genomes/Conger_conger.fna
+bwa index /home/amartin3/genomes/Diplodus_sargus.fna
+bwa index /home/amartin3/genomes/Engraulis_encrasicolus.fna
+bwa index /home/amartin3/genomes/Merluccius_merluccius.fna
+bwa index /home/amartin3/genomes/Gobiusculus_flavescens.fna
 
-bwa index /home/amartin3/genomes/Vitis_vinifera.fa
-bwa index /home/amartin3/genomes/Triticum_monococcum.fa
-bwa index /home/amartin3/genomes/Triticum_aestivum.fa
-bwa index /home/amartin3/genomes/Oryza_sativa.fa
-bwa index /home/amartin3/genomes/Quercus_variabilis.fa
-bwa index /home/amartin3/genomes/Hordeum_vulgare.fa
-bwa index /home/amartin3/genomes/Cannabis_sativa.fa
+bwa index /home/amartin3/genomes/Vitis_vinifera.fna
+bwa index /home/amartin3/genomes/Triticum_monococcum.fna
+bwa index /home/amartin3/genomes/Triticum_aestivum.fna
+bwa index /home/amartin3/genomes/Oryza_sativa.fna
+bwa index /home/amartin3/genomes/Quercus_variabilis.fna
+bwa index /home/amartin3/genomes/Hordeum_vulgare.fna
+bwa index /home/amartin3/genomes/Cannabis_sativa.fna
