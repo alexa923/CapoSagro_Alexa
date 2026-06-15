@@ -237,3 +237,18 @@ FASTQDIR="${FASTQBASE}/${sample}"
         fi
       fi
 
+      #Traitement des reads merged (single-end)
+      if [[ "$BRACKENBASENAME" == *"merged"* ]] && [ -f "$MERGEDFILE" ]; then
+        echo "Extraction des reads merged pour $GROUP..." | tee -a "${LOGFILE}"
+        
+        python3 ${KRAKENTOOLS_DIR}/extract_kraken_reads.py \
+          -k "$KRAKENFILE" \
+          -r "$BRACKENFILE" \
+          -s "$MERGEDFILE" \
+          -t "$TAXID" \
+          -o "$OUTMERGED" \
+          --fastq-output 2>>"${LOGFILE}"
+  
+        if [ -f "$OUTMERGED" ]; then
+          echo "Mapping BWA single-end pour $GROUP..." | tee -a "${LOGFILE}"
+
