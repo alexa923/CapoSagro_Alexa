@@ -80,8 +80,8 @@ declare -A TAXONS=(
     ["Vitis_vinifera"]="29760:/storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa"
     ["Triticum_monococcum"]="4568:/storage/groups/gdec/shared/Logan/New_accessions/GCA_034509565.1_PI306540_Tmono_genomic.fna"
     ["Triticum_aestivum"]="4565:/storage/groups/gdec/shared/Logan/Accessions/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_genomic.fna"
-    ["Oryza_sativa"]="4530:/home/amartin3/genomes/Oryza_sativa.fa"
-    ["Quercus_variabilis"]="103481:/home/amartin3/genomes/Quercus_variabilis.fa"
-    ["Hordeum_vulgare"]="4513:/home/amartin3/genomes/Hordeum_vulgare.fa"
-    ["Cannabis_sativa"]="3483:/home/amartin3/genomes/Cannabis_sativa.fa"
+    ["Oryza_sativa"]="4530:/home/amartin3/genomes/Oryza_sativa.fna"
+    ["Quercus_variabilis"]="103481:/home/amartin3/genomes/Quercus_variabilis.fna"
+    ["Hordeum_vulgare"]="4513:/home/amartin3/genomes/Hordeum_vulgare.fna"
+    ["Cannabis_sativa"]="3483:/home/amartin3/genomes/Cannabis_sativa.fna"
 )
