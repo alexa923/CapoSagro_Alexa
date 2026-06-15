@@ -152,7 +152,12 @@ FASTQDIR="${FASTQBASE}/${sample}"
   fi
 
    # Boucle sur les fichiers Kraken2 (merged et unmerged)
-  for KRAKENFILE in ${BRACKEN_DIR}/*.kraken; do
+  for KRAKENFILE in ${BRACKEN_DIR}/*.bracken; do
     if [ ! -f "$BRACKENFILE" ]; then
       continue
     fi
+
+
+    BRACKENBASENAME=$(basename "$BRACKENFILE" .kraken)
+    echo ""
+    echo ">>> Processing $KRAKENBASENAME ($sample)" | tee -a "${LOGFILE}"
