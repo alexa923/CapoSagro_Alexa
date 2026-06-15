@@ -57,24 +57,24 @@ wget -O Oryza_sativa.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Or
 wget -O Hordeum_vulgare.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plants/Hordeum_vulgare/latest_assembly_versions/GCF_904849725.1_MorexV3_pseudomolecules_assembly/GCF_904849725.1_MorexV3_pseudomolecules_assembly_genomic.fna.gz
 wget -O Cannabis_sativa.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Cannabis_sativa/latest_assembly_versions/GCF_029168945.1_ASM2916894v1/GCF_029168945.1_ASM2916894v1_genomic.fna.gz
 
-gunzip *.fa.gz
+gunzip *.fna.gz
 
 
 
 declare -A TAXONS=(
     --
-    ["Homo_sapiens"]="9606:/home/amartin3/genomes/Homo_sapiens.fa"
-    ["Canis_lupus"]="9612:/home/amartin3/genomes/Canis_lupus.fa"
-    ["Mus_musculus"]="10090:/home/amartin3/genomes/Mus_musculus.fa"
-    ["Ovis_aries"]="9940:/home/amartin3/genomes/Ovis_aries.fa"
-    ["Bos_taurus"]="9913:/home/amartin3/genomes/Bos_taurus.fa"
+    ["Homo_sapiens"]="9606:/home/amartin3/genomes/Homo_sapiens.fna"
+    ["Canis_lupus"]="9612:/home/amartin3/genomes/Canis_lupus.fna"
+    ["Mus_musculus"]="10090:/home/amartin3/genomes/Mus_musculus.fna"
+    ["Ovis_aries"]="9940:/home/amartin3/genomes/Ovis_aries.fna"
+    ["Bos_taurus"]="9913:/home/amartin3/genomes/Bos_taurus.fna"
 
     
-    ["Conger_conger"]="82655:/home/amartin3/genomes/Conger_conger.fa"
-    ["Diplodus_sargus"]="38941:/home/amartin3/genomes/Diplodus_sargus.fa"
-    ["Engraulis_encrasicolus"]="184585:/home/amartin3/genomes/Engraulis_encrasicolus.fa"
-    ["Merluccius_merluccius"]="8063:/home/amartin3/genomes/Merluccius_merluccius.fa"
-    ["Gobiusculus_flavescens"]="257540:/home/amartin3/genomes/Gobiusculus_flavescens.fa"
+    ["Conger_conger"]="82655:/home/amartin3/genomes/Conger_conger.fna"
+    ["Diplodus_sargus"]="38941:/home/amartin3/genomes/Diplodus_sargus.fna"
+    ["Engraulis_encrasicolus"]="184585:/home/amartin3/genomes/Engraulis_encrasicolus.fna"
+    ["Merluccius_merluccius"]="8063:/home/amartin3/genomes/Merluccius_merluccius.fna"
+    
 
     
     ["Vitis_vinifera"]="29760:/storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa"
