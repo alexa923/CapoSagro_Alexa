@@ -190,7 +190,7 @@ for sample in "${SAMPLES[@]}"; do
       OUTR2="${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R2.fastq"
       OUTMERGED="${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.fastq"
 
-      #Traitement des reads unmerged (paired-end) 
+      #Traitement des reads unmerged (paired-end)
       if [[ "$BRACKENBASENAME" == *"unmerged"* ]] && [ -f "$R1FILE" ] && [ -f "$R2FILE" ]; then
         echo "Extraction des reads unmerged pour $GROUP..." | tee -a "${LOGFILE}"
 
@@ -216,7 +216,7 @@ for sample in "${SAMPLES[@]}"; do
             "$OUTR1" "$OUTR2" \
             > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sam" 2>>"${LOGFILE}"
 
-          #conversion de SAM à BAM
+          #conversion de SAM a BAM
           samtools view -bS "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sam" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
 
           #tri et indexation
