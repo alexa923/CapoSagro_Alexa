@@ -147,12 +147,12 @@ BRACKEN_DIR="${BRACKENBASE}/${sample}"
 FASTQDIR="${FASTQBASE}/${sample}"
 
   if [ ! -d "$BRACKEN_DIR" ]; then
-    echo "ATTENTION: Répertoire Kraken2 absent pour $sample" | tee -a "${LOGFILE}"
+    echo "ATTENTION: Répertoire Bracken absent pour $sample" | tee -a "${LOGFILE}"
     continue
   fi
 
    # Boucle sur les fichiers Kraken2 (merged et unmerged)
-  for KRAKENFILE in ${BRACKEN_DIR}/*.bracken; do
+  for BRACKENFILE in ${BRACKEN_DIR}/*.bracken; do
     if [ ! -f "$BRACKENFILE" ]; then
       continue
     fi
