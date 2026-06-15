@@ -104,9 +104,9 @@ bwa index /home/amartin3/genomes/Engraulis_encrasicolus.fna
 bwa index /home/amartin3/genomes/Merluccius_merluccius.fna
 bwa index /home/amartin3/genomes/Gobiusculus_flavescens.fna
 
-bwa index /home/amartin3/genomes/Vitis_vinifera.fna
-bwa index /home/amartin3/genomes/Triticum_monococcum.fna
-bwa index /home/amartin3/genomes/Triticum_aestivum.fna
+bwa index /storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa
+bwa index /storage/groups/gdec/shared/Logan/New_accessions/GCA_034509565.1_PI306540_Tmono_genomic.fna
+bwa index /storage/groups/gdec/shared/Logan/Accessions/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_genomic.fna
 bwa index /home/amartin3/genomes/Oryza_sativa.fna
 bwa index /home/amartin3/genomes/Quercus_variabilis.fna
 bwa index /home/amartin3/genomes/Hordeum_vulgare.fna
