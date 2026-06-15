@@ -14,7 +14,7 @@
 # ==============================================================================
 BRACKEN_BASE_DIR="/home/amartin3/08_bracken"
 FASTQ_BASE_DIR="/home/amartin3/05_fastp"
-DAMAGE_BASE="/home/amartin3/12_mapdamage"
+DAMAGEBASE="/home/amartin3/12_mapdamage"
 
 # Correction de la typo (MAJUSCULES partout) pour éviter les variables vides
 KRAKENTOOLS_DIR="/home/amartin3/08_bracken/KrakenTools" 
