@@ -17,7 +17,7 @@ FASTQ_BASE_DIR="/home/amartin3/05_fastp"
 DAMAGEBASE="/home/amartin3/12_mapdamage"
 
 # Correction de la typo (MAJUSCULES partout) pour éviter les variables vides
-KRAKENTOOLS_DIR="/home/amartin3/08_bracken/KrakenTools" 
+KRAKENTOOLS_DIR="/home/amartin3/08_bracken/KrakenTools"
 KRAKEN_DIR_SOURCE="/home/amartin3/07_kraken2"
 
 LOGFILE="${DAMAGEBASE}/mapdamage_$(date +%Y%m%d_%H%M%S).txt"
@@ -199,7 +199,7 @@ for sample in "${SAMPLES[@]}"; do
         echo "Extraction des reads unmerged pour $GROUP..." | tee -a "${LOGFILE}"
 
         python3 ${KRAKENTOOLS_DIR}/extract_kraken_reads.py \
-          -k "$KRAKENFILE" \  #attention fichiers kraken ne sont pas dans le même dossier
+          -k "$KRAKENFILE" \ 
           -r "$BRACKENFILE" \
           -s "$R1FILE" -s2 "$R2FILE" \
           -t "$TAXID" \
