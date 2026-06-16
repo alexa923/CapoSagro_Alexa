@@ -93,27 +93,27 @@ declare -A TAXONS=(
 
 #indexation des genomes de reference
 
-echo "Indexation BWA..." # A ne faire qu'une fois
+#echo "Indexation BWA..." # A ne faire qu'une fois
 
-bwa index /home/amartin3/genomes/Homo_sapiens.fna
-bwa index /home/amartin3/genomes/Canis_lupus.fna
-bwa index /home/amartin3/genomes/Mus_musculus.fna
-bwa index /home/amartin3/genomes/Ovis_aries.fna
-bwa index /home/amartin3/genomes/Bos_taurus.fna
+#bwa index /home/amartin3/genomes/Homo_sapiens.fna
+#bwa index /home/amartin3/genomes/Canis_lupus.fna
+#bwa index /home/amartin3/genomes/Mus_musculus.fna
+#bwa index /home/amartin3/genomes/Ovis_aries.fna
+#bwa index /home/amartin3/genomes/Bos_taurus.fna
 
-bwa index /home/amartin3/genomes/Conger_conger.fna
-bwa index /home/amartin3/genomes/Diplodus_sargus.fna
-bwa index /home/amartin3/genomes/Engraulis_encrasicolus.fna
-bwa index /home/amartin3/genomes/Merluccius_merluccius.fna
-bwa index /home/amartin3/genomes/Gobiusculus_flavescens.fasta
+#bwa index /home/amartin3/genomes/Conger_conger.fna
+#bwa index /home/amartin3/genomes/Diplodus_sargus.fna
+#bwa index /home/amartin3/genomes/Engraulis_encrasicolus.fna
+#bwa index /home/amartin3/genomes/Merluccius_merluccius.fna
+#bwa index /home/amartin3/genomes/Gobiusculus_flavescens.fasta
 
-bwa index /storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa
-bwa index /storage/groups/gdec/shared/Logan/New_accessions/GCA_034509565.1_PI306540_Tmono_genomic.fna
-bwa index /storage/groups/gdec/shared/Logan/Accessions/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_genomic.fna
-bwa index /home/amartin3/genomes/Oryza_sativa.fna
-bwa index /home/amartin3/genomes/Quercus_variabilis.fna
-bwa index /home/amartin3/genomes/Hordeum_vulgare.fna
-bwa index /home/amartin3/genomes/Cannabis_sativa.fna
+#bwa index /storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa
+#bwa index /storage/groups/gdec/shared/Logan/New_accessions/GCA_034509565.1_PI306540_Tmono_genomic.fna
+#bwa index /storage/groups/gdec/shared/Logan/Accessions/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_genomic.fna
+#bwa index /home/amartin3/genomes/Oryza_sativa.fna
+#bwa index /home/amartin3/genomes/Quercus_variabilis.fna
+#bwa index /home/amartin3/genomes/Hordeum_vulgare.fna
+#bwa index /home/amartin3/genomes/Cannabis_sativa.fna
 
 
 #calcul du taux de mapping 
