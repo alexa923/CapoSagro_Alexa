@@ -12,10 +12,8 @@
 
 #configuration des chemins
 
-BRACKEN_BASE_DIR="/home/amartin3/08_bracken"
 FASTQ_BASE_DIR="/home/amartin3/05_fastp"
 DAMAGEBASE="/home/amartin3/12_mapdamage"
-
 KRAKENTOOLS_DIR="/home/amartin3/08_bracken/KrakenTools"
 KRAKEN_DIR_SOURCE="/home/amartin3/07_kraken2"
 
@@ -23,7 +21,6 @@ LOGFILE="${DAMAGEBASE}/mapdamage_$(date +%Y%m%d_%H%M%S).txt"
 MAPPING_INFO="${DAMAGEBASE}/mapping_bwa_info.tsv"
 
 mkdir -p "$DAMAGEBASE"
-
 
 module load conda/4.12.0
 source ~/.bashrc
