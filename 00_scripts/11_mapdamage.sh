@@ -22,6 +22,7 @@ MAPPING_INFO="${DAMAGEBASE}/mapping_bwa_info.tsv"
 
 mkdir -p "$DAMAGEBASE"
 
+#chargement de l'environnement
 module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
@@ -113,68 +114,40 @@ declare -A TAXONS=(
 #bwa index /home/amartin3/genomes/Cannabis_sativa.fna
 
 
-#calcul du taux de mapping 
-calculate_mapping_rate() {
-    local bam_file="$1"
-    local sample_name="$2"
-    local species="$3"
-    local type="$4"
-    
-    if [[ -f "$bam_file" ]]; then
-        local total_reads=$(samtools view -c "$bam_file")
-        local mapped_reads=$(samtools view -c -F 4 "$bam_file")
-        local mapping_rate=0
-        if [[ $total_reads -gt 0 ]]; then
-            mapping_rate=$(echo "scale=2; $mapped_reads * 100 / $total_reads" | bc)
-        fi
-        echo -e "${sample_name}\t${species}\t${type}\t${total_reads}\t${mapped_reads}\t${mapping_rate}" >> "$MAPPING_INFO"
-        echo "✓ Stats for ${sample_name}_${species}_${type}: ${mapped_reads}/${total_reads} (${mapping_rate}%)" | tee -a "$LOGFILE"
-    fi
-}
-
-
-#boucle de traitement des echantillons
+# Boucle de traitement des échantillons
 SAMPLES=("sed6" "sed8")
 shopt -s nullglob
 
-
 for sample in "${SAMPLES[@]}"; do
-
+  echo ""
+  echo "======================================================================"
   echo "Traitement de l'échantillon: $sample"
-  
+  echo "======================================================================"
 
-  BRACKEN_DIR="${BRACKEN_BASE_DIR}"
   FASTQDIR="${FASTQ_BASE_DIR}"
 
-  if [ ! -d "$BRACKEN_DIR" ]; then
-    echo "ATTENTION: Répertoire Bracken absent pour $sample" | tee -a "${LOGFILE}"
-    continue
-  fi
-
-   # Boucle sur les fichiers Bracken (merged et unmerged)
-  for BRACKENFILE in ${BRACKEN_DIR}/${sample}_*.bracken; do
-    if [ ! -f "$BRACKENFILE" ]; then
+  # 1. AJUSTEMENT DU PATTERN : On cherche directement les fichiers .kraken générés à l'étape 7
+  # (S'assure de matcher exactement la structure de tes noms de fichiers, ex: sed6_merged.kraken ou clean_sed6...kraken)
+  for KRAKENFILE in ${KRAKEN_DIR_SOURCE}/*${sample}*.kraken; do
+    if [ ! -f "$KRAKENFILE" ]; then
       continue
     fi
 
-
-    BRACKENBASENAME=$(basename "$BRACKENFILE" .bracken)
+    #extraction du nom de base depuis le fichier .kraken
+    KRAKENBASENAME=$(basename "$KRAKENFILE" .kraken)
     echo ""
-    echo ">>> Processing $BRACKENBASENAME ($sample)" | tee -a "${LOGFILE}"
+    echo ">>> Processing $KRAKENBASENAME ($sample)" | tee -a "${LOGFILE}"
 
-
-    # Extraire le prefixe de base
-    PREFIX=$(echo "$BRACKENBASENAME" | sed -E 's/(un)?merged$//')
+    #extraire le prefixe de base
+    PREFIX=$(echo "$KRAKENBASENAME" | sed -E 's/(un)?merged$//')
     echo "Prefix: $PREFIX" | tee -a "${LOGFILE}"
 
-    KRAKENFILE="${KRAKEN_DIR_SOURCE}/${BRACKENBASENAME}.kraken"
-
-    # Chercher les fichiers FASTQ correspondants
+    #correspondance avec fichiers fastq
     R1FILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_unmerged_R1.fastq.gz"
     R2FILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_unmerged_R2.fastq.gz"
     MERGEDFILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_merged.fastq.gz"
 
-    #Boucle sur les especes (17 taxons)
+    #boucle sur les especes
     for GROUP in "${!TAXONS[@]}"; do
       IFS=':' read -r TAXID REFFASTA <<< "${TAXONS[$GROUP]}"
       DAMAGEDIR="${DAMAGEBASE}/${sample}/${GROUP}"
@@ -183,17 +156,16 @@ for sample in "${SAMPLES[@]}"; do
       echo ""
       echo "--- Espèce: $GROUP (TaxID: $TAXID) ---"
 
-      OUTR1="${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R1.fastq"
-      OUTR2="${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R2.fastq"
-      OUTMERGED="${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.fastq"
+      OUTR1="${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_R1.fastq"
+      OUTR2="${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_R2.fastq"
+      OUTMERGED="${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.fastq"
 
-      #Traitement des reads unmerged (paired-end)
-      if [[ "$BRACKENBASENAME" == *"unmerged"* ]] && [ -f "$R1FILE" ] && [ -f "$R2FILE" ]; then
+      #traitement des reads unmerged (paired-end)
+      if [[ "$KRAKENBASENAME" == *"unmerged"* ]] && [ -f "$R1FILE" ] && [ -f "$R2FILE" ]; then
         echo "Extraction des reads unmerged pour $GROUP..." | tee -a "${LOGFILE}"
 
         python3 ${KRAKENTOOLS_DIR}/extract_kraken_reads.py \
           -k "$KRAKENFILE" \
-          -r "$BRACKENFILE" \
           -s "$R1FILE" -s2 "$R2FILE" \
           -t "$TAXID" \
           -o "$OUTR1" -o2 "$OUTR2" \
@@ -202,47 +174,48 @@ for sample in "${SAMPLES[@]}"; do
         if [ -f "$OUTR1" ] && [ -f "$OUTR2" ]; then
           echo "Mapping BWA paired-end pour $GROUP..." | tee -a "${LOGFILE}"
 
-          #BWA aln
-          bwa aln -n 0.08 -l 24 -k 2 -q 20 -t 4 "$REFFASTA" "$OUTR1" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R1.sai" 2>>"${LOGFILE}"
-          bwa aln -n 0.08 -l 24 -k 2 -q 20 -t 4 "$REFFASTA" "$OUTR2" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R2.sai" 2>>"${LOGFILE}"
+          bwa aln -n 0.08 -l 24 -k 2 -q 20 -t 4 "$REFFASTA" "$OUTR1" > "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_R1.sai" 2>>"${LOGFILE}"
+          bwa aln -n 0.08 -l 24 -k 2 -q 20 -t 4 "$REFFASTA" "$OUTR2" > "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_R2.sai" 2>>"${LOGFILE}"
 
-          #BWA sampe
           bwa sampe "$REFFASTA" \
-            "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R1.sai" \
-            "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R2.sai" \
+            "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_R1.sai" \
+            "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_R2.sai" \
             "$OUTR1" "$OUTR2" \
-            > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sam" 2>>"${LOGFILE}"
+            > "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sam" 2>>"${LOGFILE}"
 
-          #conversion de SAM a BAM
-          samtools view -bS "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sam" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
+          samtools view -bS "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sam" > "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
+          samtools sort -o "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sorted.bam" "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
+          samtools index "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sorted.bam" 2>>"${LOGFILE}"
 
-          #tri et indexation
-          samtools sort -o "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
-          samtools index "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" 2>>"${LOGFILE}"
-
-          #MapDamage
           echo "MapDamage unmerged pour $GROUP..." | tee -a "${LOGFILE}"
-          mapDamage -i "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" \
+          mapDamage -i "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sorted.bam" \
             -r "$REFFASTA" \
-            --folder "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_mapDamage_unmerged" \
+            --folder "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_mapDamage_unmerged" \
             --no-stats 2>>"${LOGFILE}"
     
-          calculate_mapping_rate "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sorted.bam" "$sample" "$GROUP" "unmerged"
+          #calcul du taux de mapping
+          local total_reads=$(samtools view -c "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sorted.bam")
+          local mapped_reads=$(samtools view -c -F 4 "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sorted.bam")
+          local mapping_rate=0
+          if [[ $total_reads -gt 0 ]]; then
+              mapping_rate=$(echo "scale=2; $mapped_reads * 100 / $total_reads" | bc)
+          fi
+          echo -e "${sample}\t${GROUP}\tunmerged\t${total_reads}\t${mapped_reads}\t${mapping_rate}" >> "$MAPPING_INFO"
+          echo "Stats for ${sample}_${GROUP}_unmerged: ${mapped_reads}/${total_reads} (${mapping_rate}%)" | tee -a "$LOGFILE"
     
-          rm -f "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R1.sai" \
-                "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_R2.sai" \
-                "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.sam" \
-                "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
+          rm -f "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_R1.sai" \
+                "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_R2.sai" \
+                "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sam" \
+                "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.bam" 2>>"${LOGFILE}"
         fi
       fi
 
-      #Traitement des reads merged (single-end)
-      if [[ "$BRACKENBASENAME" == *"merged"* ]] && [ -f "$MERGEDFILE" ]; then
+      #traitement des reads merged (single-end)
+      if [[ "$KRAKENBASENAME" == *"merged"* ]] && [ -f "$MERGEDFILE" ] && [[ "$KRAKENBASENAME" != *"unmerged"* ]]; then
         echo "Extraction des reads merged pour $GROUP..." | tee -a "${LOGFILE}"
         
         python3 ${KRAKENTOOLS_DIR}/extract_kraken_reads.py \
           -k "$KRAKENFILE" \
-          -r "$BRACKENFILE" \
           -s "$MERGEDFILE" \
           -t "$TAXID" \
           -o "$OUTMERGED" \
@@ -251,47 +224,40 @@ for sample in "${SAMPLES[@]}"; do
         if [ -f "$OUTMERGED" ]; then
           echo "Mapping BWA single-end pour $GROUP..." | tee -a "${LOGFILE}"
 
-          # BWA aln
-          bwa aln -n 0.08 -l 24 -k 2 -q 20 -t 4 "$REFFASTA" "$OUTMERGED" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sai" 2>>"${LOGFILE}"
+          bwa aln -n 0.08 -l 24 -k 2 -q 20 -t 4 "$REFFASTA" "$OUTMERGED" > "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sai" 2>>"${LOGFILE}"
 
-          #BWA samse
           bwa samse "$REFFASTA" \
-            "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sai" \
+            "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sai" \
             "$OUTMERGED" \
-            > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sam" 2>>"${LOGFILE}"
+            > "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sam" 2>>"${LOGFILE}"
 
-          # Conversion SAM en BAM
-          samtools view -bS "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sam" > "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.bam" 2>>"${LOGFILE}"
-          # Tri et indexation
-          samtools sort -o "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sorted.bam" "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.bam" 2>>"${LOGFILE}"
-          samtools index "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sorted.bam" 2>>"${LOGFILE}"
-    
+          samtools view -bS "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sam" > "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.bam" 2>>"${LOGFILE}"
+          samtools sort -o "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sorted.bam" "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.bam" 2>>"${LOGFILE}"
+          samtools index "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sorted.bam" 2>>"${LOGFILE}"
 
-          # MapDamage
           echo "MapDamage merged pour $GROUP..." | tee -a "${LOGFILE}"
-          mapDamage -i "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sorted.bam" \
+          mapDamage -i "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sorted.bam" \
             -r "$REFFASTA" \
-            --folder "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_mapDamage_merged" \
+            --folder "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_mapDamage_merged" \
             --no-stats 2>>"${LOGFILE}"
        
-          # Calcul du taux de mapping
-          calculate_mapping_rate "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sorted.bam" "$sample" "$GROUP" "merged"
+          local total_reads=$(samtools view -c "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sorted.bam")
+          local mapped_reads=$(samtools view -c -F 4 "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sorted.bam")
+          local mapping_rate=0
+          if [[ $total_reads -gt 0 ]]; then
+              mapping_rate=$(echo "scale=2; $mapped_reads * 100 / $total_reads" | bc)
+          fi
+          echo -e "${sample}\t${GROUP}\tmerged\t${total_reads}\t${mapped_reads}\t${mapping_rate}" >> "$MAPPING_INFO"
+          echo "Stats for ${sample}_${GROUP}_merged: ${mapped_reads}/${total_reads} (${mapping_rate}%)" | tee -a "$LOGFILE"
 
-          # Nettoyage des fichiers intermediaires
-          rm -f "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sai" \
-                "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.sam" \
-                "${DAMAGEDIR}/${BRACKENBASENAME}_${GROUP}_merged.bam" 2>>"${LOGFILE}"
+          rm -f "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sai" \
+                "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sam" \
+                "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.bam" 2>>"${LOGFILE}"
         fi
       fi
 
     done  # Fin boucle sur les especes
-  done  # Fin boucle sur les fichiers Bracken
+  done  # Fin boucle sur les fichiers Kraken
 done  # Fin boucle sur les echantillons
 
-#FIN MAPDAMAGE
-
-echo "MapDamage termine"
-echo "Date de fin: $(date)"
-echo ""
-echo "Résultats MapDamage: ${DAMAGEBASE}"
-echo "Statistiques de mapping: ${MAPPING_INFO}"
+echo "MapDamage termine avec succes."
