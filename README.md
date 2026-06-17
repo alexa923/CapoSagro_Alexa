@@ -82,7 +82,7 @@ Then, we used the 10_top50euka.R script to make barplots representing the top 50
 
 ### Step 12
 
-We used the 11_mapdamage.sh script to calculate the mapping rate and deduct from the graph if the samples contains ancient DNA. 
+We used the 11_mapdamage.sh script to calculate the mapping rate of the species and then make graph to deduct if the samples contain ancient DNA. 
 
 ### References 
 https://github.com/ZimmermannHH/BeringSea_shotgun_sequencing/
