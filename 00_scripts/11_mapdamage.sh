@@ -1,8 +1,9 @@
 #!/bin/bash
 #SBATCH --job-name=11_mapdamage
 #SBATCH --ntasks=1
-#SBATCH -p smp
-#SBATCH --mem=1000G
+#SBATCH -p gdec
+#SBATCH --time=10-00:00:00
+#SBATCH --mem=400G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL
 #SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage.err"
