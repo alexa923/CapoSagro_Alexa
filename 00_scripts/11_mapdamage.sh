@@ -194,12 +194,17 @@ for sample in "${SAMPLES[@]}"; do
             --no-stats 2>>"${LOGFILE}"
     
           #calcul du taux de mapping
-          local total_reads=$(samtools view -c "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sorted.bam")
-          local mapped_reads=$(samtools view -c -F 4 "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sorted.bam")
-          local mapping_rate=0
+          #calcul du taux de mapping
+          total_reads=$(samtools view -c "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sorted.bam")
+          mapped_reads=$(samtools view -c -F 4 "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sorted.bam")
+          mapping_rate=0
           if [[ $total_reads -gt 0 ]]; then
-              mapping_rate=$(echo "scale=2; $mapped_reads * 100 / $total_reads" | bc)
+            mapping_rate=$(echo "scale=2; $mapped_reads * 100 / $total_reads" | bc)
           fi
+        
+
+
+          
           echo -e "${sample}\t${GROUP}\tunmerged\t${total_reads}\t${mapped_reads}\t${mapping_rate}" >> "$MAPPING_INFO"
           echo "Stats for ${sample}_${GROUP}_unmerged: ${mapped_reads}/${total_reads} (${mapping_rate}%)" | tee -a "$LOGFILE"
     
@@ -247,6 +252,13 @@ for sample in "${SAMPLES[@]}"; do
           if [[ $total_reads -gt 0 ]]; then
               mapping_rate=$(echo "scale=2; $mapped_reads * 100 / $total_reads" | bc)
           fi
+          total_reads=$(samtools view -c "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sorted.bam")
+          mapped_reads=$(samtools view -c -F 4 "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sorted.bam")
+          mapping_rate=0
+          if [[ $total_reads -gt 0 ]]; then
+            mapping_rate=$(echo "scale=2; $mapped_reads * 100 / $total_reads" | bc)
+          fi
+
           echo -e "${sample}\t${GROUP}\tmerged\t${total_reads}\t${mapped_reads}\t${mapping_rate}" >> "$MAPPING_INFO"
           echo "Stats for ${sample}_${GROUP}_merged: ${mapped_reads}/${total_reads} (${mapping_rate}%)" | tee -a "$LOGFILE"
 
