@@ -1,12 +1,12 @@
 #!/bin/bash
-#SBATCH --job-name=07_kraken2_k25
+#SBATCH --job-name=07_kraken2_k29
 #SBATCH --ntasks=1
 #SBATCH -p smp
 #SBATCH --mem=1000G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL
-#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/07_kraken2_k25.err"
-#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/07_kraken2_k25.out"
+#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/07_kraken2_k29.err"
+#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/07_kraken2_k29.out"
 
 
 module load conda/4.12.0
@@ -15,7 +15,7 @@ conda activate bioinformatic
 
 ENTREE="/home/amartin3/05_fastp"
 KRAKEN2_DB="/storage/groups/gdec/shared/Kraken_database/k2_core_nt_20250609"
-SORTIE="/home/amartin3/07_kraken2_k25"
+SORTIE="/home/amartin3/07_kraken2_k29"
 THREADS=36
 
 mkdir -p "$SORTIE"
@@ -56,7 +56,7 @@ done
 
 echo "Analyse Kraken2 terminee pour tous les echantillons."
 
-SORTIE_KRONA="/home/amartin3/07_kraken2/krona"
+SORTIE_KRONA="/home/amartin3/07_kraken2_k29/krona"
 mkdir -p "$SORTIE_KRONA"
 
 echo "Lancement de krona"
