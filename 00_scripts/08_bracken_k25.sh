@@ -12,7 +12,7 @@ module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
 
-KRAKEN2_DB="/storage/groups/gdec/shared/Kraken_database/k2_core_nt_20250609"
+KRAKEN2_DB="/storage/groups/gdec/shared/Kraken_database/core_nt_k25"
 ENTREE="/home/amartin3/07_kraken2_k25"
 SORTIE="/home/amartin3/08_bracken_k25"
 SORTIE_KRONA="/home/amartin3/08_bracken_k25/krona"
