@@ -26,8 +26,8 @@ echo "analyse des merged"
 for MERGED in "$ENTREE"/*_fastp_merged.fastq.gz
 do
     SAMPLE=$(basename "$MERGED" _fastp_merged.fastq.gz)
-    #SORTIE_KRAKEN="$SORTIE/${SAMPLE}_merged.kraken"
-    #SORTIE_REPORT="$SORTIE/${SAMPLE}_merged.report"
+    SORTIE_KRAKEN="$SORTIE/${SAMPLE}_merged.kraken"
+    SORTIE_REPORT="$SORTIE/${SAMPLE}_merged.report"
 
     kraken2 --conf 0.2 --db "$KRAKEN2_DB" --threads $THREADS \
         --output "$SORTIE_KRAKEN" --report "$SORTIE_REPORT" "$MERGED"  
@@ -56,7 +56,7 @@ done
 
 echo "Analyse Kraken2 terminee pour tous les echantillons."
 
-SORTIE_KRONA="/home/amartin3/07_kraken2/krona"
+SORTIE_KRONA="/home/amartin3/07_kraken2_k25/krona"
 mkdir -p "$SORTIE_KRONA"
 
 echo "Lancement de krona"
