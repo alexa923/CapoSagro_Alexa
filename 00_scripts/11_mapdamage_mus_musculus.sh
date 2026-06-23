@@ -39,18 +39,10 @@ declare -A TAXONS=(
 
 #Indexation des nouveaux génomes de référence
 
-echo "Vérification et Indexation BWA du Rat et du Lapin..." | tee -a "$LOGFILE"
-# L'indexation ne se lancera que si elle n'a pas déjà été faite (pour gagner du temps)
-if [ ! -f "/home/amartin3/genomes/Rattus_norvegicus.fna.bwt" ]; then
-    echo "Indexation du Rat en cours..." | tee -a "$LOGFILE"
-    bwa index /home/amartin3/genomes/Rattus_norvegicus.fna 2>>"${LOGFILE}"
-fi
+echo "Indexation BWA du Rat et du Lapin..." | tee -a "$LOGFILE"
 
-if [ ! -f "/home/amartin3/genomes/Oryctolagus_cuniculus.fna.bwt" ]; then
-    echo "Indexation du Lapin en cours..." | tee -a "$LOGFILE"
-    bwa index /home/amartin3/genomes/Oryctolagus_cuniculus.fna 2>>"${LOGFILE}"
-fi
-
+#bwa index /home/amartin3/genomes/Rattus_norvegicus.fna
+#bwa index /home/amartin3/genomes/Oryctolagus_cuniculus.fna
 
 
 # Boucle de traitement des échantillons
