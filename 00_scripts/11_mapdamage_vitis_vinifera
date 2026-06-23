@@ -1,14 +1,14 @@
 #!/bin/bash
-#SBATCH --job-name=vigne_combined
+#SBATCH --job-name=11_mapdamage_vitis_vinifera
 #SBATCH --ntasks=1
 #SBATCH -p smp
-#SBATCH --mem=50G
+#SBATCH --mem=1000G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL
-#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/vigne_combined.err"
-#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/vigne_combined.out"
+#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_vitis_vinifera.err"
+#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_vitis_vinifera.out"
 
-# Chemins d'entrée exacts vers les dossiers mapDamage actuels
+
 DIR_MERGED="/home/amartin3/12_mapdamage/sed6/Vitis_vinifera/clean_sed6_concat_dedup_merged_Vitis_vinifera_mapDamage_merged"
 DIR_UNMERGED="/home/amartin3/12_mapdamage/sed6/Vitis_vinifera/clean_sed6_concat_dedup_unmerged_Vitis_vinifera_mapDamage_unmerged"
 
