@@ -9,13 +9,12 @@
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_vitis_vinifera.out"
 
 
-DIR_MERGED="/home/amartin3/12_mapdamage/sed6/Vitis_vinifera/clean_sed6_concat_dedup_merged_Vitis_vinifera_mapDamage_merged"
-DIR_UNMERGED="/home/amartin3/12_mapdamage/sed6/Vitis_vinifera/clean_sed6_concat_dedup_unmerged_Vitis_vinifera_mapDamage_unmerged"
+VITIS_DIR="/home/amartin3/12_mapdamage/sed6/Vitis_vinifera"
 
 REF_FASTA="/home/amartin3/genomes/Vitis_vinifera.fna"
 
-
 OUT_DIR="/home/amartin3/12_mapdamage_vitis_vinifera"
+
 
 mkdir -p "$OUT_DIR"
 
@@ -26,12 +25,12 @@ conda activate bioinformatic
 
 echo "Début du traitement de la vigne (sed6) à $(date)"
 
-#recuperation des fichiers bam
-BAM_MERGED=$(ls ${DIR_MERGED}/*.sorted.bam)
-BAM_UNMERGED=$(ls ${DIR_UNMERGED}/*.sorted.bam)
+# Récupération des fichiers BAM fusionnés et non-fusionnés directement dans le dossier
+BAM_UNMERGED=$(ls ${VITIS_DIR}/*unmerged*.sorted.bam)
+BAM_MERGED=$(ls ${VITIS_DIR}/*merged*.sorted.bam | grep -v "unmerged")
 
-echo "Fichier Merged trouvé : $BAM_MERGED"
 echo "Fichier Unmerged trouvé : $BAM_UNMERGED"
+echo "Fichier Merged trouvé : $BAM_MERGED"
 
 
 # ======================================================================
