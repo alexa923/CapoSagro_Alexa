@@ -29,7 +29,7 @@ echo "Script MapDamage (Tests Murinae) started at $(date)" | tee -a "$LOGFILE"
 # Initialiser le fichier de mapping info
 echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPING_INFO}"
 
-# Déclaration des couples de test (TaxID_Extraction:Chemin_Genome_Reference)
+
 # On extrait TOUJOURS avec le TaxID 39107 (Murinae), mais on change la référence de mapping.
 declare -A TAXONS=(
     ["Mus_musculus"]="39107:/home/amartin3/genomes/Mus_musculus.fna"
