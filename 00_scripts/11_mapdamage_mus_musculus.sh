@@ -29,6 +29,15 @@ echo "Script MapDamage (Tests Murinae) started at $(date)" | tee -a "$LOGFILE"
 # Initialiser le fichier de mapping info
 echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPING_INFO}"
 
+#telechargement des genomes
+
+#cd /home/amartin3/genomes
+
+
+# wget -O Rattus_norvegicus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Rattus_norvegicus/latest_assembly_versions/GCF_015227675.2_mRAtSpa1.ec/GCF_015227675.2_mRAtSpa1.ec_genomic.fna.gz
+
+# wget -O Oryctolagus_cuniculus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Oryctolagus_cuniculus/latest_assembly_versions/GCF_000003625.3_Rabbit_genome_v3.0/GCF_000003625.3_Rabbit_genome_v3.0_genomic.fna.gz
+
 
 # On extrait TOUJOURS avec le TaxID 39107 (Murinae), mais on change la référence de mapping.
 declare -A TAXONS=(
