@@ -127,8 +127,6 @@ for sample in "${SAMPLES[@]}"; do
 
   FASTQDIR="${FASTQ_BASE_DIR}"
 
-  # 1. AJUSTEMENT DU PATTERN : On cherche directement les fichiers .kraken générés à l'étape 7
-  # (S'assure de matcher exactement la structure de tes noms de fichiers, ex: sed6_merged.kraken ou clean_sed6...kraken)
   for KRAKENFILE in ${KRAKEN_DIR_SOURCE}/*${sample}*.kraken; do
     if [ ! -f "$KRAKENFILE" ]; then
       continue
