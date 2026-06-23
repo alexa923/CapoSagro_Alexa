@@ -48,6 +48,17 @@ samtools index "${OUT_DIR}/sed6_Vitis_vinifera_combined.sorted.bam"
 #suppression des fichiers temporaires 
 rm -f "${OUT_DIR}/unmerged.sam" "${OUT_DIR}/merged_no_header.sam" "${OUT_DIR}/sed6_Vitis_vinifera_combined.sam"
 
+#calcul du mapping rate
+total_reads=$(samtools view -c "$BAM_COMBINED_SORTED")
+mapped_reads=$(samtools view -c -F 4 "$BAM_COMBINED_SORTED")
+mapping_rate=0
+
+if [[ $total_reads -gt 0 ]]; then
+  mapping_rate=$(echo "scale=2; $mapped_reads * 100 / $total_reads" | bc)
+fi
+
+echo -e "sed6\tVitis_vinifera\tcombined\t${total_reads}\t${mapped_reads}\t${mapping_rate}" >> "$MAPPING_INFO"
+echo "Stats for sed6_Vitis_vinifera_combined: ${mapped_reads}/${total_reads} (${mapping_rate}%)"
 
 #lancement de mapdamage
 echo "Lancement de mapDamage sur le BAM combiné..."
