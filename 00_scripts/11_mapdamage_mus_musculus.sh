@@ -37,6 +37,22 @@ declare -A TAXONS=(
     ["Oryctolagus_cuniculus"]="39107:/home/amartin3/genomes/Oryctolagus_cuniculus.fna"
 )
 
+#Indexation des nouveaux génomes de référence
+
+echo "Vérification et Indexation BWA du Rat et du Lapin..." | tee -a "$LOGFILE"
+# L'indexation ne se lancera que si elle n'a pas déjà été faite (pour gagner du temps)
+if [ ! -f "/home/amartin3/genomes/Rattus_norvegicus.fna.bwt" ]; then
+    echo "Indexation du Rat en cours..." | tee -a "$LOGFILE"
+    bwa index /home/amartin3/genomes/Rattus_norvegicus.fna 2>>"${LOGFILE}"
+fi
+
+if [ ! -f "/home/amartin3/genomes/Oryctolagus_cuniculus.fna.bwt" ]; then
+    echo "Indexation du Lapin en cours..." | tee -a "$LOGFILE"
+    bwa index /home/amartin3/genomes/Oryctolagus_cuniculus.fna 2>>"${LOGFILE}"
+fi
+
+
+
 # Boucle de traitement des échantillons
 SAMPLES=("sed6" "sed8")
 shopt -s nullglob
