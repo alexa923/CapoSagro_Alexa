@@ -37,7 +37,9 @@ echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPI
 
 
 #wget -O Mus_musculus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Mus_musculus/latest_assembly_versions/GCF_000001635.27_GRCm39/GCF_000001635.27_GRCm39_genomic.fna.gz
-#wget -O Mus_musculus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Rattus_norvegicus/latest_assembly_versions/GCF_036323735.1_GRCr8/GCF_036323735.1_GRCr8_genomic.fna.gz 
+#wget -O Rattus_norvegicus .fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Rattus_norvegicus/latest_assembly_versions/GCF_036323735.1_GRCr8/GCF_036323735.1_GRCr8_genomic.fna.gz 
+#wget -O Oryctolagus_cuniculus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Oryctolagus_cuniculus/latest_assembly_versions/GCF_964237555.1_mOryCun1.1/GCF_964237555.1_mOryCun1.1_genomic.fna.gz 
+
 #gunzip *.fna.gz
 
 
