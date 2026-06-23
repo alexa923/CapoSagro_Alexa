@@ -25,7 +25,7 @@ conda activate bioinformatic
 
 echo "Début du traitement de la vigne (sed6) à $(date)"
 
-# Récupération des fichiers BAM fusionnés et non-fusionnés directement dans le dossier
+#recuperation des fichiers bam
 BAM_UNMERGED=$(ls ${VITIS_DIR}/*unmerged*.sorted.bam)
 BAM_MERGED=$(ls ${VITIS_DIR}/*merged*.sorted.bam | grep -v "unmerged")
 
@@ -33,28 +33,23 @@ echo "Fichier Unmerged trouvé : $BAM_UNMERGED"
 echo "Fichier Merged trouvé : $BAM_MERGED"
 
 
-# ======================================================================
-# ÉTAPE 1 : Concaténation des fichiers via format SAM et CAT
-# ======================================================================
-echo "Conversion des BAMs en SAM texte dans le nouveau dossier..."
+#concatenation des fichiers
+echo "Conversion des BAMs en SAM"
 samtools view -h "$BAM_UNMERGED" > "${OUT_DIR}/unmerged.sam"
-# On enlève l'en-tête (-H) pour le second fichier pour éviter de la doubler
 samtools view "$BAM_MERGED" > "${OUT_DIR}/merged_no_header.sam"
 
 echo "Concaténation des fichiers SAM avec cat..."
 cat "${OUT_DIR}/unmerged.sam" "${OUT_DIR}/merged_no_header.sam" > "${OUT_DIR}/sed6_Vitis_vinifera_combined.sam"
 
-echo "Conversion du SAM combiné en BAM trié..."
+echo "Conversion du SAM combiné en BAM trie"
 samtools sort -o "${OUT_DIR}/sed6_Vitis_vinifera_combined.sorted.bam" "${OUT_DIR}/sed6_Vitis_vinifera_combined.sam"
 samtools index "${OUT_DIR}/sed6_Vitis_vinifera_combined.sorted.bam"
 
-# Nettoyage immédiat des fichiers SAM temporaires devenus inutiles
+#suppression des fichiers temporaires 
 rm -f "${OUT_DIR}/unmerged.sam" "${OUT_DIR}/merged_no_header.sam" "${OUT_DIR}/sed6_Vitis_vinifera_combined.sam"
 
 
-# ======================================================================
-# ÉTAPE 2 : Lancement de mapDamage dans le nouveau dossier
-# ======================================================================
+#lancement de mapdamage
 echo "Lancement de mapDamage sur le BAM combiné..."
 mapDamage -i "${OUT_DIR}/sed6_Vitis_vinifera_combined.sorted.bam" \
   -r "$REF_FASTA" \
