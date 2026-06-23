@@ -84,6 +84,9 @@ Then, we used the 10_top50euka.R script to make barplots representing the top 50
 
 We used the 11_mapdamage.sh script to calculate the mapping rate of the species and then make graph to deduct if the samples contain ancient DNA. 
 
+*11_mapdamage_mus_musculus.sh was a test to screen 3 different species (mouse, rat and rabbit) using the family mevel TaxID (Murinae) rather than mus musculus to broaden the alingment capture and avoid missing ancient reads not present in standard specific database.
+*11_mapdamage_vitis_vinifera.sh sript combined both merged and unmerged read fractions for grapevine analysis on sample sed6 to artificially boost the number of reads to reconstruct a reliable damage curve.
+
 ### References 
 https://github.com/ZimmermannHH/BeringSea_shotgun_sequencing/
 
