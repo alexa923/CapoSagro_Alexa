@@ -1,23 +1,23 @@
 #!/bin/bash
-#SBATCH --job-name=11_mapdamage_vitis_vinifera
+#SBATCH --job-name=vigne_combined
 #SBATCH --ntasks=1
 #SBATCH -p smp
 #SBATCH --mem=50G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL
-#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_vitis_vinifera.err"
-#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_vitis_vinifera.out"
+#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/vigne_combined.err"
+#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/vigne_combined.out"
 
-
+# Chemins d'entrée exacts vers les dossiers mapDamage actuels
 DIR_MERGED="/home/amartin3/12_mapdamage/sed6/Vitis_vinifera/clean_sed6_concat_dedup_merged_Vitis_vinifera_mapDamage_merged"
 DIR_UNMERGED="/home/amartin3/12_mapdamage/sed6/Vitis_vinifera/clean_sed6_concat_dedup_unmerged_Vitis_vinifera_mapDamage_unmerged"
 
 REF_FASTA="/home/amartin3/genomes/Vitis_vinifera.fna"
 
-
+# Définition du NOUVEAU dossier de sortie demandé
 OUT_DIR="/home/amartin3/12_mapdamage_vitis_vinifera"
 
-
+# Création du nouveau dossier de sortie s'il n'existe pas
 mkdir -p "$OUT_DIR"
 
 # Chargement de l'environnement
@@ -25,31 +25,37 @@ module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
 
-echo "Début de la fusion pour la vigne (sed6) à $(date)"
+echo "Début du traitement de la vigne (sed6) à $(date)"
 
-# Trouver automatiquement les deux fichiers BAM triés (merged et unmerged)
-# Adapte les noms si tes fichiers ne s'appellent pas exactement comme ça :
-BAM_UNMERGED=$(ls ${BASE_DIR}/*unmerged*.sorted.bam)
-BAM_MERGED=$(ls ${BASE_DIR}/*merged*.sorted.bam | grep -v "unmerged")
+# Récupération automatique des fichiers BAM triés dans tes dossiers cibles
+BAM_MERGED=$(ls ${DIR_MERGED}/*.sorted.bam)
+BAM_UNMERGED=$(ls ${DIR_UNMERGED}/*.sorted.bam)
 
-echo "Fichier Unmerged détecté : $BAM_UNMERGED"
-echo "Fichier Merged détecté : $BAM_MERGED"
+echo "Fichier Merged trouvé : $BAM_MERGED"
+echo "Fichier Unmerged trouvé : $BAM_UNMERGED"
+
 
 # ======================================================================
-# ÉTAPE 1 : Concaténation/Fusion des fichiers BAM
+# ÉTAPE 1 : Concaténation des fichiers via format SAM et CAT
 # ======================================================================
-echo "Fusion des fichiers avec samtools merge..."
-samtools merge -f "${OUT_DIR}/sed6_Vitis_vinifera_combined.bam" "$BAM_UNMERGED" "$BAM_MERGED"
+echo "Conversion des BAMs en SAM texte dans le nouveau dossier..."
+samtools view -h "$BAM_UNMERGED" > "${OUT_DIR}/unmerged.sam"
+# On enlève l'en-tête (-H) pour le second fichier pour éviter de la doubler
+samtools view "$BAM_MERGED" > "${OUT_DIR}/merged_no_header.sam"
 
-echo "Tri et Indexation du BAM combiné..."
-samtools sort -o "${OUT_DIR}/sed6_Vitis_vinifera_combined.sorted.bam" "${OUT_DIR}/sed6_Vitis_vinifera_combined.bam"
+echo "Concaténation des fichiers SAM avec cat..."
+cat "${OUT_DIR}/unmerged.sam" "${OUT_DIR}/merged_no_header.sam" > "${OUT_DIR}/sed6_Vitis_vinifera_combined.sam"
+
+echo "Conversion du SAM combiné en BAM trié..."
+samtools sort -o "${OUT_DIR}/sed6_Vitis_vinifera_combined.sorted.bam" "${OUT_DIR}/sed6_Vitis_vinifera_combined.sam"
 samtools index "${OUT_DIR}/sed6_Vitis_vinifera_combined.sorted.bam"
 
-# Nettoyage du fichier de fusion temporaire non trié
-rm -f "${OUT_DIR}/sed6_Vitis_vinifera_combined.bam"
+# Nettoyage immédiat des fichiers SAM temporaires devenus inutiles
+rm -f "${OUT_DIR}/unmerged.sam" "${OUT_DIR}/merged_no_header.sam" "${OUT_DIR}/sed6_Vitis_vinifera_combined.sam"
+
 
 # ======================================================================
-# ÉTAPE 2 : Lancement de mapDamage sur le fichier combiné
+# ÉTAPE 2 : Lancement de mapDamage dans le nouveau dossier
 # ======================================================================
 echo "Lancement de mapDamage sur le BAM combiné..."
 mapDamage -i "${OUT_DIR}/sed6_Vitis_vinifera_combined.sorted.bam" \
@@ -57,4 +63,4 @@ mapDamage -i "${OUT_DIR}/sed6_Vitis_vinifera_combined.sorted.bam" \
   --folder "${OUT_DIR}/mapDamage_combined_results" \
   --no-stats
 
-echo "Fin des analyses avec succès à $(date)"
+echo "Fin du script avec succès à $(date)"
