@@ -1,84 +1,41 @@
 #!/bin/bash
-#SBATCH --job-name=11_mapdamage_mus_musculus
+#SBATCH --job-name=11_mapdamage_murinae
 #SBATCH --ntasks=1
-#SBATCH -p gdec
-#SBATCH --time=10-00:00:00
-#SBATCH --mem=400G
+#SBATCH -p smp
+#SBATCH --mem=1000G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL
-#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_mus_musculus.err"
-#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_mus_musculus.out"
+#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_murinae.err"
+#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_murinae.out"
 
-
-
-#configuration des chemins
-
+# Configuration des chemins
 FASTQ_BASE_DIR="/home/amartin3/05_fastp"
-DAMAGEBASE="/home/amartin3/12_mapdamage_mus_musculus"
+DAMAGEBASE="/home/amartin3/12_mapdamage_murinae"
 KRAKENTOOLS_DIR="/home/amartin3/08_bracken/KrakenTools"
 KRAKEN_DIR_SOURCE="/home/amartin3/07_kraken2"
 
-LOGFILE="${DAMAGEBASE}/mapdamage_$(date +%Y%m%d_%H%M%S).txt"
+LOGFILE="${DAMAGEBASE}/mapdamage_murinae_$(date +%Y%m%d_%H%M%S).txt"
 MAPPING_INFO="${DAMAGEBASE}/mapping_bwa_info.tsv"
 
 mkdir -p "$DAMAGEBASE"
 
-#chargement de l'environnement
+# Chargement de l'environnement
 module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
 
-echo "Script MapDamage started at $(date)" | tee -a "$LOGFILE"
+echo "Script MapDamage (Tests Murinae) started at $(date)" | tee -a "$LOGFILE"
 
 # Initialiser le fichier de mapping info
 echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPING_INFO}"
 
-#telechargement des genomes
-
-
-#wget -O Mus_musculus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Mus_musculus/latest_assembly_versions/GCF_000001635.27_GRCm39/GCF_000001635.27_GRCm39_genomic.fna.gz
-#wget -O Rattus_norvegicus .fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Rattus_norvegicus/latest_assembly_versions/GCF_036323735.1_GRCr8/GCF_036323735.1_GRCr8_genomic.fna.gz 
-#wget -O Oryctolagus_cuniculus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Oryctolagus_cuniculus/latest_assembly_versions/GCF_964237555.1_mOryCun1.1/GCF_964237555.1_mOryCun1.1_genomic.fna.gz 
-
-#gunzip *.fna.gz
-
-
-
+# Déclaration des couples de test (TaxID_Extraction:Chemin_Genome_Reference)
+# On extrait TOUJOURS avec le TaxID 39107 (Murinae), mais on change la référence de mapping.
 declare -A TAXONS=(
-    
- 
-    ["Mus_musculus"]="10090:/home/amartin3/genomes/Mus_musculus.fna"
-    ["Rattus_norvegicus"]="10116:/home/amartin3/genomes/Rattus_norvegicus.fna"
-    
-
+    ["Mus_musculus"]="39107:/home/amartin3/genomes/Mus_musculus.fna"
+    ["Rattus_norvegicus"]="39107:/home/amartin3/genomes/Rattus_norvegicus.fna"
+    ["Oryctolagus_cuniculus"]="39107:/home/amartin3/genomes/Oryctolagus_cuniculus.fna"
 )
-
-
-
-#indexation des genomes de reference
-
-#echo "Indexation BWA..." # A ne faire qu'une fois
-
-#bwa index /home/amartin3/genomes/Homo_sapiens.fna
-#bwa index /home/amartin3/genomes/Canis_lupus.fna
-#bwa index /home/amartin3/genomes/Mus_musculus.fna
-#bwa index /home/amartin3/genomes/Ovis_aries.fna
-#bwa index /home/amartin3/genomes/Bos_taurus.fna
-
-#bwa index /home/amartin3/genomes/Conger_conger.fna
-#bwa index /home/amartin3/genomes/Diplodus_sargus.fna
-#bwa index /home/amartin3/genomes/Engraulis_encrasicolus.fna
-#bwa index /home/amartin3/genomes/Merluccius_merluccius.fna
-#bwa index /home/amartin3/genomes/Gobiusculus_flavescens.fasta
-
-#bwa index /storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa
-#bwa index /storage/groups/gdec/shared/Logan/New_accessions/GCA_034509565.1_PI306540_Tmono_genomic.fna
-#bwa index /storage/groups/gdec/shared/Logan/Accessions/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_genomic.fna
-#bwa index /home/amartin3/genomes/Oryza_sativa.fna
-#bwa index /home/amartin3/genomes/Quercus_variabilis.fna
-#bwa index /home/amartin3/genomes/Hordeum_vulgare.fna
-#bwa index /home/amartin3/genomes/Cannabis_sativa.fna
-
 
 # Boucle de traitement des échantillons
 SAMPLES=("sed6" "sed8")
@@ -92,41 +49,39 @@ for sample in "${SAMPLES[@]}"; do
 
   FASTQDIR="${FASTQ_BASE_DIR}"
 
-  # 1. AJUSTEMENT DU PATTERN : On cherche directement les fichiers .kraken générés à l'étape 7
-  # (S'assure de matcher exactement la structure de tes noms de fichiers, ex: sed6_merged.kraken ou clean_sed6...kraken)
   for KRAKENFILE in ${KRAKEN_DIR_SOURCE}/*${sample}*.kraken; do
     if [ ! -f "$KRAKENFILE" ]; then
       continue
     fi
 
-    #extraction du nom de base depuis le fichier .kraken
+    # Extraction du nom de base depuis le fichier .kraken
     KRAKENBASENAME=$(basename "$KRAKENFILE" .kraken)
     echo ""
     echo ">>> Processing $KRAKENBASENAME ($sample)" | tee -a "${LOGFILE}"
 
-    #extraire le prefixe de base
+    # Extraire le prefixe de base
     PREFIX=$(echo "$KRAKENBASENAME" | sed -E 's/(un)?merged$//')
     echo "Prefix: $PREFIX" | tee -a "${LOGFILE}"
 
-    #correspondance avec fichiers fastq
+    # Correspondance avec fichiers fastq
     R1FILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_unmerged_R1.fastq.gz"
     R2FILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_unmerged_R2.fastq.gz"
     MERGEDFILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_merged.fastq.gz"
 
-    #boucle sur les especes
+    # Boucle sur les stratégies de test
     for GROUP in "${!TAXONS[@]}"; do
       IFS=':' read -r TAXID REFFASTA <<< "${TAXONS[$GROUP]}"
       DAMAGEDIR="${DAMAGEBASE}/${sample}/${GROUP}"
       mkdir -p "${DAMAGEDIR}"
 
       echo ""
-      echo "--- Espèce: $GROUP (TaxID: $TAXID) ---"
+      echo "--- Test: $GROUP (Extraction TaxID: $TAXID via Référence: $REFFASTA) ---"
 
       OUTR1="${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_R1.fastq"
       OUTR2="${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_R2.fastq"
       OUTMERGED="${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.fastq"
 
-      #traitement des reads unmerged (paired-end)
+      # Traitement des reads unmerged (paired-end)
       if [[ "$KRAKENBASENAME" == *"unmerged"* ]] && [ -f "$R1FILE" ] && [ -f "$R2FILE" ]; then
         echo "Extraction des reads unmerged pour $GROUP..." | tee -a "${LOGFILE}"
 
@@ -158,9 +113,8 @@ for sample in "${SAMPLES[@]}"; do
             -r "$REFFASTA" \
             --folder "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_mapDamage_unmerged" \
             --no-stats 2>>"${LOGFILE}"
-    
-         
-          #calcul du taux de mapping
+          
+          # Calcul du taux de mapping
           total_reads=$(samtools view -c "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sorted.bam")
           mapped_reads=$(samtools view -c -F 4 "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sorted.bam")
           mapping_rate=0
@@ -168,12 +122,9 @@ for sample in "${SAMPLES[@]}"; do
             mapping_rate=$(echo "scale=2; $mapped_reads * 100 / $total_reads" | bc)
           fi
         
-
-
-          
           echo -e "${sample}\t${GROUP}\tunmerged\t${total_reads}\t${mapped_reads}\t${mapping_rate}" >> "$MAPPING_INFO"
           echo "Stats for ${sample}_${GROUP}_unmerged: ${mapped_reads}/${total_reads} (${mapping_rate}%)" | tee -a "$LOGFILE"
-    
+        
           rm -f "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_R1.sai" \
                 "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_R2.sai" \
                 "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sam" \
@@ -181,7 +132,7 @@ for sample in "${SAMPLES[@]}"; do
         fi
       fi
 
-      #traitement des reads merged (single-end)
+      # Traitement des reads merged (single-end)
       if [[ "$KRAKENBASENAME" == *"merged"* ]] && [ -f "$MERGEDFILE" ] && [[ "$KRAKENBASENAME" != *"unmerged"* ]]; then
         echo "Extraction des reads merged pour $GROUP..." | tee -a "${LOGFILE}"
         
@@ -212,7 +163,6 @@ for sample in "${SAMPLES[@]}"; do
             --folder "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_mapDamage_merged" \
             --no-stats 2>>"${LOGFILE}"
        
-          
           total_reads=$(samtools view -c "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sorted.bam")
           mapped_reads=$(samtools view -c -F 4 "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.sorted.bam")
           mapping_rate=0
@@ -229,8 +179,8 @@ for sample in "${SAMPLES[@]}"; do
         fi
       fi
 
-    done  # Fin boucle sur les especes
+    done  # Fin boucle sur les strategies
   done  # Fin boucle sur les fichiers Kraken
 done  # Fin boucle sur les echantillons
 
-echo "MapDamage termine avec succes."
+echo "Analyses comparatives Murinae terminees avec succes."
