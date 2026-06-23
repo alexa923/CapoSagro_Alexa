@@ -8,7 +8,7 @@
 #SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_murinae.err"
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_murinae.out"
 
-# Configuration des chemins
+#configuration des chemins
 FASTQ_BASE_DIR="/home/amartin3/05_fastp"
 DAMAGEBASE="/home/amartin3/12_mapdamage_murinae"
 KRAKENTOOLS_DIR="/home/amartin3/08_bracken/KrakenTools"
@@ -19,14 +19,14 @@ MAPPING_INFO="${DAMAGEBASE}/mapping_bwa_info.tsv"
 
 mkdir -p "$DAMAGEBASE"
 
-# Chargement de l'environnement
+#chargement de l'environnement
 module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
 
 echo "Script MapDamage (Tests Murinae) started at $(date)" | tee -a "$LOGFILE"
 
-# Initialiser le fichier de mapping info
+#initialiser le fichier de mapping info
 echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPING_INFO}"
 
 #telechargement des genomes
@@ -46,7 +46,7 @@ declare -A TAXONS=(
     ["Oryctolagus_cuniculus"]="39107:/home/amartin3/genomes/Oryctolagus_cuniculus.fna"
 )
 
-#Indexation des nouveaux génomes de référence
+#Indexation des nouveaux genomes de reference (a ne faire qu'une fois)
 
 echo "Indexation BWA du Rat et du Lapin..." | tee -a "$LOGFILE"
 
@@ -54,7 +54,7 @@ echo "Indexation BWA du Rat et du Lapin..." | tee -a "$LOGFILE"
 #bwa index /home/amartin3/genomes/Oryctolagus_cuniculus.fna
 
 
-# Boucle de traitement des échantillons
+#Boucle de traitement des échantillons
 SAMPLES=("sed6" "sed8")
 shopt -s nullglob
 
@@ -71,21 +71,21 @@ for sample in "${SAMPLES[@]}"; do
       continue
     fi
 
-    # Extraction du nom de base depuis le fichier .kraken
+    #Extraction du nom de base depuis le fichier .kraken
     KRAKENBASENAME=$(basename "$KRAKENFILE" .kraken)
     echo ""
     echo ">>> Processing $KRAKENBASENAME ($sample)" | tee -a "${LOGFILE}"
 
-    # Extraire le prefixe de base
+    #extraire le prefixe de base
     PREFIX=$(echo "$KRAKENBASENAME" | sed -E 's/(un)?merged$//')
     echo "Prefix: $PREFIX" | tee -a "${LOGFILE}"
 
-    # Correspondance avec fichiers fastq
+    #Correspondance avec fichiers fastq
     R1FILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_unmerged_R1.fastq.gz"
     R2FILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_unmerged_R2.fastq.gz"
     MERGEDFILE="${FASTQDIR}/clean_${sample}_concat_dedup_fastp_merged.fastq.gz"
 
-    # Boucle sur les stratégies de test
+    #boucle sur les especes
     for GROUP in "${!TAXONS[@]}"; do
       IFS=':' read -r TAXID REFFASTA <<< "${TAXONS[$GROUP]}"
       DAMAGEDIR="${DAMAGEBASE}/${sample}/${GROUP}"
@@ -98,7 +98,7 @@ for sample in "${SAMPLES[@]}"; do
       OUTR2="${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_R2.fastq"
       OUTMERGED="${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_merged.fastq"
 
-      # Traitement des reads unmerged (paired-end)
+      #Traitement des reads unmerged (paired-end)
       if [[ "$KRAKENBASENAME" == *"unmerged"* ]] && [ -f "$R1FILE" ] && [ -f "$R2FILE" ]; then
         echo "Extraction des reads unmerged pour $GROUP..." | tee -a "${LOGFILE}"
 
@@ -131,7 +131,7 @@ for sample in "${SAMPLES[@]}"; do
             --folder "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}_mapDamage_unmerged" \
             --no-stats 2>>"${LOGFILE}"
           
-          # Calcul du taux de mapping
+          #calcul du taux de mapping
           total_reads=$(samtools view -c "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sorted.bam")
           mapped_reads=$(samtools view -c -F 4 "${DAMAGEDIR}/${KRAKENBASENAME}_${GROUP}.sorted.bam")
           mapping_rate=0
@@ -149,7 +149,7 @@ for sample in "${SAMPLES[@]}"; do
         fi
       fi
 
-      # Traitement des reads merged (single-end)
+      #traitement des reads merged (single-end)
       if [[ "$KRAKENBASENAME" == *"merged"* ]] && [ -f "$MERGEDFILE" ] && [[ "$KRAKENBASENAME" != *"unmerged"* ]]; then
         echo "Extraction des reads merged pour $GROUP..." | tee -a "${LOGFILE}"
         
