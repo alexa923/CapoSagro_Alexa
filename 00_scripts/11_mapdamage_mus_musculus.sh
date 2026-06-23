@@ -46,27 +46,11 @@ echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPI
 
 declare -A TAXONS=(
     
-    ["Homo_sapiens"]="9606:/home/amartin3/genomes/Homo_sapiens.fna"
-    ["Canis_lupus"]="9612:/home/amartin3/genomes/Canis_lupus.fna"
+ 
     ["Mus_musculus"]="10090:/home/amartin3/genomes/Mus_musculus.fna"
-    ["Ovis_aries"]="9940:/home/amartin3/genomes/Ovis_aries.fna"
-    ["Bos_taurus"]="9913:/home/amartin3/genomes/Bos_taurus.fna"
-
+    ["Rattus_norvegicus"]="10116:/home/amartin3/genomes/Rattus_norvegicus.fna"
     
-    ["Conger_conger"]="82655:/home/amartin3/genomes/Conger_conger.fna"
-    ["Diplodus_sargus"]="38941:/home/amartin3/genomes/Diplodus_sargus.fna"
-    ["Engraulis_encrasicolus"]="184585:/home/amartin3/genomes/Engraulis_encrasicolus.fna"
-    ["Merluccius_merluccius"]="8063:/home/amartin3/genomes/Merluccius_merluccius.fna"
-    ["Gobiusculus_flavescens"]="257540:/home/amartin3/genomes/Gobiusculus_flavescens.fasta"
 
-    
-    ["Vitis_vinifera"]="29760:/storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa"
-    ["Triticum_monococcum"]="4568:/storage/groups/gdec/shared/Logan/New_accessions/GCA_034509565.1_PI306540_Tmono_genomic.fna"
-    ["Triticum_aestivum"]="4565:/storage/groups/gdec/shared/Logan/Accessions/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_genomic.fna"
-    ["Oryza_sativa"]="4530:/home/amartin3/genomes/Oryza_sativa.fna"
-    ["Quercus_variabilis"]="103481:/home/amartin3/genomes/Quercus_variabilis.fna"
-    ["Hordeum_vulgare"]="4513:/home/amartin3/genomes/Hordeum_vulgare.fna"
-    ["Cannabis_sativa"]="3483:/home/amartin3/genomes/Cannabis_sativa.fna"
 )
 
 
