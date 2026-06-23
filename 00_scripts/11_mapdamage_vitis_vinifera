@@ -14,7 +14,7 @@ VITIS_DIR="/home/amartin3/12_mapdamage/sed6/Vitis_vinifera"
 REF_FASTA="/home/amartin3/genomes/Vitis_vinifera.fna"
 
 OUT_DIR="/home/amartin3/12_mapdamage_vitis_vinifera"
-
+MAPPING_INFO="${OUT_DIR}/mapping_vigne_combined_info.tsv"
 
 mkdir -p "$OUT_DIR"
 
@@ -24,6 +24,7 @@ source ~/.bashrc
 conda activate bioinformatic
 
 echo "Début du traitement de la vigne (sed6) à $(date)"
+echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPING_INFO}"
 
 #recuperation des fichiers bam
 BAM_UNMERGED=$(ls ${VITIS_DIR}/*unmerged*.sorted.bam)
@@ -38,10 +39,11 @@ echo "Conversion des BAMs en SAM"
 samtools view -h "$BAM_UNMERGED" > "${OUT_DIR}/unmerged.sam"
 samtools view "$BAM_MERGED" > "${OUT_DIR}/merged_no_header.sam"
 
-echo "Concaténation des fichiers SAM avec cat..."
+echo "Concaténation des fichiers SAM..."
 cat "${OUT_DIR}/unmerged.sam" "${OUT_DIR}/merged_no_header.sam" > "${OUT_DIR}/sed6_Vitis_vinifera_combined.sam"
 
 echo "Conversion du SAM combiné en BAM trie"
+BAM_COMBINED_SORTED="${OUT_DIR}/sed6_Vitis_vinifera_combined.sorted.bam"
 samtools sort -o "${OUT_DIR}/sed6_Vitis_vinifera_combined.sorted.bam" "${OUT_DIR}/sed6_Vitis_vinifera_combined.sam"
 samtools index "${OUT_DIR}/sed6_Vitis_vinifera_combined.sorted.bam"
 
@@ -61,8 +63,8 @@ echo -e "sed6\tVitis_vinifera\tcombined\t${total_reads}\t${mapped_reads}\t${mapp
 echo "Stats for sed6_Vitis_vinifera_combined: ${mapped_reads}/${total_reads} (${mapping_rate}%)"
 
 #lancement de mapdamage
-echo "Lancement de mapDamage sur le BAM combiné..."
-mapDamage -i "${OUT_DIR}/sed6_Vitis_vinifera_combined.sorted.bam" \
+echo "Lancement de mapDamage..."
+mapDamage -i "$BAM_COMBINED_SORTED" \
   -r "$REF_FASTA" \
   --folder "${OUT_DIR}/mapDamage_combined_results" \
   --no-stats
