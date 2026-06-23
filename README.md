@@ -67,6 +67,8 @@ Then, we used kraken2 to do the taxonomic assignment using k-mer matches with th
 *the script 06_kraken_db.sh was a test for the creation of the kraken database but here it was already created so not necessary 
 We made a korna graph to visualize the results before the next step
 
+*the 07_kraken2_k25 and 07_kraken2_k29 scripts were used to reproduce the Kraken analyses with databases containing Kmers of different sizes (25 and 29 bp)
+
 ### Step 9 
 
 We used bracken to correct kraken2 results with the 08_bracken.sh script. 
