@@ -35,11 +35,11 @@ echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPI
 
 
 # wget -O Rattus_norvegicus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Rattus_norvegicus/latest_assembly_versions/GCF_015227675.2_mRAtSpa1.ec/GCF_015227675.2_mRAtSpa1.ec_genomic.fna.gz
-
 # wget -O Oryctolagus_cuniculus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Oryctolagus_cuniculus/latest_assembly_versions/GCF_000003625.3_Rabbit_genome_v3.0/GCF_000003625.3_Rabbit_genome_v3.0_genomic.fna.gz
 
+#gunzip *.fna.gz
 
-# On extrait TOUJOURS avec le TaxID 39107 (Murinae), mais on change la référence de mapping.
+#On extrait avec le TaxID 39107 (Murinae), mais on change la référence de mapping.
 declare -A TAXONS=(
     ["Mus_musculus"]="39107:/home/amartin3/genomes/Mus_musculus.fna"
     ["Rattus_norvegicus"]="39107:/home/amartin3/genomes/Rattus_norvegicus.fna"
