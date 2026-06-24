@@ -11,7 +11,7 @@
 
 VITIS_DIR="/home/amartin3/12_mapdamage/sed6/Vitis_vinifera"
 
-REF_FASTA="/home/amartin3/genomes/Vitis_vinifera.fna"
+REF_FASTA="/storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa"
 
 OUT_DIR="/home/amartin3/12_mapdamage_vitis_vinifera"
 MAPPING_INFO="${OUT_DIR}/mapping_vigne_combined_info.tsv"
