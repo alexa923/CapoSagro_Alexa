@@ -50,8 +50,8 @@ declare -A TAXONS=(
 
 echo "Indexation BWA du Rat et du Lapin..." | tee -a "$LOGFILE"
 
-#bwa index /home/amartin3/genomes/Rattus_norvegicus.fna
-#bwa index /home/amartin3/genomes/Oryctolagus_cuniculus.fna
+bwa index /home/amartin3/genomes/Rattus_norvegicus.fna
+bwa index /home/amartin3/genomes/Oryctolagus_cuniculus.fna
 
 
 #Boucle de traitement des échantillons
