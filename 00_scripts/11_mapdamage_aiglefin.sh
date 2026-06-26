@@ -32,12 +32,12 @@ echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPI
 
 # Déclaration unique pour Melanogrammus aeglefinus
 declare -A TAXONS=(
-    ["Melanogrammus_aeglefinus"]="8048:/home/amartin3/genomes/Melanogrammus_aeglefinus.fna"
+    ["Melanogrammus_aeglefinus"]="8056:/home/amartin3/genomes/Melanogrammus_aeglefinus.fna"
 )
 
-# Indexation du génome (A décommenter si tu ne l'as jamais fait pour ce fichier)
-# echo "Indexation BWA pour l'églefin..."
-# bwa index /home/amartin3/genomes/Melanogrammus_aeglefinus.fna
+# Indexation du génome
+ echo "Indexation BWA pour l'églefin..."
+ bwa index /home/amartin3/genomes/Melanogrammus_aeglefinus.fna
 
 # Boucle de traitement des échantillons
 SAMPLES=("sed6" "sed8")
