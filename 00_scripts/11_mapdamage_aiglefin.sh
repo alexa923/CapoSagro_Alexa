@@ -30,16 +30,16 @@ echo "Script MapDamage for Melanogrammus aeglefinus started at $(date)" | tee -a
 # Initialiser le fichier de mapping info
 echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPING_INFO}"
 
-# Déclaration unique pour Melanogrammus aeglefinus
+
 declare -A TAXONS=(
     ["Melanogrammus_aeglefinus"]="8056:/home/amartin3/genomes/Melanogrammus_aeglefinus.fna"
 )
 
 # Indexation du génome
- echo "Indexation BWA pour l'églefin..."
+ echo "Indexation BWA pour aiglefin..."
  bwa index /home/amartin3/genomes/Melanogrammus_aeglefinus.fna
 
-# Boucle de traitement des échantillons
+# Boucle de traitement des echantillons
 SAMPLES=("sed6" "sed8")
 shopt -s nullglob
 
@@ -176,7 +176,7 @@ for sample in "${SAMPLES[@]}"; do
         fi
       fi
 
-    done  # Fin boucle sur l'espece eglefin
+    done  # Fin boucle sur l'espece aiglefin
   done  # Fin boucle sur les fichiers Kraken
 done  # Fin boucle sur les echantillons
 
