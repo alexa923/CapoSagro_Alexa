@@ -133,25 +133,26 @@ print(plot_plan_sed8)
 
 library(tidyverse)
 
-# 1. IMPORTER ET NETTOYER LES DONNÉES
+
 df <- read.csv2("results_table_assignation.csv")  
-df <- df[, 1:7] # Garde uniquement les 7 premières colonnes
+df <- df[, 1:7] 
 colnames(df) <- c("Taxonomy", "sed6_merge", "sed6_unmerge", "sed8_merge", "sed8_unmerge", "sed6total", "sed8total")
 
-# 2. SÉPARATION EN TABLEAUX THÉMATIQUES
 
-# Liste des mots-clés pour piéger les mammifères marins dans la chaîne taxonomique
+
+
 mots_cles_marins <- "Cetacea|Delphinidae|Balaenopteridae|Phocidae|Otariidae|Odobenidae|Sirenia|Mysticeti|Odontoceti"
 
-# Tableau A : Mammifères MARINS seulement
+# Tableau A : Mammiferes marins
 df_mamm_marins <- df %>%
   filter(str_detect(Taxonomy, "c__Mammalia") & str_detect(Taxonomy, "\\|s__")) %>%
   filter(str_detect(Taxonomy, mots_cles_marins)) %>%
   mutate(Taxon = sub(".*\\|s__", "", Taxonomy))
 
-# Tableau B : Mammifères TERRESTRES (On exclut les marins grâce au "!")
+# Tableau B : Mammiferes terrestre
 df_mamm_terrestres <- df %>%
   filter(str_detect(Taxonomy, "c__Mammalia") & str_detect(Taxonomy, "\\|s__")) %>%
+#exlut les terrestres avec le !
   filter(!str_detect(Taxonomy, mots_cles_marins)) %>%
   mutate(Taxon = sub(".*\\|s__", "", Taxonomy))
 
@@ -167,11 +168,11 @@ df_plantes <- df %>%
 
 
 ######################################################################
-# 3. GRAPHIQUES POUR L'ÉCHANTILLON SED6 (Thème Bleu)
+# 3. GRAPHIQUES POUR L'ECHANTILLON SED6
 ######################################################################
 
-# --- Mammifères Marins (SED6) ---
-# Pas de top_n(30) ici car il y a peu d'espèces marines, on affiche tout !
+# mammiferes marins
+# Pas de top 30 car peu d'especes
 plot_mamm_marins_sed6 <- ggplot(df_mamm_marins, aes(x = sed6total, y = reorder(Taxon, sed6total))) +
   geom_col(fill = "steelblue") +  
   scale_x_continuous(limits = c(0, 25000), breaks = seq(0, 25000, by = 5000)) +
@@ -179,7 +180,7 @@ plot_mamm_marins_sed6 <- ggplot(df_mamm_marins, aes(x = sed6total, y = reorder(T
   theme_minimal() + theme(axis.text.y = element_text(size = 7))
 print(plot_mamm_marins_sed6)
 
-# --- Mammifères Terrestres / Autres (SED6) ---
+# mammiferes terrestres
 top_mamm_terr_sed6 <- top_n(df_mamm_terrestres, 30, wt = sed6total)
 plot_mamm_terr_sed6 <- ggplot(top_mamm_terr_sed6, aes(x = sed6total, y = reorder(Taxon, sed6total))) +
   geom_col(fill = "steelblue") +  
@@ -188,7 +189,7 @@ plot_mamm_terr_sed6 <- ggplot(top_mamm_terr_sed6, aes(x = sed6total, y = reorder
   theme_minimal() + theme(axis.text.y = element_text(size = 7))
 print(plot_mamm_terr_sed6)
 
-# --- Poissons (SED6) ---
+# poissons
 top_pois_sed6 <- top_n(df_poissons, 30, wt = sed6total)
 plot_pois_sed6 <- ggplot(top_pois_sed6, aes(x = sed6total, y = reorder(Taxon, sed6total))) +
   geom_col(fill = "steelblue") +  
@@ -197,7 +198,7 @@ plot_pois_sed6 <- ggplot(top_pois_sed6, aes(x = sed6total, y = reorder(Taxon, se
   theme_minimal() + theme(axis.text.y = element_text(size = 7))
 print(plot_pois_sed6)
 
-# --- Plantes (SED6) ---
+# plantes
 top_plan_sed6 <- top_n(df_plantes, 30, wt = sed6total)
 plot_plan_sed6 <- ggplot(top_plan_sed6, aes(x = sed6total, y = reorder(Taxon, sed6total))) +
   geom_col(fill = "steelblue") +  
@@ -208,10 +209,10 @@ print(plot_plan_sed6)
 
 
 ######################################################################
-# 4. GRAPHIQUES POUR L'ÉCHANTILLON SED8 (Thème Corail)
+# 4. GRAPHIQUES POUR L'ECHANTILLON SED8 
 ######################################################################
 
-# --- Mammifères Marins (SED8) ---
+# mammiferes marins
 plot_mamm_marins_sed8 <- ggplot(df_mamm_marins, aes(x = sed8total, y = reorder(Taxon, sed8total))) +
   geom_col(fill = "coral") +  
   scale_x_continuous(limits = c(0, 25000), breaks = seq(0, 25000, by = 5000)) +
@@ -219,7 +220,7 @@ plot_mamm_marins_sed8 <- ggplot(df_mamm_marins, aes(x = sed8total, y = reorder(T
   theme_minimal() + theme(axis.text.y = element_text(size = 7))
 print(plot_mamm_marins_sed8)
 
-# --- Mammifères Terrestres / Autres (SED8) ---
+# mammiferes terrestres
 top_mamm_terr_sed8 <- top_n(df_mamm_terrestres, 30, wt = sed8total)
 plot_mamm_terr_sed8 <- ggplot(top_mamm_terr_sed8, aes(x = sed8total, y = reorder(Taxon, sed8total))) +
   geom_col(fill = "coral") +  
@@ -228,7 +229,7 @@ plot_mamm_terr_sed8 <- ggplot(top_mamm_terr_sed8, aes(x = sed8total, y = reorder
   theme_minimal() + theme(axis.text.y = element_text(size = 7))
 print(plot_mamm_terr_sed8)
 
-# --- Poissons (SED8) ---
+# poissons
 top_pois_sed8 <- top_n(df_poissons, 30, wt = sed8total)
 plot_pois_sed8 <- ggplot(top_pois_sed8, aes(x = sed8total, y = reorder(Taxon, sed8total))) +
   geom_col(fill = "coral") +  
@@ -237,7 +238,7 @@ plot_pois_sed8 <- ggplot(top_pois_sed8, aes(x = sed8total, y = reorder(Taxon, se
   theme_minimal() + theme(axis.text.y = element_text(size = 7))
 print(plot_pois_sed8)
 
-# --- Plantes (SED8) ---
+# plantes
 top_plan_sed8 <- top_n(df_plantes, 30, wt = sed8total)
 plot_plan_sed8 <- ggplot(top_plan_sed8, aes(x = sed8total, y = reorder(Taxon, sed8total))) +
   geom_col(fill = "coral") +  
