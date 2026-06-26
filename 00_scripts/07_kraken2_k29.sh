@@ -14,7 +14,7 @@ source ~/.bashrc
 conda activate bioinformatic
 
 ENTREE="/home/amartin3/05_fastp"
-KRAKEN2_DB="/storage/groups/gdec/shared/Kraken_database/k2_core_nt_20250609"
+KRAKEN2_DB="/storage/groups/gdec/shared/Kraken_database/core_nt_k29"
 SORTIE="/home/amartin3/07_kraken2_k29"
 THREADS=36
 
