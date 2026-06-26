@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH --job-name=11_mapdamage_eglefin
+#SBATCH --job-name=11_mapdamage_aiglefin
 #SBATCH --ntasks=1
 #SBATCH -p gdec
 #SBATCH --time=10-00:00:00
 #SBATCH --mem=400G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL
-#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_eglefin.err"
-#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_eglefin.out"
+#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_aiglefin.err"
+#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_aiglefin.out"
 
 # Configuration des chemins
 FASTQ_BASE_DIR="/home/amartin3/05_fastp"
