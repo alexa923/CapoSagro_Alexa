@@ -1,10 +1,11 @@
 #!/bin/bash
 #SBATCH -p gdec
 #SBATCH --mem=300G
-#SBATCH -J K25_brack
-#SBATCH -o K25_brack.out
-#SBATCH -e K25_brack.err
+#SBATCH -J 08_creation_bracken_k25
+#SBATCH -o 08_creation_bracken_k25.out
+#SBATCH -e 08_creation_bracken_k25.err
 #SBATCH --cpus-per-task=64
+
 
 
 DB_DIR="/storage/groups/gdec/shared/Kraken_database/core_nt_k25"
