@@ -6,7 +6,9 @@
 #SBATCH -e 08_creation_bracken_k25.err
 #SBATCH --cpus-per-task=64
 
-
+module load conda/4.12.0
+source ~/.bashrc
+conda activate bioinformatic
 
 DB_DIR="/storage/groups/gdec/shared/Kraken_database/core_nt_k25"
 bracken-build -d $DB_DIR -t 64 -k 25 -l 50
