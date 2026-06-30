@@ -10,7 +10,7 @@
 
 #configuration des chemins
 FASTQ_BASE_DIR="/home/amartin3/05_fastp"
-DAMAGEBASE="/home/amartin3/12_mapdamage_murinae"
+DAMAGEBASE="/home/amartin3/12_mapdamage_murinae3"
 KRAKENTOOLS_DIR="/home/amartin3/08_bracken/KrakenTools"
 KRAKEN_DIR_SOURCE="/home/amartin3/07_kraken2"
 
