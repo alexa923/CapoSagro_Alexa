@@ -1,16 +1,16 @@
 #!/bin/bash
-#SBATCH --job-name=11_mapdamage_murinae
+#SBATCH --job-name=11_mapdamage_murinae2
 #SBATCH --ntasks=1
 #SBATCH -p smp
 #SBATCH --mem=1000G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL
-#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_murinae.err"
-#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_murinae.out"
+#SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_murinae2.err"
+#SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_murinae2.out"
 
 #configuration des chemins
 FASTQ_BASE_DIR="/home/amartin3/05_fastp"
-DAMAGEBASE="/home/amartin3/12_mapdamage_murinae"
+DAMAGEBASE="/home/amartin3/12_mapdamage_murinae2"
 KRAKENTOOLS_DIR="/home/amartin3/08_bracken/KrakenTools"
 KRAKEN_DIR_SOURCE="/home/amartin3/07_kraken2"
 
@@ -24,7 +24,7 @@ module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
 
-echo "Script MapDamage (Tests Murinae) started at $(date)" | tee -a "$LOGFILE"
+echo "Script MapDamage (Tests Glires) started at $(date)" | tee -a "$LOGFILE"
 
 #initialiser le fichier de mapping info
 echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPING_INFO}"
@@ -39,19 +39,20 @@ echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPI
 
 #gunzip *.fna.gz
 
-#On extrait avec le TaxID 39107 (Murinae), mais on change la référence de mapping.
+# On extrait avec le TaxID 314147 (Glires : comprend Rodentia et Lagomorpha)
 declare -A TAXONS=(
-    ["Mus_musculus"]="39107:/home/amartin3/genomes/Mus_musculus.fna"
-    ["Rattus_norvegicus"]="39107:/home/amartin3/genomes/Rattus_norvegicus.fna"
-    ["Oryctolagus_cuniculus"]="39107:/home/amartin3/genomes/Oryctolagus_cuniculus.fna"
+    ["Mus_musculus"]="314147:/home/amartin3/genomes/Mus_musculus.fna"
+    ["Rattus_norvegicus"]="314147:/home/amartin3/genomes/Rattus_norvegicus.fna"
+    ["Oryctolagus_cuniculus"]="314147:/home/amartin3/genomes/Oryctolagus_cuniculus.fna"
 )
+
 
 #Indexation des nouveaux genomes de reference (a ne faire qu'une fois)
 
-echo "Indexation BWA du Rat et du Lapin..." | tee -a "$LOGFILE"
+#echo "Indexation BWA du Rat et du Lapin..." | tee -a "$LOGFILE"
 
-bwa index /home/amartin3/genomes/Rattus_norvegicus.fna
-bwa index /home/amartin3/genomes/Oryctolagus_cuniculus.fna
+#bwa index /home/amartin3/genomes/Rattus_norvegicus.fna
+#bwa index /home/amartin3/genomes/Oryctolagus_cuniculus.fna
 
 
 #Boucle de traitement des échantillons
