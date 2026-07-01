@@ -22,15 +22,15 @@ cd /home/amartin3/07_kraken2_k25
 
 #Creation de la table d assignation
 echo "creation de la table"
-python3 /home/amartin3/07_kraken2_k25/KrakenTools/kreport2mpa.py -r clean_sed6_concat_dedup_merged_bracken.report -o clean_sed6_concat_dedup_merged_bracken.mpa
-python3 /home/amartin3/07_kraken2_k25/KrakenTools/kreport2mpa.py -r clean_sed6_concat_dedup_unmerged_bracken.report -o clean_sed6_concat_dedup_unmerged_bracken.mpa
-python3 /home/amartin3/07_kraken2_k25/KrakenTools/kreport2mpa.py -r clean_sed8_concat_dedup_merged_bracken.report -o clean_sed8_concat_dedup_merged_bracken.mpa
-python3 /home/amartin3/07_kraken2_k25/KrakenTools/kreport2mpa.py -r clean_sed8_concat_dedup_unmerged_bracken.report -o clean_sed8_concat_dedup_unmerged_bracken.mpa
+python3 /home/amartin3/07_kraken2_k25/KrakenTools/kreport2mpa.py -r clean_sed6_concat_dedup_merged_kraken.report -o clean_sed6_concat_dedup_merged_kraken.mpa
+python3 /home/amartin3/07_kraken2_k25/KrakenTools/kreport2mpa.py -r clean_sed6_concat_dedup_unmerged_kraken.report -o clean_sed6_concat_dedup_unmerged_kraken.mpa
+python3 /home/amartin3/07_kraken2_k25/KrakenTools/kreport2mpa.py -r clean_sed8_concat_dedup_merged_kraken.report -o clean_sed8_concat_dedup_merged_kraken.mpa
+python3 /home/amartin3/07_kraken2_k25/KrakenTools/kreport2mpa.py -r clean_sed8_concat_dedup_unmerged_kraken.report -o clean_sed8_concat_dedup_unmerged_kraken.mpa
 echo "table creee"
 
 echo "Combinaison en un seul fichier"
 
 
-python3 /home/amartin3/07_kraken2_k25/KrakenTools/combine_mpa.py -i clean_sed6_concat_dedup_merged_bracken.mpa clean_sed6_concat_dedup_unmerged_bracken.mpa clean_sed8_concat_dedup_merged_bracken.mpa clean_sed8_concat_dedup_unmerged_bracken.mpa -o ombined_mpa.tsv
+python3 /home/amartin3/07_kraken2_k25/KrakenTools/combine_mpa.py -i clean_sed6_concat_dedup_merged_kraken.mpa clean_sed6_concat_dedup_unmerged_kraken.mpa clean_sed8_concat_dedup_merged_kraken.mpa clean_sed8_concat_dedup_unmerged_kraken.mpa -o combined_mpa.tsv
 
 echo "Analyse terminee avec succes !"
