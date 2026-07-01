@@ -25,7 +25,7 @@ echo "creation de la table"
 python3 /home/amartin3/07_kraken2_k25/KrakenTools/kreport2mpa.py -r clean_sed6_concat_dedup_merged.report -o clean_sed6_concat_dedup_merged_kraken.mpa
 python3 /home/amartin3/07_kraken2_k25/KrakenTools/kreport2mpa.py -r clean_sed6_concat_dedup_unmerged.report -o clean_sed6_concat_dedup_unmerged_kraken.mpa
 python3 /home/amartin3/07_kraken2_k25/KrakenTools/kreport2mpa.py -r clean_sed8_concat_dedup_merged.report -o clean_sed8_concat_dedup_merged_kraken.mpa
-python3 /home/amartin3/07_kraken2_k25/KrakenTools/kreport2mpa.py -r clean_sed8_concat_dedup_unmerged_.report -o clean_sed8_concat_dedup_unmerged_kraken.mpa
+python3 /home/amartin3/07_kraken2_k25/KrakenTools/kreport2mpa.py -r clean_sed8_concat_dedup_unmerged.report -o clean_sed8_concat_dedup_unmerged_kraken.mpa
 echo "table creee"
 
 echo "Combinaison en un seul fichier"
