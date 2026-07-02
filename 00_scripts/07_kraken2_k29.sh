@@ -1,13 +1,13 @@
 #!/bin/bash
 #SBATCH --job-name=07_kraken2_k29
 #SBATCH --ntasks=1
+#SBATCH --cpus-per-task=36
 #SBATCH -p smp
 #SBATCH --mem=1000G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL
 #SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/07_kraken2_k29.err"
 #SBATCH --output="/home/amartin3/CapoSagro_Alexa/00_scripts/07_kraken2_k29.out"
-
 
 module load conda/4.12.0
 source ~/.bashrc
@@ -26,11 +26,13 @@ echo "analyse des merged"
 for MERGED in "$ENTREE"/*_fastp_merged.fastq.gz
 do
     SAMPLE=$(basename "$MERGED" _fastp_merged.fastq.gz)
-    SORTIE_KRAKEN="$SORTIE/${SAMPLE}_merged.kraken"
     SORTIE_REPORT="$SORTIE/${SAMPLE}_merged.report"
+    SORTIE_KRAKEN="$SORTIE/${SAMPLE}_merged.kraken.gz" compressé
 
+   
     kraken2 --conf 0.2 --db "$KRAKEN2_DB" --threads $THREADS \
-        --output "$SORTIE_KRAKEN" --report "$SORTIE_REPORT" "$MERGED"  
+        --output - --report "$SORTIE_REPORT" "$MERGED" | gzip > "$SORTIE_KRAKEN"
+    
     echo "Termine: $SAMPLE (merged)"
 done
     
@@ -44,11 +46,12 @@ do
    
     # Ne lance que si R2 existe
     if [[ -f "$R2" ]]; then
-        SORTIE_KRAKEN="$SORTIE/${SAMPLE}_unmerged.kraken"
         SORTIE_REPORT="$SORTIE/${SAMPLE}_unmerged.report"
+        SORTIE_KRAKEN="$SORTIE/${SAMPLE}_unmerged.kraken.gz" 
 
+ 
         kraken2 --conf 0.2 --paired --db "$KRAKEN2_DB" --threads $THREADS \
-            --output "$SORTIE_KRAKEN" --report "$SORTIE_REPORT" "$R1" "$R2"
+            --output - --report "$SORTIE_REPORT" "$R1" "$R2" | gzip > "$SORTIE_KRAKEN"
 
         echo "Termine : $SAMPLE (unmerged)"
     fi
@@ -56,6 +59,8 @@ done
 
 echo "Analyse Kraken2 terminee pour tous les echantillons."
 
+
+#Visualisation KRONA
 SORTIE_KRONA="/home/amartin3/07_kraken2_k29/krona"
 mkdir -p "$SORTIE_KRONA"
 
