@@ -1,9 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name=repare_sed6_k29
 #SBATCH --ntasks=1
-#SBATCH -p gdec
-#SBATCH --time=10-00:00:00
-#SBATCH --mem=400G
+#SBATCH -p normal
+#SBATCH --mem=100G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL
 #SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/repare_sed6_k29.err"
