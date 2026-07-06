@@ -50,30 +50,40 @@ data_long <- data_categories %>%
 
 #  GRAPHIQUE 1: 4 catégories principales
 
-data_graph1 <- data_long %>%
+
+data_graph1_empile <- data_long %>%
   group_by(Site, Categorie) %>%
   summarise(Reads = sum(Reads), .groups = 'drop') %>%
   group_by(Site) %>%
+  # On calcule le pourcentage réel sur le total du site
   mutate(Abondance_Relative = (Reads / sum(Reads)) * 100)
 
-plot1 <- ggplot(data_graph1, aes(x = Site, y = Abondance_Relative, fill = Site)) +
-  geom_bar(stat = "identity", width = 0.6, color = "black") +
-  # Découpe en 4 barplots
-  facet_wrap(~Categorie, scales = "free_y", ncol = 4) + 
-  scale_fill_manual(values = c("sed6" = "red", "sed8" = "blue")) +
+plot1_final <- ggplot(data_graph1_empile, aes(x = Site, y = Abondance_Relative, fill = Categorie)) +
+  # position = "stack" fusionne et empile les 4 catégories dans le même barplot
+  geom_bar(stat = "identity", position = "stack", width = 0.5, color = "black") +
+  
+  # ajout des pourcentages 
+  geom_text(aes(label = ifelse(Abondance_Relative > 1.0, sprintf("%.1f%%", Abondance_Relative), "")), 
+            position = position_stack(vjust = 0.5), size = 4, fontface = "bold", color = "white") +
+  
+
+  scale_fill_brewer(palette = "Set2") + 
   labs(
-    title = "Structure globale du microbiome sédimentaire ",
+    title = "Structure globale du microbiome sédimentaire (Multi-kingdom)",
     x = "Sites de prélèvement",
-    y = "Abondance relative (%) au sein du groupe"
+    y = "Abondance relative globale (%)",
+    fill = "Groupes microbiens"
   ) +
   theme_bw() +
   theme(
-    strip.background = element_rect(fill = "gray"), 
-    strip.text = element_text(face = "bold", size = 11),
-    legend.position = "none"
+    axis.text = element_text(size = 11, face = "bold"),
+    axis.title = element_text(face = "bold"),
+    legend.title = element_text(face = "bold"),
+    title = element_text(face = "bold")
   )
 
-print(plot1)
+print(plot1_final)
+
 
 
 #  GRAPHIQUE 2 : zoom au niveau des phylums (top 15)
