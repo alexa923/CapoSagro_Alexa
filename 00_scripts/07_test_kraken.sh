@@ -11,6 +11,7 @@
 module load conda/4.12.0
 source ~/.bashrc
 conda activate bioinformatic
+THREADS=36
 
 # On cible spécifiquement le fichier unique qui a plante
 MERGED="/home/amartin3/05_fastp/clean_sed6_concat_dedup_merged.fastq.gz"
@@ -25,7 +26,7 @@ SORTIE_KRAKEN="$SORTIE/clean_sed6_concat_dedup_merged.kraken.gz"
 echo "Relancement exclusif de sed6_merged avec compression à la volée..."
 
 
-kraken2 --conf 0.2 --db "$KRAKEN2_DB" \
+kraken2 --conf 0.2 --db "$KRAKEN2_DB" --threads $THREADS \
     --output - --report "$SORTIE_REPORT" "$MERGED" | gzip > "$SORTIE_KRAKEN"
 
 echo "Réparation terminée avec succès."
