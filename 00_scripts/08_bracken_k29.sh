@@ -13,7 +13,6 @@ source ~/.bashrc
 conda activate bioinformatic
 
 KRAKEN2_DB="/storage/groups/gdec/shared/Kraken_database/core_nt_k29"
-ENTREE="/home/amartin3/07_kraken2_k25"
 ENTREE="/home/amartin3/07_kraken2_k29"
 SORTIE="/home/amartin3/08_bracken_k29"
 SORTIE_KRONA="/home/amartin3/08_bracken_k29/krona"
