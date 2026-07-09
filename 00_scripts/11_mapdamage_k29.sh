@@ -40,6 +40,7 @@ declare -A TAXONS=(
     ["Tursiops_truncatus"]="9739:/home/amartin3/genomes/Tursiops_truncatus.fna"
     ["Orcinus_orca"]="9733:/home/amartin3/genomes/Orcinus_orca.fna"
 )
+
 SAMPLES=("sed6" "sed8")
 shopt -s nullglob
 
