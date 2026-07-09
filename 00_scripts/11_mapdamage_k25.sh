@@ -52,6 +52,19 @@ declare -A TAXONS=(
     ["Orcinus_orca"]="9733:/home/amartin3/genomes/Orcinus_orca.fna"
 )
 
+#indexation des genomes de reference
+
+echo "Indexation BWA..." # A ne faire qu'une fois
+
+
+bwa index /home/amartin3/genomes//home/amartin3/genomes/Benthosema_glaciale.fna
+bwa index /home/amartin3/genomes//home/amartin3/genomes/Galium_boreale.fna
+bwa index /home/amartin3/genomes//home/amartin3/genomes/Stenella_coeruleoalba.fna
+bwa index /home/amartin3/genomes//home/amartin3/genomes/Tursiops_truncatus.fna
+bwa index /home/amartin3/genomes//home/amartin3/genomes/Orcinus_orca.fna
+
+
+
 SAMPLES=("sed6" "sed8")
 shopt -s nullglob
 
