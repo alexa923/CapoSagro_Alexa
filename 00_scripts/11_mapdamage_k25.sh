@@ -36,9 +36,9 @@ echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPI
 # wget -O Benthosema_glaciale.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Benthosema_glaciale/latest_assembly_versions/GCF_900302495.1_fBenGla1.1/GCF_900302495.1_fBenGla1.1_genomic.fna.g
 # wget -O Galium_boreale.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Galium_boreale/latest_assembly_versions/GCF_xxxxxxxxx.x/GCF_xxxxxxxxx.x_genomic.fna.gz
 
+#gunzip *.fna.gz
 
 
-# Déclaration des 10 espèces cibles
 declare -A TAXONS=(
     ["benthosema_glaciale"]="131583:/home/amartin3/genomes/Benthosema_glaciale.fna"
     ["galium_boreale"]="285038:/home/amartin3/genomes/Galium_boreale.fna"
