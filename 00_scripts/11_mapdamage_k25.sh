@@ -40,16 +40,16 @@ echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPI
 
 
 declare -A TAXONS=(
-    ["benthosema_glaciale"]="131583:/home/amartin3/genomes/Benthosema_glaciale.fna"
-    ["galium_boreale"]="285038:/home/amartin3/genomes/Galium_boreale.fna"
-    ["conger_conger"]="82655:/home/amartin3/genomes/Conger_conger.fna"
-    ["melanogrammus_aeglefinus"]="8048:/home/amartin3/genomes/Melanogrammus_aeglefinus.fna"
-    ["stenella_coeruleoalba"]="9741:/home/amartin3/genomes/Stenella_coeruleoalba.fna"
-    ["mus_musculus"]="10090:/home/amartin3/genomes/Mus_musculus.fna"
-    ["vitis_vinifera"]="29760:/storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa"
-    ["triticum_monococcum"]="4568:/storage/groups/gdec/shared/Logan/New_accessions/GCA_034509565.1_PI306540_Tmono_genomic.fna"
-    ["tursiops_truncatus"]="9739:/home/amartin3/genomes/Tursiops_truncatus.fna"
-    ["orcinus_orca"]="9733:/home/amartin3/genomes/Orcinus_orca.fna"
+    ["Benthosema_glaciale"]="125796:/home/amartin3/genomes/Benthosema_glaciale.fna"
+    ["Galium_boreale"]="35896:/home/amartin3/genomes/Galium_boreale.fna"
+    ["Conger_conger"]="82655:/home/amartin3/genomes/Conger_conger.fna"
+    ["Melanogrammus_aeglefinus"]="8056:/home/amartin3/genomes/Melanogrammus_aeglefinus.fna"
+    ["Stenella_coeruleoalba"]="9737:/home/amartin3/genomes/Stenella_coeruleoalba.fna"
+    ["Mus_musculus"]="10090:/home/amartin3/genomes/Mus_musculus.fna"
+    ["Vitis_vinifera"]="29760:/storage/groups/gdec/shared_paleo/genomes_REF/12Xv2_grapevine_genome_assembly.fa"
+    ["Triticum_monococcum"]="4568:/storage/groups/gdec/shared/Logan/New_accessions/GCA_034509565.1_PI306540_Tmono_genomic.fna"
+    ["Tursiops_truncatus"]="9739:/home/amartin3/genomes/Tursiops_truncatus.fna"
+    ["Orcinus_orca"]="9733:/home/amartin3/genomes/Orcinus_orca.fna"
 )
 
 SAMPLES=("sed6" "sed8")
