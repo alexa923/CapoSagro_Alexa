@@ -56,11 +56,11 @@ declare -A TAXONS=(
 echo "Indexation BWA..." # A ne faire qu'une fois
 
 
-bwa index /home/amartin3/genomes//home/amartin3/genomes/Benthosema_glaciale.fna
-bwa index /home/amartin3/genomes//home/amartin3/genomes/Galium_boreale.fna
-bwa index /home/amartin3/genomes//home/amartin3/genomes/Stenella_coeruleoalba.fna
-bwa index /home/amartin3/genomes//home/amartin3/genomes/Tursiops_truncatus.fna
-bwa index /home/amartin3/genomes//home/amartin3/genomes/Orcinus_orca.fna
+bwa index /home/amartin3/genomes/Benthosema_glaciale.fna
+bwa index /home/amartin3/genomes/Galium_boreale.fna
+bwa index /home/amartin3/genomes/Stenella_coeruleoalba.fna
+bwa index /home/amartin3/genomes/Tursiops_truncatus.fna
+bwa index /home/amartin3/genomes/Orcinus_orca.fna
 
 
 
