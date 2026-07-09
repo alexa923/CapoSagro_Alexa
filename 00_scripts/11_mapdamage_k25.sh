@@ -1,9 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name=11_mapdamage_k25
 #SBATCH --ntasks=1
-#SBATCH -p gdec
-#SBATCH --time=10-00:00:00
-#SBATCH --mem=400G
+#SBATCH -p smp
+#SBATCH --mem=1000G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL
 #SBATCH --error="/home/amartin3/CapoSagro_Alexa/00_scripts/11_mapdamage_k25.err"
