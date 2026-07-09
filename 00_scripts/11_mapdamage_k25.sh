@@ -28,6 +28,16 @@ conda activate bioinformatic
 echo "Script MapDamage K25 started at $(date)" | tee -a "$LOGFILE"
 echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPING_INFO}"
 
+#telechargement des genomes 
+# cd /home/amartin3/genomes
+# wget -O Stenella_coeruleoalba.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Stenella_coeruleoalba/latest_assembly_versions/GCF_023533275.1_mSteCoe1.p/GCF_023533275.1_mSteCoe1.p_genomic.fna.gz
+# wget -O Tursiops_truncatus.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Tursiops_truncatus/latest_assembly_versions/GCF_011762595.1_mTurTru1.mat.Y/GCF_011762595.1_mTurTru1.mat.Y_genomic.fna.gz
+# wget -O Orcinus_orca.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Orcinus_orca/latest_assembly_versions/GCF_000331955.2_Oorc_1.1/GCF_000331955.2_Oorc_1.1_genomic.fna.gz
+# wget -O Benthosema_glaciale.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Benthosema_glaciale/latest_assembly_versions/GCF_900302495.1_fBenGla1.1/GCF_900302495.1_fBenGla1.1_genomic.fna.g
+# wget -O Galium_boreale.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Galium_boreale/latest_assembly_versions/GCF_xxxxxxxxx.x/GCF_xxxxxxxxx.x_genomic.fna.gz
+
+
+
 # Déclaration des 10 espèces cibles
 declare -A TAXONS=(
     ["benthosema_glaciale"]="131583:/home/amartin3/genomes/Benthosema_glaciale.fna"
