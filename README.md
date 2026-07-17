@@ -85,9 +85,18 @@ Then, we used the 10_top50euka.R script to make barplots representing the top 50
 ### Step 12
 
 We used the 11_mapdamage.sh script to calculate the mapping rate of the species and then make graph to deduct if the samples contain ancient DNA. 
+The same scripts were also used for k25 and k29 database.
 
 *11_mapdamage_mus_musculus.sh was a test to screen 3 different species (mouse, rat and rabbit) using the family mevel TaxID (Murinae) rather than mus musculus to broaden the alingment capture and avoid missing ancient reads not present in standard specific database.
 *11_mapdamage_vitis_vinifera.sh sript combined both merged and unmerged read fractions for grapevine analysis on sample sed6 to artificially boost the number of reads to reconstruct a reliable damage curve.
+
+### Step 13 
+
+We used the 12_analyse_microbiome script to observe the marine ecosystem that has developed around the shipwreck.
+
+### Stp 14
+
+We used the 13_blast_tomate script to confirm an incorrect taxonomic assignment (false positive).
 
 ### References 
 https://github.com/ZimmermannHH/BeringSea_shotgun_sequencing/
