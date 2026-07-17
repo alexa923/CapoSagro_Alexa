@@ -19,7 +19,7 @@ KRAKEN_FILE="home/amartin3/07_kraken2/clean_sed6_concat_dedup_merged.kraken"
 FASTQ_FILE="home/amartin3/05_fastp/clean_sed6_concat_dedup_fastp_merged.fastq.gz"
 TAXID=4081
 
-cd home/amartin3/07_kraken2
+cd /home/amartin3/07_kraken2
 echo "Début de l'extraction des reads (TaxID: ${TAXID}) - $(date)"
 
 # Extraction des reads avec KrakenTools
