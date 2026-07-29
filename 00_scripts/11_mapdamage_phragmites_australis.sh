@@ -17,6 +17,12 @@ KRAKEN_DIR_SOURCE="/home/amartin3/07_kraken2"
 LOGFILE="${DAMAGEBASE}/mapdamage_phragmites_$(date +%Y%m%d_%H%M%S).txt"
 MAPPING_INFO="${DAMAGEBASE}/mapping_bwa_info_phragmites.tsv"
 
+mkdir -p "$DAMAGEBASE"
+
+# Chargement de l'environnement
+module load conda/4.12.0
+source ~/.bashrc
+conda activate bioinformatic
 
 cd /home/amartin3/genomes
 
@@ -30,12 +36,7 @@ bwa index /home/amartin3/genomes/Phragmites_australis.fna
 
 
 
-mkdir -p "$DAMAGEBASE"
 
-# Chargement de l'environnement
-module load conda/4.12.0
-source ~/.bashrc
-conda activate bioinformatic
 
 echo "Script MapDamage (Phragmites australis) started at $(date)" | tee -a "$LOGFILE"
 
