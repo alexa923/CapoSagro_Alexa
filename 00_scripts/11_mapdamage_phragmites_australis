@@ -22,7 +22,7 @@ MAPPING_INFO="${DAMAGEBASE}/mapping_bwa_info_phragmites.tsv"
 cd /home/amartin3/genomes
 
 # Telechargement du génome de Phragmites australis 
-#wget -O Phragmites_australis.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/030/534/245/GCF_030534245.1_ASM3053424v1/GCF_030534245.1_ASM3053424v1_genomic.fna.gz
+#wget -O Phragmites_australis.fna.gz https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/030/534/245/GCA_958298935.1/GCA_958298935.1_lpPhrAust1.1_genomic.fna
 
 #gunzip Phragmites_australis.fna.gz
 
