@@ -26,7 +26,7 @@ cd /home/amartin3/genomes
 
 #gunzip Phragmites_australis.fna.gz
 
-# Indexation BWA ((a faire une seule fois)
+# Indexation BWA (a faire une seule fois)
 bwa index /home/amartin3/genomes/Phragmites_australis.fna
 
 
@@ -43,9 +43,9 @@ echo "Script MapDamage (Phragmites australis) started at $(date)" | tee -a "$LOG
 # Initialiser le fichier de mapping info
 echo -e "Sample\tSpecies\tType\tTotalReads\tMappedReads\tMappingRate" > "${MAPPING_INFO}"
 
-# Définition de l'espèce cible (TaxID: 15603)
+# Définition de l'espece cible
 declare -A TAXONS=(
-    ["Phragmites_australis"]="15603:/home/amartin3/genomes/Phragmites_australis.fna"
+    ["Phragmites_australis"]="29695:/home/amartin3/genomes/Phragmites_australis.fna"
 )
 
 # Indexation BWA si ce n'est pas encore fait sur le cluster (décommenter si besoin)
