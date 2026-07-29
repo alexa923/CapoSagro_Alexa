@@ -247,4 +247,90 @@ plot_plan_sed8 <- ggplot(top_plan_sed8, aes(x = sed8total, y = reorder(Taxon, se
   theme_minimal() + theme(axis.text.y = element_text(size = 7))
 print(plot_plan_sed8)
 
+######################################################################
+# TOP 30 : Mammifères (combinés), Poissons et Plantes
+# Comparaison sed6 (Bleu) vs sed8 (Corail) sur la même figure
+######################################################################
+
+library(tidyverse)
+
+# 1. IMPORTER ET NETTOYER LES DONNÉES
+df <- read.csv2("results_table_assignation.csv")  
+df <- df[, 1:7] # Garde uniquement les 7 premières colonnes
+colnames(df) <- c("Taxonomy", "sed6_merge", "sed6_unmerge", "sed8_merge", "sed8_unmerge", "sed6total", "sed8total")
+
+# Calcul de la somme des reads pour sélectionner le Top 30 global
+df <- df %>%
+  mutate(Total_Reads = sed6total + sed8total)
+
+
+# 2. SÉPARATION EN TABLEAUX THÉMATIQUES 
+# --- Tableau A : Tous les Mammifères ---
+df_mammiferes <- df %>%
+  filter(str_detect(Taxonomy, "c__Mammalia") & str_detect(Taxonomy, "\\|s__")) %>%
+  mutate(Taxon = sub(".*\\|s__", "", Taxonomy))
+
+# --- Tableau B : Poissons ---
+df_poissons <- df %>%
+  filter(str_detect(Taxonomy, "c__Actinopteri") & str_detect(Taxonomy, "\\|s__")) %>%
+  mutate(Taxon = sub(".*\\|s__", "", Taxonomy))
+
+# --- Tableau C : Plantes ---
+df_plantes <- df %>%
+  filter(str_detect(Taxonomy, "Viridiplantae") & str_detect(Taxonomy, "\\|s__")) %>%
+  mutate(Taxon = sub(".*\\|s__", "", Taxonomy))
+
+
+# 3. FONCTION DE GÉNÉRATION DES GRAPHIQUES COMPARATIFS
+plot_top30_comparatif <- function(data, titre_graphique) {
+  
+  # Extraction du Top 30 sur la somme des deux échantillons
+  top30 <- data %>%
+    slice_max(order_by = Total_Reads, n = 30, with_ties = FALSE) %>%
+    select(Taxon, sed6total, sed8total, Total_Reads)
+  
+
+  top30_long <- top30 %>%
+    pivot_longer(
+      cols = c(sed6total, sed8total),
+      names_to = "Echantillon",
+      values_to = "Reads"
+    ) %>%
+    mutate(Echantillon = ifelse(Echantillon == "sed6total", "sed6", "sed8"))
+
+  p <- ggplot(top30_long, aes(x = Reads, y = reorder(Taxon, Total_Reads), fill = Echantillon)) +
+    geom_col(position = position_dodge(width = 0.7), width = 0.6) +
+    scale_fill_manual(values = c("sed6" = "steelblue", "sed8" = "coral")) +
+    labs(
+      title = titre_graphique,
+      x = "Nombre de Reads",
+      y = NULL,
+      fill = "Échantillon"
+    ) +
+    theme_minimal() +
+    theme(
+      axis.text.y = element_text(size = 8, face = "italic", color = "black"),
+      legend.position = "top",
+      plot.title = element_text(face = "bold", size = 12)
+    )
+  
+  return(p)
+}
+
+
+######################################################################
+# 4. GÉNÉRATION ET AFFICHAGE DES GRAPHIQUES
+######################################################################
+
+# --- Graphique 1 : Tous les Mammifères (Marins + Terrestres) ---
+plot_mammiferes <- plot_top30_comparatif(df_mammiferes, "Top 30 Mammifères - Comparaison sed6 vs sed8")
+print(plot_mammiferes)
+
+# --- Graphique 2 : Poissons ---
+plot_poissons <- plot_top30_comparatif(df_poissons, "Top 30 Poissons - Comparaison sed6 vs sed8")
+print(plot_poissons)
+
+# --- Graphique 3 : Plantes ---
+plot_plantes <- plot_top30_comparatif(df_plantes, "Top 30 Plantes - Comparaison sed6 vs sed8")
+print(plot_plantes)
 
