@@ -25,10 +25,10 @@ conda activate bioinformatic
 #############################SED 8##################################################################
 
 
-
+cd /home/amartin3/07_kraken2/KrakenTools/
 
 #1 extraire le taxid de la vigne
-python extract_kraken_reads.py -k fichier kraken -s fichier fastq -o fichier de sortie -t 29760 -r kreport 
+python extract_kraken_reads.py -k $fichier_kraken_sed8 -s fichier fastq -o fichier de sortie -t 29760 -r kreport 
 
 blastn -num_threads 64 -query "/home/ayouncha/aDNA_analysis/Pipeline/BLAST/1146_genus_reads.fasta" \
                 -db /storage/groups/gdec/shared/BLAST_database/41_accessions_subgenomes/all_acessions_subg -outfmt "5" \
