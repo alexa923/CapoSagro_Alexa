@@ -9,8 +9,25 @@
 #SBATCH --output=/home/amartin3/CapoSagro_Alexa/00_scripts/13_blast_Vitis_vinifera.out
 #SBATCH --cpus-per-task=64
 
+fichier_kraken_sed8="/home/amartin3/07_kraken2/clean_sed8_concat_dedup_merged.kraken"
+fichier_kraken_sed6="/home/amartin3/07_kraken2/clean_sed6_concat_dedup_merged.kraken"
+
+fichier_fastq_sed8="/home/amartin3/05_fastp/clean_sed8_concat_dedup_fastp_merged.fastq.gz"
+fichier_fastq_sed6="/home/amartin3/05_fastp/clean_sed6_concat_dedup_fastp_merged.fastq.gz"
 
 
+
+module load conda/4.12.0
+source ~/.bashrc
+conda activate bioinformatic
+
+#############################SED 8##################################################################
+
+
+
+
+#1 extraire le taxid de la vigne
+python extract_kraken_reads.py -k fichier kraken -s fichier fastq -o fichier de sortie -t 29760 -r kreport 
 
 blastn -num_threads 64 -query "/home/ayouncha/aDNA_analysis/Pipeline/BLAST/1146_genus_reads.fasta" \
                 -db /storage/groups/gdec/shared/BLAST_database/41_accessions_subgenomes/all_acessions_subg -outfmt "5" \
