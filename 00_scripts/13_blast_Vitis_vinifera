@@ -1,10 +1,16 @@
 #!/bin/bash
+#SBATCH --job-name=13_blast_Vitis_vinifera
+#SBATCH --ntasks=1
 #SBATCH -p smp
-#SBATCH --mem=300G
-#SBATCH -J 13_blast_Vitis_vinifera
-#SBATCH -o 13_blast_Vitis_vinifera.out
-#SBATCH -e 13_blast_Vitis_vinifera.err
+#SBATCH --mem=1000G
+#SBATCH --mail-user=alexa.martin@inrae.fr
+#SBATCH --mail-type=ALL
+#SBATCH --error=/home/amartin3/CapoSagro_Alexa/00_scripts/13_blast_Vitis_vinifera.err
+#SBATCH --output=/home/amartin3/CapoSagro_Alexa/00_scripts/13_blast_Vitis_vinifera.out
 #SBATCH --cpus-per-task=64
+
+
+
 
 blastn -num_threads 64 -query "/home/ayouncha/aDNA_analysis/Pipeline/BLAST/1146_genus_reads.fasta" \
                 -db /storage/groups/gdec/shared/BLAST_database/41_accessions_subgenomes/all_acessions_subg -outfmt "5" \
