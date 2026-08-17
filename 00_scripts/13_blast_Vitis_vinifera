@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH -p smp
+#SBATCH --mem=300G
+#SBATCH -J 13_blast_Vitis_vinifera
+#SBATCH -o 13_blast_Vitis_vinifera.out
+#SBATCH -e 13_blast_Vitis_vinifera.err
+#SBATCH --cpus-per-task=64
+
+blastn -num_threads 64 -query "/home/ayouncha/aDNA_analysis/Pipeline/BLAST/1146_genus_reads.fasta" \
+                -db /storage/groups/gdec/shared/BLAST_database/41_accessions_subgenomes/all_acessions_subg -outfmt "5" \
+                -evalue 1e-3 \
+                -max_target_seqs 5 \
+                -out 1146_genus_reads.blastn
+                
+
+
+
+/storage/biodatabanks/ncbi/NT/
