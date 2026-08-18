@@ -27,15 +27,15 @@ conda activate bioinformatic
 cd /home/amartin3/07_kraken2
 
 #1 extraire le taxid de la vigne
-python KrakenTools/extract_kraken_reads.py -k "$fichier_kraken_sed6" -s "$fichier_fastq_sed6" -o sortie_sed6.fastq -t 29760 -r "$fichier_report_sed6" --include-children
+#python KrakenTools/extract_kraken_reads.py -k "$fichier_kraken_sed6" -s "$fichier_fastq_sed6" -o sortie_sed6.fastq -t 29760 -r "$fichier_report_sed6" --include-children
 
 #2 convertir le fichier de sortie en fichier fasta
 #seqkit fq2fa sortie_sed6.fastq -o sortie_sed6.fasta
 
 #3 lancement du blast
 
-#blastn -num_threads 64 -query "/home/amartin3/07_kraken2/sortie_sed6.fasta" \
-#                -db /storage/biodatabanks/ncbi/NT/ncbi_blast_nt_2024-8-24/flat/nt -outfmt "6" \
-#                -evalue 1e-3 \
-#                -max_target_seqs 30 \
-#                -out vigne_sed6.blastn
+blastn -num_threads 64 -query "/home/amartin3/07_kraken2/sortie_sed6.fasta" \
+                -db /storage/biodatabanks/ncbi/NT/ncbi_blast_nt_2024-8-24/flat/nt -outfmt "6" \
+                -evalue 1e-3 \
+                -max_target_seqs 30 \
+                -out vigne_sed6.blastn
