@@ -1,12 +1,12 @@
 #!/bin/bash
-#SBATCH --job-name=13_blast_Vitis_vinifera
+#SBATCH --job-name=13_blast_Vitis_vinifera_sed6
 #SBATCH --ntasks=1
 #SBATCH -p smp
 #SBATCH --mem=1000G
 #SBATCH --mail-user=alexa.martin@inrae.fr
 #SBATCH --mail-type=ALL
-#SBATCH --error=/home/amartin3/CapoSagro_Alexa/00_scripts/13_blast_Vitis_vinifera.err
-#SBATCH --output=/home/amartin3/CapoSagro_Alexa/00_scripts/13_blast_Vitis_vinifera.out
+#SBATCH --error=/home/amartin3/CapoSagro_Alexa/00_scripts/13_blast_Vitis_vinifera_sed6.err
+#SBATCH --output=/home/amartin3/CapoSagro_Alexa/00_scripts/13_blast_Vitis_vinifera-sed6.out
 #SBATCH --cpus-per-task=64
 
 
