@@ -10,13 +10,11 @@
 #SBATCH --cpus-per-task=64
 
 fichier_kraken_sed8="/home/amartin3/07_kraken2/clean_sed8_concat_dedup_merged.kraken"
-fichier_kraken_sed6="/home/amartin3/07_kraken2/clean_sed6_concat_dedup_merged.kraken"
 
 fichier_fastq_sed8="/home/amartin3/05_fastp/clean_sed8_concat_dedup_fastp_merged.fastq.gz"
-fichier_fastq_sed6="/home/amartin3/05_fastp/clean_sed6_concat_dedup_fastp_merged.fastq.gz"
 
 fichier_report_sed8="/home/amartin3/07_kraken2/clean_sed8_concat_dedup_merged.report"
-fichier_report_sed6="/home/amartin3/07_kraken2/clean_sed6_concat_dedup_merged.report"
+
 
 module load conda/4.12.0
 source ~/.bashrc
