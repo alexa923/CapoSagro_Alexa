@@ -34,10 +34,10 @@ cd /home/amartin3/07_kraken2
 #3 lancement du blast
 
 blastn -num_threads 64 -query "/home/amartin3/07_kraken2/sortie_sed8.fasta" \
-                -db /storage/biodatabanks/ncbi/NT/ncbi_blast_nt_2024-8-24/flat/nt -outfmt "6" \
+                -db /storage/biodatabanks/ncbi/NT/ncbi_blast_nt_2024-8-24/flat/nt -outfmt "5" \
                 -evalue 1e-3 \
                 -max_target_seqs 30 \
-                -out vigne_sed8.blastn
+                -out vigne_sed8_bis.blastn
                 
 
 
