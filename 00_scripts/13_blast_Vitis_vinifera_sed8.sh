@@ -38,7 +38,11 @@ blastn -num_threads 64 -query "/home/amartin3/07_kraken2/sortie_sed8.fasta" \
                 -evalue 1e-3 \
                 -max_target_seqs 30 \
                 -out vigne_sed8_bis.blastn
-                
+
+
+##4 convertir en fichier rma pour ouvrir avec megan
+
+#blast2rma -i vigne_sed8_bis.blastn -f BlastXML -r sortie_sed8.fasta -o sortie_sed8_megan.rma -t 8                
 
 
 
